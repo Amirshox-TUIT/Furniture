@@ -4,7 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="" />
+    <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/blogs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +52,11 @@
   </component>
   <component name="ChangesViewManager" show_ignored="true" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="yangi_branch_nomi" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -25,15 +70,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
