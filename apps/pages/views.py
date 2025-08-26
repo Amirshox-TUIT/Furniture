@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from apps.pages.forms import ContactForm
 
 
 def page_404(request):
@@ -9,9 +11,18 @@ def about_us(request):
     return render(request, 'pages/about-us.html')
 
 
-def contact(request):
-    return render(request, 'pages/contact.html')
-
+def contact_view(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Ваше сообщение успешно отправлено!")
+            return redirect("pages:contact")
+        else:
+            messages.error(request, "Исправьте ошибки в форме и попробуйте снова.")
+    else:
+        form = ContactForm()
+    return render(request, "pages/contact.html", {"form": form})
 
 def home3(request):
     return render(request, 'pages/home3.html')

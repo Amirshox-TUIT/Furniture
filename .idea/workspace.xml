@@ -5,45 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/blogs/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/blogs/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/pages/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/products/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Furnitica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Furnitica.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/pages/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/pages/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/pages/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/contact.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +22,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" show_ignored="true" />
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -70,16 +51,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/makhk/PycharmProjects/Furnitica&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.django.customization.DjangoModulesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -96,6 +86,15 @@
       <option name="presentableId" value="Default" />
       <updated>1755876945271</updated>
       <workItem from="1755876946414" duration="2000" />
+      <workItem from="1755952116309" duration="829000" />
+      <workItem from="1756014523915" duration="58000" />
+      <workItem from="1756044753327" duration="4000" />
+      <workItem from="1756044773882" duration="108000" />
+      <workItem from="1756131757479" duration="15000" />
+      <workItem from="1756197466064" duration="286000" />
+      <workItem from="1756203723361" duration="1658000" />
+      <workItem from="1756206350696" duration="151000" />
+      <workItem from="1756206515011" duration="3675000" />
     </task>
     <servers />
   </component>

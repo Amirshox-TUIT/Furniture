@@ -22,10 +22,10 @@ from core import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('apps.blogs.urls', namespace='blogs')),
+    path('blogs/', include('apps.blogs.urls', namespace='blogs')),
     path('', include('apps.pages.urls', namespace='pages')),
-    path('', include('apps.products.urls', namespace='products')),
-    path('', include('apps.users.urls', namespace='users')),
+    path('products/', include('apps.products.urls', namespace='products')),
+    path('users/', include('apps.users.urls', namespace='users')),
 ]
 
 if settings.DEBUG:
