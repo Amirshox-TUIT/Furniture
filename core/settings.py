@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'apps.blogs',
     'apps.products',
     'apps.users',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "apps.blogs.context_processors.sidebar_data",
             ],
         },
     },
@@ -123,6 +126,13 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = (BASE_DIR / 'assets',)
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = 'media/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'toolbar_all': True,
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
