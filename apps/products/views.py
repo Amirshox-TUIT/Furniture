@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 def product_cart(request):
     return render(request, 'products/product-cart.html')
@@ -9,5 +10,19 @@ def product_checkout(request):
 def product_detail(request):
     return render(request, 'products/product-detail.html')
 
-def product_grid_sidebar_left(request):
-    return render(request, 'products/product-grid-sidebar-left.html')
+def products_view(request):
+    products = ProductModel.objects.all()
+
+    for product in products:
+        product.rating_percent = product.raiting * 20
+
+
+    context = {
+        "categories": ProductCategory.objects.all(),
+        "brands": ProductBrand.objects.all(),
+        "colors": ProductColor.objects.all(),
+        "sizes": ProductSize.objects.all(),
+        "tags": ProductTag.objects.all(),
+        "products": products,
+    }
+    return render(request, "products/products.html", context)
