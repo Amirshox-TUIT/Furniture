@@ -16,9 +16,11 @@ def products_view(request):
     for product in products:
         product.rating_percent = product.raiting * 20
 
+    categories = ProductCategory.objects.filter(sub__isnull=True)
+
 
     context = {
-        "categories": ProductCategory.objects.all(),
+        "categories": categories,
         "brands": ProductBrand.objects.all(),
         "colors": ProductColor.objects.all(),
         "sizes": ProductSize.objects.all(),

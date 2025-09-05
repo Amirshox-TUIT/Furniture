@@ -9,6 +9,11 @@ from apps.blogs.models import BaseModel
 
 class ProductCategory(BaseModel):
     title = models.CharField(max_length=128)
+    sub = models.ForeignKey(
+        'self',
+            null=True, blank=True,
+            related_name='sub_category',
+            on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
