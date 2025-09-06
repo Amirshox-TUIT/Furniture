@@ -5,4 +5,4 @@ register = template.Library()
 
 @register.filter
 def nospace(value):
-    return value.strip()
+    return value.replace(' ','')

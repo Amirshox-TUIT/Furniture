@@ -1,7 +1,8 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load i18n %}
 {% load custom_filters %}
-{% block title %}Furnitica - Minimalist Furniture HTML Template{% endblock %}
+{% block title %}{% trans "Furnitica - Minimalist Furniture HTML Template" %}{% endblock %}
 {% block body_id %}product-sidebar-left{% endblock %}
 {% block body_class %}product-grid-sidebar-left{% endblock %}
 {% block content %}
@@ -18,17 +19,17 @@
                                     <ol>
                                         <li>
                                             <a href="#">
-                                                <span>Home</span>
+                                                <span>{% trans "Home" %}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span>Living Room</span>
+                                                <span>{% trans "Living Room" %}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span>Sofa</span>
+                                                <span>{% trans "Sofa" %}</span>
                                             </a>
                                         </li>
                                     </ol>
@@ -43,7 +44,7 @@
 
                                         <!-- category menu -->
                                         <div class="sidebar-block">
-                                            <div class="title-block">Categories</div>
+                                            <div class="title-block">{% trans "Categories" %}</div>
                                             <div class="block-content">
                                                 {% for cat in categories %}
                                                 <div class="cateTitle hasSubCategory open level1">
@@ -55,7 +56,7 @@
                                                     <div class="subCategory collapse" id="{{ cat.title|nospace|lower }}" aria-expanded="true" role="status">
                                                         {% for sub in cat.sub_category.all %}
                                                         <div class="cateTitle">
-                                                            <a href="#" class="cateItem">{{ sub.title }}</a>
+                                                            <a onclick="addUrlParameter('cat', {{ sub.id }})" class="cateItem">{{ sub.title }}</a>
                                                         </div>
                                                         {% endfor %}
                                                     </div>
@@ -66,26 +67,26 @@
 
                                         <!-- best seller -->
                                         <div class="sidebar-block">
-                                            <div class="title-block">Catalog</div>
+                                            <div class="title-block">{% trans "Catalog" %}</div>
                                             <div class="new-item-content">
-                                                <h3 class="title-product">categories</h3>
+                                                <h3 class="title-product">{% trans "Categories" %}</h3>
                                                 <ul class="scroll-product">
-                                                    {% for cat in categories %}
+                                                    {% for sub in subcategories %}
                                                     <li>
                                                         <label class="check">
                                                             <input type="checkbox">
                                                             <span class="checkmark"></span>
                                                         </label>
-                                                        <a href="#">
-                                                            <b>{{ cat.title }}</b>
-                                                            <span class="quantity">{{ cat.products.count }}</span>
+                                                        <a onclick="addUrlParameter('cat', {{ sub.id }})">
+                                                            <b>{{ sub.title }}</b>
+                                                            <span class="quantity">{{ sub.products.count }}</span>
                                                         </a>
                                                     </li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
                                             <div class="new-item-content">
-                                                <h3 class="title-product">Manufacture</h3>
+                                                <h3 class="title-product">{% trans "Manufacture" %}</h3>
                                                 <ul class="scroll-product">
                                                     {% for brand in brands %}
                                                     <li>
@@ -93,7 +94,7 @@
                                                             <input type="checkbox">
                                                             <span class="checkmark"></span>
                                                         </label>
-                                                        <a href="#">
+                                                        <a onclick="addUrlParameter('brand', {{ brand.id }})">
                                                             <b>{{ brand.name }}</b>
                                                             <span class="quantity">{{ brand.products.count }}</span>
                                                         </a>
@@ -102,7 +103,7 @@
                                                 </ul>
                                             </div>
                                             <div class="tiva-filter-price new-item-content sidebar-block">
-                                                <h3 class="title-product">By Price</h3>
+                                                <h3 class="title-product">{% trans "By Price" %}</h3>
                                                 <div id="block_price_filter" class="block">
                                                     <div class="block-content">
                                                         <div id="slider-range" class="tiva-filter">
@@ -117,13 +118,13 @@
                                                 </div>
                                             </div>
                                             <div class="sidebar-block by-color">
-                                                <h3 class="title-product">By Color</h3>
+                                                <h3 class="title-product">{% trans "By Color" %}</h3>
                                                 <div>
                                                     {% for color in colors %}
                                                     <span class="{% if forloop.counter|divisibleby:"2" %}right
                                                     {% else %}left{% endif %}">
                                                         <label class="color-item{{ forloop.counter }}"></label>
-                                                        <a href="#">
+                                                        <a onclick="addUrlParameter('color', {{ color.id }})">
                                                             <span>{{ color.title }}
                                                                 <span>{{ color.product.count }}</span>
                                                             </span>
@@ -137,13 +138,13 @@
                                         <!-- products tag -->
                                         <div class="sidebar-block product-tags">
                                             <div class="title-block">
-                                                Product Tags
+                                                {% trans "Product Tags" %}
                                             </div>
                                             <div class="block-content">
                                                 <ul class="listSidebarBlog list-unstyled">
                                                     {% for tag in tags %}
                                                     <li>
-                                                        <a href="#" title="Show products matching tag {{ tag.title }}">{{ tag.title }}</a>
+                                                        <a onclick="addUrlParameter('tag', {{ tag.id }})" title="{% blocktrans %}Show products matching tag {{ tag.title }}{% endblocktrans %}">{{ tag.title }}</a>
                                                     </li>
                                                     {% endfor %}
                                                 </ul>
@@ -151,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-8 col-lg-9 col-md-8 product-container">
-                                        <h1>Lingving Room</h1>
+                                        <h1>{% trans "Living Room" %}</h1>
                                         <div class="js-product-list-top firt nav-top">
                                             <div class="d-flex justify-content-around row">
                                                 <div class="col col-xs-12">
@@ -164,7 +165,7 @@
                                                         </li>
                                                     </ul>
                                                     <div class="hidden-sm-down total-products">
-                                                        <p>There are 12 products.</p>
+                                                        <p>{% trans "There are 12 products." %}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col col-xs-12">
@@ -172,11 +173,11 @@
 
                                                         <div class="products-sort-order dropdown">
                                                             <select class="select-title">
-                                                                <option value="">Sort by</option>
-                                                                <option value="">Name, A to Z</option>
-                                                                <option value="">Name, Z to A</option>
-                                                                <option value="">Price, low to high</option>
-                                                                <option value="">Price, high to low</option>
+                                                                <option value="">{% trans "Sort by" %}</option>
+                                                                <option value="">{% trans "Name, A to Z" %}</option>
+                                                                <option value="">{% trans "Name, Z to A" %}</option>
+                                                                <option value="">{% trans "Price, low to high" %}</option>
+                                                                <option value="">{% trans "Price, high to low" %}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -197,7 +198,7 @@
                                                                 <div class="highlighted-informations">
                                                                     <div class="variant-links">
                                                                         {% for color in colors %}
-                                                                        <a href="#" class="color {{ color.title }}" title="{{ color.title }}"></a>
+                                                                        <a onclick="addUrlParameter('color', {{ color.id }})" class="color {{ color.title }}" title="{{ color.title }}"></a>
                                                                         {% endfor %}
                                                                     </div>
                                                                 </div>
@@ -262,7 +263,7 @@
                                                                                 <a href="product-detail.html">{{ product.title }}</a>
                                                                                 <span class="info-stock">
                                                                                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                                                                    In Stock
+                                                                                    {% trans "In Stock" %}
                                                                                 </span>
                                                                             </div>
                                                                             <div class="rating">
@@ -286,7 +287,7 @@
                                                                         <div class="product-buttons d-flex">
                                                                             <form action="#" method="post" class="formAddToCart">
                                                                                 <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart
+                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Add to cart" %}
                                                                                 </a>
                                                                             </form>
                                                                             <a class="addToWishlist" href="#" data-rel="1" onclick="">
@@ -311,13 +312,13 @@
                                             <div class="js-product-list-top ">
                                                 <div class="d-flex justify-content-around row">
                                                     <div class="showing col col-xs-12">
-                                                        <span>SHOWING 1-3 OF 3 ITEM(S)</span>
+                                                        <span>{% trans "SHOWING 1-3 OF 3 ITEM(S)" %}</span>
                                                     </div>
                                                     <div class="page-list col col-xs-12">
                                                         <ul>
                                                             <li>
                                                                 <a rel="prev" href="#" class="previous disabled js-search-link">
-                                                                    Previous
+                                                                    {% trans "Previous" %}
                                                                 </a>
                                                             </li>
                                                             <li class="current active">
@@ -338,7 +339,7 @@
 
                                                             <li>
                                                                 <a rel="next" href="#" class="next disabled js-search-link">
-                                                                    Next
+                                                                    {% trans "Next" %}
                                                                 </a>
                                                             </li>
                                                         </ul>
@@ -359,3 +360,16 @@
     </div>
 {% endblock %}
 
+{% block extra_libs_js %}
+<script>
+    function addUrlParameter(name, value) {
+        let searchParams = new URLSearchParams(window.location.search)
+        if (searchParams.has(name) && searchParams.get(name) == value) {
+            searchParams.delete(name)
+        } else {
+            searchParams.set(name, value)
+        }
+        window.location.search = searchParams.toString()
+    }
+</script>
+{% endblock %}

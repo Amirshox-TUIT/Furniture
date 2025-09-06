@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
-{% load static %}
-{% block title %}Furnitica - Contact{% endblock %}
+{% load static i18n %}
+{% block title %}Furnitica - {% trans "Contact" %}{% endblock %}
 {% block body_id %}contact{% endblock %}
 {% block body_class %}blog{% endblock %}
 {% block content %}
@@ -46,8 +46,8 @@
                 <div class="container no-index">
                     <div class="breadcrumb">
                         <ol>
-                            <li><a href="#"><span>Home</span></a></li>
-                            <li><a href="#"><span>Contact</span></a></li>
+                            <li><a href="#"><span>{% trans "Home" %}</span></a></li>
+                            <li><a href="#"><span>{% trans "Contact" %}</span></a></li>
                         </ol>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <div id="main">
                 <div class="page-home">
                     <div class="container">
-                        <h1 class="text-center title-page">Contact Us</h1>
+                        <h1 class="text-center title-page">{% trans "Contact Us" %}</h1>
                         <div class="row-inhert">
 
                             <!-- Contact Info -->
@@ -68,7 +68,7 @@
                                                 <div class="icon"><i class="zmdi zmdi-email"></i></div>
                                             </div>
                                             <div class="item-right d-flex">
-                                                <div class="title">Email:</div>
+                                                <div class="title">{% trans "Email:" %}</div>
                                                 <div class="contact-content">
                                                     <a href="mailto:support@domain.com">support@domain.com</a><br>
                                                     <a href="mailto:contact@domain.com">contact@domain.com</a>
@@ -83,7 +83,7 @@
                                                 <div class="icon"><i class="zmdi zmdi-home"></i></div>
                                             </div>
                                             <div class="item-right d-flex">
-                                                <div class="title">Address:</div>
+                                                <div class="title">{% trans "Address:" %}</div>
                                                 <div class="contact-content">
                                                     23 Suspendis matti, Visaosang Building<br>
                                                     District, NY Accums, North American
@@ -98,7 +98,7 @@
                                                 <div class="icon"><i class="zmdi zmdi-phone"></i></div>
                                             </div>
                                             <div class="item-right d-flex">
-                                                <div class="title">Hotline:</div>
+                                                <div class="title">{% trans "Hotline:" %}</div>
                                                 <div class="contact-content">
                                                     0123-456-78910<br>0987-654-32100
                                                 </div>
@@ -118,9 +118,7 @@
                             <!-- Contact Form -->
                             <div class="input-contact">
                                 <p class="text-intro text-center">
-                                    “Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum
-                                    auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit
-                                    amet nibh vultate cursus a sit amet mauris.”
+                                    {% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris." %}
                                 </p>
 
                                 <p class="icon text-center">
@@ -135,13 +133,13 @@
                                                 <div class="form-fields">
                                                     <div class="form-group row">
                                                         <div class="col-md-6">
-                                                            <input class="form-control" name="name" type="text" placeholder="Your name" value="" required>
+                                                            <input class="form-control" name="name" type="text" placeholder="{% trans 'Your name' %}" value="" required>
                                                             {% if form.name.errors %}
                                                                 <span class="text-danger">{{ form.name.errors.0 }}</span>
                                                             {% endif %}
                                                         </div>
                                                         <div class="col-md-6 margin-bottom-mobie">
-                                                            <input class="form-control" name="email" type="email" placeholder="Your email" value="" required>
+                                                            <input class="form-control" name="email" type="email" placeholder="{% trans 'Your email' %}" value="" required>
                                                             {% if form.email.errors %}
                                                                 <span class="text-danger">{{ form.email.errors.0 }}</span>
                                                             {% endif %}
@@ -150,7 +148,7 @@
 
                                                     <div class="form-group row">
                                                         <div class="col-md-12 margin-bottom-mobie">
-                                                            <input class="form-control" name="subject" type="text" placeholder="Subject" value="" required>
+                                                            <input class="form-control" name="subject" type="text" placeholder="{% trans 'Subject' %}" value="" required>
                                                             {% if form.subject.errors %}
                                                                 <span class="text-danger">{{ form.subject.errors.0 }}</span>
                                                             {% endif %}
@@ -159,7 +157,7 @@
 
                                                     <div class="form-group row">
                                                         <div class="col-md-12">
-                                                            <textarea class="form-control" name="message" placeholder="Message" rows="8" required></textarea>
+                                                            <textarea class="form-control" name="message" placeholder="{% trans 'Message' %}" rows="8" required></textarea>
                                                             {% if form.message.errors %}
                                                                 <span class="text-danger">{{ form.message.errors.0 }}</span>
                                                             {% endif %}
@@ -168,7 +166,7 @@
                                                 </div>
                                                 <div>
                                                     <button class="btn" type="submit" name="submitMessage">
-                                                        <img class="img-fl" src="{% static 'img/other/contact_email.png' %}" alt="img">Send message
+                                                        <img class="img-fl" src="{% static 'img/other/contact_email.png' %}" alt="img"> {% trans "Send message" %}
                                                     </button>
                                                 </div>
                                             </form>

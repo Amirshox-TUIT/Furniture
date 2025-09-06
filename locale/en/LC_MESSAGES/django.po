@@ -1,0 +1,438 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-06 19:02+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\layout\footer-base.html:14
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:21 .\templates\pages\about-us.html:25
+#: .\templates\pages\about-us.html:37
+msgid "About Us"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:22
+msgid "Reasons to shop"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:23
+msgid "What our customers say"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:24
+msgid "Meet the team"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:25
+msgid "Contact our buyers"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:40 .\templates\pages\contact.html:59
+msgid "Contact Us"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:46
+msgid "Address :"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:49
+msgid ""
+"123 Suspendis matti, Visaosang Building VST District NY Accums, North "
+"American"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:55
+msgid "Email :"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:64
+msgid "Hotline :"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:73
+msgid "Opening Hours :"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:76
+msgid "Monday - Sunday / 08.00AM- 19.00"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:77
+msgid "(Except Holidays)"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:86
+msgid "Newsletter"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:88
+msgid ""
+"Sign up to our newsletter to get the latest articles, lookbooks voucher "
+"codes direct to your inbox"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:93
+msgid "Enter Your Email"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:96
+msgid "Subscribe"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:109
+msgid "Follow us on"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:136
+msgid "Payment accept"
+msgstr ""
+
+#: .\templates\layout\footer-base.html:155
+msgid "Templates Hub"
+msgstr ""
+
+#: .\templates\layout\header-base.html:17
+msgid "Prestashop_Furnitica"
+msgstr ""
+
+#: .\templates\layout\header-base.html:31
+#: .\templates\layout\header-base.html:138
+msgid "Search"
+msgstr ""
+
+#: .\templates\layout\header-base.html:50
+#: .\templates\layout\header-base.html:246
+msgid "Product"
+msgstr ""
+
+#: .\templates\layout\header-base.html:55
+#: .\templates\layout\header-base.html:251
+msgid "Organic Strawberry Fruits"
+msgstr ""
+
+#: .\templates\layout\header-base.html:69
+#: .\templates\layout\header-base.html:265
+msgid "Total:"
+msgstr ""
+
+#: .\templates\layout\header-base.html:76
+#: .\templates\layout\header-base.html:272
+msgid "View Cart"
+msgstr ""
+
+#: .\templates\layout\header-base.html:77
+#: .\templates\layout\header-base.html:179
+#: .\templates\layout\header-base.html:181
+#: .\templates\layout\header-base.html:273
+msgid "Checkout"
+msgstr ""
+
+#: .\templates\layout\header-base.html:98
+msgid "logo"
+msgstr ""
+
+#: .\templates\layout\header-base.html:113 .\templates\pages\about-us.html:20
+#: .\templates\pages\contact.html:49 .\templates\products\products.html:22
+msgid "Home"
+msgstr ""
+
+#: .\templates\layout\header-base.html:115
+msgid "Home Page 3"
+msgstr ""
+
+#: .\templates\layout\header-base.html:115
+msgid "Home Page"
+msgstr ""
+
+#: .\templates\layout\header-base.html:119
+msgid "Blog"
+msgstr ""
+
+#: .\templates\layout\header-base.html:122
+msgid "Products"
+msgstr ""
+
+#: .\templates\layout\header-base.html:125
+msgid "About Us Page"
+msgstr ""
+
+#: .\templates\layout\header-base.html:128
+msgid "Contact US"
+msgstr ""
+
+#: .\templates\layout\header-base.html:149
+msgid "Account"
+msgstr ""
+
+#: .\templates\layout\header-base.html:158
+#: .\templates\layout\header-base.html:165
+msgid "Log in to your customer account"
+msgstr ""
+
+#: .\templates\layout\header-base.html:160
+msgid "My Account"
+msgstr ""
+
+#: .\templates\layout\header-base.html:167
+msgid "Sign in"
+msgstr ""
+
+#: .\templates\layout\header-base.html:172
+#: .\templates\layout\header-base.html:174
+msgid "Register Account"
+msgstr ""
+
+#: .\templates\layout\header-base.html:185
+#: .\templates\layout\header-base.html:187
+msgid "My Wishlists"
+msgstr ""
+
+#: .\templates\layout\header-base.html:194
+msgid "Euro"
+msgstr ""
+
+#: .\templates\layout\header-base.html:197
+msgid "British Pound Sterling"
+msgstr ""
+
+#: .\templates\layout\header-base.html:207
+msgid "English"
+msgstr ""
+
+#: .\templates\layout\header-base.html:213
+msgid "Italiano"
+msgstr ""
+
+#: .\templates\layout\header-base.html:219
+msgid "Français"
+msgstr ""
+
+#: .\templates\layout\header-base.html:225
+msgid "Español"
+msgstr ""
+
+#: .\templates\pages\about-us.html:4 .\templates\products\products.html:5
+msgid "Furnitica - Minimalist Furniture HTML Template"
+msgstr ""
+
+#: .\templates\pages\about-us.html:46
+msgid "WHO WE ARE"
+msgstr ""
+
+#: .\templates\pages\about-us.html:47 .\templates\pages\about-us.html:58
+msgid ""
+"Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
+"bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
+"sit amet nibh vultate cursus a sit amet mauris."
+msgstr ""
+
+#: .\templates\pages\about-us.html:48
+msgid ""
+"Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
+"sit amet nibh vultate cursus a sit amet mauris."
+msgstr ""
+
+#: .\templates\pages\about-us.html:51
+msgid "Mr. kwang shang - CEO"
+msgstr ""
+
+#: .\templates\pages\about-us.html:57
+msgid "WHAT WE DO"
+msgstr ""
+
+#: .\templates\pages\about-us.html:59
+msgid ""
+"Proin gravida nibh vel velit auctor aliquet, nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
+"sit amet nibh vultate cursus a sit amet mauris."
+msgstr ""
+
+#: .\templates\pages\about-us.html:74
+msgid "MEET OUR TEAM"
+msgstr ""
+
+#: .\templates\pages\about-us.html:77
+msgid "William James"
+msgstr ""
+
+#: .\templates\pages\about-us.html:78
+msgid "Designer - Stylish"
+msgstr ""
+
+#: .\templates\pages\about-us.html:79 .\templates\pages\about-us.html:89
+#: .\templates\pages\about-us.html:94
+msgid ""
+"Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
+"bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Proin gravida "
+"nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum "
+"auctor, nisi elit conse quat ipsum"
+msgstr ""
+
+#: .\templates\pages\about-us.html:82
+msgid "Seller Smith"
+msgstr ""
+
+#: .\templates\pages\about-us.html:83
+msgid "Web developer"
+msgstr ""
+
+#: .\templates\pages\about-us.html:84 .\templates\pages\contact.html:121
+msgid ""
+"Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
+"bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
+msgstr ""
+
+#: .\templates\pages\about-us.html:87
+msgid "Peter Capidal"
+msgstr ""
+
+#: .\templates\pages\about-us.html:88
+msgid "Front-end Developer"
+msgstr ""
+
+#: .\templates\pages\about-us.html:92
+msgid "David James"
+msgstr ""
+
+#: .\templates\pages\about-us.html:93
+msgid "Developer"
+msgstr ""
+
+#: .\templates\pages\contact.html:3 .\templates\pages\contact.html:50
+msgid "Contact"
+msgstr ""
+
+#: .\templates\pages\contact.html:71
+msgid "Email:"
+msgstr ""
+
+#: .\templates\pages\contact.html:86
+msgid "Address:"
+msgstr ""
+
+#: .\templates\pages\contact.html:101
+msgid "Hotline:"
+msgstr ""
+
+#: .\templates\pages\contact.html:136
+msgid "Your name"
+msgstr ""
+
+#: .\templates\pages\contact.html:142
+msgid "Your email"
+msgstr ""
+
+#: .\templates\pages\contact.html:151
+msgid "Subject"
+msgstr ""
+
+#: .\templates\pages\contact.html:160
+msgid "Message"
+msgstr ""
+
+#: .\templates\pages\contact.html:169
+msgid "Send message"
+msgstr ""
+
+#: .\templates\products\products.html:27 .\templates\products\products.html:155
+msgid "Living Room"
+msgstr ""
+
+#: .\templates\products\products.html:32
+msgid "Sofa"
+msgstr ""
+
+#: .\templates\products\products.html:47 .\templates\products\products.html:72
+msgid "Categories"
+msgstr ""
+
+#: .\templates\products\products.html:70
+msgid "Catalog"
+msgstr ""
+
+#: .\templates\products\products.html:89
+msgid "Manufacture"
+msgstr ""
+
+#: .\templates\products\products.html:106
+msgid "By Price"
+msgstr ""
+
+#: .\templates\products\products.html:121
+msgid "By Color"
+msgstr ""
+
+#: .\templates\products\products.html:141
+msgid "Product Tags"
+msgstr ""
+
+#: .\templates\products\products.html:147
+#, python-format
+msgid "Show products matching tag %(tag.title)s"
+msgstr ""
+
+#: .\templates\products\products.html:168
+msgid "There are 12 products."
+msgstr ""
+
+#: .\templates\products\products.html:176
+msgid "Sort by"
+msgstr ""
+
+#: .\templates\products\products.html:177
+msgid "Name, A to Z"
+msgstr ""
+
+#: .\templates\products\products.html:178
+msgid "Name, Z to A"
+msgstr ""
+
+#: .\templates\products\products.html:179
+msgid "Price, low to high"
+msgstr ""
+
+#: .\templates\products\products.html:180
+msgid "Price, high to low"
+msgstr ""
+
+#: .\templates\products\products.html:266
+msgid "In Stock"
+msgstr ""
+
+#: .\templates\products\products.html:290
+msgid "Add to cart"
+msgstr ""
+
+#: .\templates\products\products.html:315
+msgid "SHOWING 1-3 OF 3 ITEM(S)"
+msgstr ""
+
+#: .\templates\products\products.html:321
+msgid "Previous"
+msgstr ""
+
+#: .\templates\products\products.html:342
+msgid "Next"
+msgstr ""
