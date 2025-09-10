@@ -1,10 +1,21 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 from .models import (
     ProductCategory, ProductSize, ProductColor, ProductBrand,
     ProductModel, ProductQuantity, ProductImageModel, ProductTag
 )
 
+class MyTranslationAdmin(TranslationAdmin):
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImageModel
@@ -23,7 +34,7 @@ class ProductQuantityInline(admin.TabularInline):
 
 
 @admin.register(ProductModel)
-class ProductModelAdmin(admin.ModelAdmin):
+class ProductModelAdmin(MyTranslationAdmin):
     list_display = ['title', 'brand', 'price', 'discount']
     list_filter = ['brand', 'categories', 'created_at']
     search_fields = ['title', 'short_description']
@@ -43,7 +54,7 @@ class ProductModelAdmin(admin.ModelAdmin):
 
 # Register other models normally
 @admin.register(ProductCategory)
-class ProductCategoryAdmin(admin.ModelAdmin):
+class ProductCategoryAdmin(MyTranslationAdmin):
     list_display = ['title', 'created_at']
     search_fields = ['title']
 
@@ -55,7 +66,7 @@ class ProductSizeAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProductColor)
-class ProductColorAdmin(admin.ModelAdmin):
+class ProductColorAdmin(MyTranslationAdmin):
     list_display = ['title', 'code']
     search_fields = ['title', 'code']
 
@@ -67,6 +78,6 @@ class ProductBrandAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProductTag)
-class ProductModelAdmin(admin.ModelAdmin):
+class ProductTagModelAdmin(MyTranslationAdmin):
     list_display = ['title']
     search_fields = ['title']

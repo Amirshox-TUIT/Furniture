@@ -1,20 +1,22 @@
 {% load static %}
+{% load  custom_filters %}
+{% load i18n %}
 <div class="sidebar-3 sidebar-collection col-lg-3 col-md-3 col-sm-4">
     <!-- category -->
     <div class="sidebar-block">
-        <div class="title-block">Categories</div>
+        <div class="title-block">{% trans "Categories" %}</div>
         <div class="block-content">
             {% for cat in categories %}
             <div class="cateTitle hasSubCategory open level1">
-                <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#{{ cat.title|lower }}" aria-expanded="false" role="status">
+                <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#{{ cat.title|nospace|lower }}" aria-expanded="false" role="status">
                     <i class="zmdi zmdi-minus"></i>
                     <i class="zmdi zmdi-plus"></i>
                 </span>
                 <a class="cateItem" href="#">{{ cat.title }}</a>
-                <div class="subCategory collapse" id="{{ cat.title|lower }}" aria-expanded="true" role="status">
+                <div class="subCategory collapse" id="{{ cat.title|lower|nospace }}" aria-expanded="true" role="status">
                     {% for sub in cat.sub_category.all %}
                     <div class="cateTitle">
-                        <a href="#" class="cateItem">{{ sub.title }}</a>
+                        <a onclick="addUrlParameter('cat', {{ sub.id }})" class="cateItem">{{ sub.title }}</a>
                     </div>
                     {% endfor %}
                 </div>
@@ -25,24 +27,25 @@
 
     <!-- recent posts -->
     <div class="sidebar-block">
-        <div class="title-block">Recent Posts</div>
+        <div class="title-block">{% trans "Recent Posts" %}</div>
         <div class="post-item-content">
             {% for r_blog in recent_blogs %}
             <div>
                 <div class="late-item">
                     <a href="{% url 'blogs:detail' pk=r_blog.id %}">
-                        <p class="content-title">{{ r_blog.title|slice:"50" }}</p>
+                        <p style="width: 20ch; white-space: normal; overflow-wrap: break-word" class="content-title">{{ r_blog.title }}</p>
                     </a>
                     <span>
-                        <i class="zmdi zmdi-comments"></i>13 comment
+                        <i class="zmdi zmdi-comments"></i>13 {% trans "comment" %}
                     </span>
                     <span>
                         <i class="zmdi zmdi-calendar-note"></i>{{ r_blog.created_at|date:"d M Y" }}
                     </span>
-                    <p class="description">{{ r_blog.description|slice:"100" }}
+                    <p class="description" style="width: 30ch; white-space: normal; overflow-wrap: break-word;">
+                        {{ r_blog.description|slice:'150' }}
                     </p>
                     <p class="remove">
-                        <a href="{% url 'blogs:detail' pk=r_blog.id %}">READ MORE</a>
+                        <a href="{% url 'blogs:detail' pk=r_blog.id %}">{% trans "READ MORE" %}</a>
                     </p>
                 </div>
             </div>
@@ -53,13 +56,14 @@
     <!-- products tag -->
     <div class="sidebar-block product-tags">
         <div class="title-block">
-            Blog Tags
+            {% trans "Blog Tags" %}
         </div>
         <div class="block-content">
             <ul class="listSidebarBlog list-unstyled">
                 {% for tag in tags %}
                 <li>
-                    <a href="#" title="Show products matching tag {{ tag }}">{{ tag }}</a>
+                    <a onclick="addUrlParameter('tag', {{ tag.id }})"
+                       title="{% blocktrans %}Show products matching tag {{ tag.title }}{% endblocktrans %}">{{ tag.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -70,8 +74,19 @@
     <div class="sidebar-block group-image-special">
         <div class="effect">
             <a href="#">
-                <img class="img-fluid" src="{% static 'img/blog/advertising.jpg' %}" alt="banner-2" title="banner-2">
+                <img class="img-fluid" src="{% static 'img/blog/advertising.jpg' %}" alt="{% trans 'banner-2' %}" title="{% trans 'banner-2' %}">
             </a>
         </div>
     </div>
 </div>
+<script>
+    function addUrlParameter(name, value) {
+        let searchParams = new URLSearchParams(window.location.search)
+        if (searchParams.has(name) && searchParams.get(name) == value) {
+            searchParams.delete(name)
+        } else {
+            searchParams.set(name, value)
+        }
+        window.location.search = searchParams.toString()
+    }
+</script>

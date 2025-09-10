@@ -15,3 +15,16 @@ class ContactModel(models.Model):
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
 
+
+class AboutModel(models.Model):
+    name = models.CharField(max_length=255)
+    profession = models.CharField(max_length=255)
+    avatar = models.ImageField()
+    bio = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} - {self.profession}"
+
+    class Meta:
+        verbose_name = 'About'
+        verbose_name_plural = 'Abouts'

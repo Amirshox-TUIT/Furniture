@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-06 19:02+0500\n"
+"POT-Creation-Date: 2025-09-09 18:14+0500\n"
 "PO-Revision-Date: 2025-09-06 19:10+0500\n"
 "Last-Translator: Amirshox <EMAIL@ADDRESS>\n"
 "Language-Team: Uzbek <LL@li.org>\n"
@@ -16,6 +16,141 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\templates\blogs\blog-detail.html:4
+#: .\templates\blogs\blog-list-sidebar-left.html:4
+msgid "Minimalist Furniture HTML Template"
+msgstr "Furnitica - Minimalistik mebel HTML shabloni"
+
+#: .\templates\blogs\blog-detail.html:22
+#: .\templates\blogs\blog-list-sidebar-left.html:22
+#: .\templates\layout\header-base.html:113 .\templates\pages\about-us.html:20
+#: .\templates\pages\contact.html:49 .\templates\products\products.html:22
+msgid "Home"
+msgstr "Bosh sahifa"
+
+#: .\templates\blogs\blog-detail.html:27
+#: .\templates\blogs\blog-list-sidebar-left.html:27
+#: .\templates\products\products.html:27 .\templates\products\products.html:155
+msgid "Living Room"
+msgstr "Yashash xonasi"
+
+#: .\templates\blogs\blog-detail.html:32
+#: .\templates\blogs\blog-list-sidebar-left.html:32
+#: .\templates\products\products.html:32
+msgid "Sofa"
+msgstr "Divan"
+
+#: .\templates\blogs\blog-detail.html:53 .\templates\blogs\blog-detail.html:116
+#: .\templates\blogs\blog-list-sidebar-left.html:58
+msgid "Comments"
+msgstr "Izohlar"
+
+#: .\templates\blogs\blog-detail.html:59
+msgid "Share"
+msgstr "Ulashish"
+
+#: .\templates\blogs\blog-detail.html:63
+msgid "SEND TO A FRIEND"
+msgstr "Do‘stga yuborish"
+
+#: .\templates\blogs\blog-detail.html:67
+msgid "Print"
+msgstr "Chop etish"
+
+#: .\templates\blogs\blog-detail.html:90
+msgid "Related News"
+msgstr "Tegishli yangiliklar"
+
+#: .\templates\blogs\blog-detail.html:122
+#: .\templates\blogs\blog-detail.html:140
+#: .\templates\blogs\blog-detail.html:160
+msgid "Posted on"
+msgstr "E’lon qilingan sana"
+
+#: .\templates\blogs\blog-detail.html:123
+#: .\templates\blogs\blog-detail.html:141
+#: .\templates\blogs\blog-detail.html:161
+msgid "repost"
+msgstr "Qayta ulashish"
+
+#: .\templates\blogs\blog-detail.html:125
+#: .\templates\blogs\blog-detail.html:143
+#: .\templates\blogs\blog-detail.html:163
+msgid "Reply"
+msgstr "Javob berish"
+
+#: .\templates\blogs\blog-detail.html:175
+msgid "Submit comment"
+msgstr "Izohni yuborish"
+
+#: .\templates\blogs\blog-detail.html:181
+msgid "Your Name *"
+msgstr "Ismingiz"
+
+#: .\templates\blogs\blog-detail.html:184
+msgid "Your E-mail *"
+msgstr "Emailingiz"
+
+#: .\templates\blogs\blog-detail.html:187
+msgid "Your Website"
+msgstr "Web sahifangiz"
+
+#: .\templates\blogs\blog-detail.html:192
+msgid "Your Message"
+msgstr "Xabaringiz"
+
+#: .\templates\blogs\blog-detail.html:196
+msgid "Send Message"
+msgstr "Xabarni yuborish"
+
+#: .\templates\blogs\blog-list-sidebar-left.html:44
+#: .\templates\blogs\recent_posts.html:30
+msgid "Recent Posts"
+msgstr "So‘nggi postlar"
+
+#: .\templates\blogs\blog-list-sidebar-left.html:65
+msgid "view more"
+msgstr "Ko‘proq ko‘rish"
+
+#: .\templates\blogs\blog-list-sidebar-left.html:75
+#: .\templates\products\products.html:321
+msgid "Previous"
+msgstr "Oldingi"
+
+#: .\templates\blogs\blog-list-sidebar-left.html:90
+#: .\templates\products\products.html:342
+msgid "Next"
+msgstr "Keyingi"
+
+#: .\templates\blogs\recent_posts.html:7 .\templates\products\products.html:47
+#: .\templates\products\products.html:72
+msgid "Categories"
+msgstr "Kategoriyalar"
+
+#: .\templates\blogs\recent_posts.html:39
+msgid "comment"
+msgstr "izoh"
+
+#: .\templates\blogs\recent_posts.html:48
+msgid "READ MORE"
+msgstr "Batafsil o‘qish"
+
+#: .\templates\blogs\recent_posts.html:59
+#, fuzzy
+#| msgid "Blog"
+msgid "Blog Tags"
+msgstr "Blog teglar"
+
+#: .\templates\blogs\recent_posts.html:65
+#, fuzzy, python-format
+#| msgid "Show products matching tag %(tag.title)s"
+msgid "Show products matching tag %(tag)s"
+msgstr "%(tag)s tegiga mos mahsulotlarni ko‘rsatish"
+
+#: .\templates\blogs\recent_posts.html:76
+msgid "banner-2"
+msgstr "banner-2"
 
 #: .\templates\layout\footer-base.html:14
 msgid ""
@@ -151,11 +286,6 @@ msgstr "Buyurtma berish"
 msgid "logo"
 msgstr "logo"
 
-#: .\templates\layout\header-base.html:113 .\templates\pages\about-us.html:20
-#: .\templates\pages\contact.html:49 .\templates\products\products.html:22
-msgid "Home"
-msgstr "Bosh sahifa"
-
 #: .\templates\layout\header-base.html:115
 msgid "Home Page 3"
 msgstr "Bosh sahifa 3"
@@ -174,7 +304,7 @@ msgstr "Mahsulotlar"
 
 #: .\templates\layout\header-base.html:125
 msgid "About Us Page"
-msgstr "Biz haqimizda sahifasi"
+msgstr "Biz haqimizda"
 
 #: .\templates\layout\header-base.html:128
 msgid "Contact US"
@@ -239,6 +369,7 @@ msgstr "Furnitica - Minimalistik mebel HTML shabloni"
 msgid "WHO WE ARE"
 msgstr "Biz kimligimiz"
 
+#: .\templates\pages\about-us.html:47 .\templates\pages\about-us.html:58
 msgid ""
 "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
 "bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
@@ -249,6 +380,7 @@ msgstr ""
 "bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
 "Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
 
+#: .\templates\pages\about-us.html:48
 msgid ""
 "Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. "
 "Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
@@ -257,12 +389,15 @@ msgstr ""
 "Proin gravida nibh vel velit auctor aliquet. Nec sagittis sem nibh id elit. "
 "Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
 
+#: .\templates\pages\about-us.html:51
 msgid "Mr. kwang shang - CEO"
 msgstr "Janob Kvang Shang - Bosh direktor"
 
+#: .\templates\pages\about-us.html:57
 msgid "WHAT WE DO"
 msgstr "Biz nima qilamiz"
 
+#: .\templates\pages\about-us.html:59
 msgid ""
 "Proin gravida nibh vel velit auctor aliquet, nec sagittis sem nibh id elit. "
 "Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
@@ -271,32 +406,9 @@ msgstr ""
 "Proin gravida nibh vel velit auctor aliquet. Nec sagittis sem nibh id elit. "
 "Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
 
+#: .\templates\pages\about-us.html:74
 msgid "MEET OUR TEAM"
 msgstr "Bizning jamoamiz bilan tanishing"
-
-msgid "William James"
-msgstr "Uilyam Jeyms"
-
-msgid "Designer - Stylish"
-msgstr "Dizayner - Stilist"
-
-msgid "Seller Smith"
-msgstr "Seller Smit"
-
-msgid "Web developer"
-msgstr "Veb-dasturchi"
-
-msgid "Peter Capidal"
-msgstr "Piter Kapidal"
-
-msgid "Front-end Developer"
-msgstr "Frontend dasturchi"
-
-msgid "David James"
-msgstr "Devid Jeyms"
-
-msgid "Developer"
-msgstr "Dasturchi"
 
 #: .\templates\pages\contact.html:3 .\templates\pages\contact.html:50
 #, fuzzy
@@ -322,6 +434,22 @@ msgstr "Manzil :"
 msgid "Hotline:"
 msgstr "Telefon :"
 
+#: .\templates\pages\contact.html:121
+#, fuzzy
+#| msgid ""
+#| "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem "
+#| "quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id "
+#| "elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis "
+#| "sed odio sit amet nibh vultate cursus a sit amet mauris."
+msgid ""
+"Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
+"bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
+msgstr ""
+"Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
+"bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
+"Duis sed odio sit amet nibh vultate cursus a sit amet mauris."
+
 #: .\templates\pages\contact.html:136
 msgid "Your name"
 msgstr "Ismingiz"
@@ -341,18 +469,6 @@ msgstr "Xabar"
 #: .\templates\pages\contact.html:169
 msgid "Send message"
 msgstr "Xabarni yuborish"
-
-#: .\templates\products\products.html:27 .\templates\products\products.html:155
-msgid "Living Room"
-msgstr "Yashash xonasi"
-
-#: .\templates\products\products.html:32
-msgid "Sofa"
-msgstr "Divan"
-
-#: .\templates\products\products.html:47 .\templates\products\products.html:72
-msgid "Categories"
-msgstr "Kategoriyalar"
 
 #: .\templates\products\products.html:70
 msgid "Catalog"
@@ -417,10 +533,26 @@ msgstr "Savatchaga qo‘shish"
 msgid "SHOWING 1-3 OF 3 ITEM(S)"
 msgstr "1–3 dan 3 ta mahsulot ko‘rsatilmoqda"
 
-#: .\templates\products\products.html:321
-msgid "Previous"
-msgstr "Oldingi"
+#~ msgid "William James"
+#~ msgstr "Uilyam Jeyms"
 
-#: .\templates\products\products.html:342
-msgid "Next"
-msgstr "Keyingi"
+#~ msgid "Designer - Stylish"
+#~ msgstr "Dizayner - Stilist"
+
+#~ msgid "Seller Smith"
+#~ msgstr "Seller Smit"
+
+#~ msgid "Web developer"
+#~ msgstr "Veb-dasturchi"
+
+#~ msgid "Peter Capidal"
+#~ msgstr "Piter Kapidal"
+
+#~ msgid "Front-end Developer"
+#~ msgstr "Frontend dasturchi"
+
+#~ msgid "David James"
+#~ msgstr "Devid Jeyms"
+
+#~ msgid "Developer"
+#~ msgstr "Dasturchi"

@@ -1,4 +1,5 @@
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 from apps.users.models import UserModel
@@ -10,6 +11,7 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
 
 class AuthorsModel(BaseModel):
     full_name = models.CharField(max_length=128)
@@ -27,15 +29,19 @@ class AuthorsModel(BaseModel):
 
 
 class CategoriesModel(BaseModel):
-    title = models.CharField(max_length=128, unique=True)
-
+    title = models.CharField(max_length=128)
+    sub = models.ForeignKey(
+        'self',
+            null=True, blank=True,
+            related_name='sub_category',
+            on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = 'blogs category'
+        verbose_name_plural = 'blogs categories'
 
 
 class TagsModel(BaseModel):
@@ -51,7 +57,7 @@ class TagsModel(BaseModel):
 
 class BlogsModel(BaseModel):
     title = models.CharField(max_length=255)
-    description = RichTextField()
+    description = RichTextUploadingField()
     author = models.ForeignKey(AuthorsModel, on_delete=models.CASCADE, related_name='blogs')
     image = models.ImageField(upload_to='blogs/')
     category = models.ManyToManyField(CategoriesModel, related_name='blogs')

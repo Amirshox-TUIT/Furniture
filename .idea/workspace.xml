@@ -5,14 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/blogs/translation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/pages/translation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/translation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/products/templatetags/custom_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/templatetags/custom_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/context_processors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/pages/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/pages/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/pages/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/pages/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/pages/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/products/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/footer-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/footer-base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/header-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.mo" beforeDir="false" afterPath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.mo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.po" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blogs/blog-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blogs/recent_posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/recent_posts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/about-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/about-us.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/products/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/products.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +55,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -51,30 +69,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.Furnitica.executor&quot;: &quot;Run&quot;,
-    &quot;Django Server.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.blog-list-sidebar-left.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.models.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/makhk/PycharmProjects/Furnitica&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.templateLanguages.PyTemplateLanguageModulesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.Furnitica.executor": "Run",
+    "Django Server.Unnamed.executor": "Run",
+    "JavaScript Debug.blog-list-sidebar-left.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.models.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/makhk/PycharmProjects/Furnitica",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Furnitica" type="Python.DjangoServer" factoryName="Django server">
       <module name="Furnitica" />
@@ -136,7 +154,12 @@
       <workItem from="1757067354798" duration="5325000" />
       <workItem from="1757081572106" duration="1324000" />
       <workItem from="1757085913609" duration="7000" />
-      <workItem from="1757162693831" duration="4141000" />
+      <workItem from="1757162693831" duration="4460000" />
+      <workItem from="1757412305150" duration="2137000" />
+      <workItem from="1757418061788" duration="705000" />
+      <workItem from="1757421198615" duration="5277000" />
+      <workItem from="1757431860914" duration="5119000" />
+      <workItem from="1757499457836" duration="3085000" />
     </task>
     <servers />
   </component>

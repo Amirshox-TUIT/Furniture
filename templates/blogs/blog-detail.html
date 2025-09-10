@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
-{% block title %}Furnitica - Minimalist Furniture HTML Template{% endblock %}
+{% load i18n %}
+{% block title %}Furnitica - {% trans "Minimalist Furniture HTML Template" %}{% endblock %}
 {% block body_id %}blog-detail{% endblock %}
 {% block body_class %}blog{% endblock %}
 {% block content %}
@@ -18,17 +19,17 @@
                                     <ol>
                                         <li>
                                             <a href="#">
-                                                <span>Home</span>
+                                                <span>{% trans "Home" %}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span>Living Room</span>
+                                                <span>{% trans "Living Room" %}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span>Sofa</span>
+                                                <span>{% trans "Sofa" %}</span>
                                             </a>
                                         </li>
                                     </ol>
@@ -43,27 +44,27 @@
                                     <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
                                         <h3>{{ blog.title }}</h3>
                                         <div class="late-item">
-                                            <p>
-                                                {{ blog.description }}
+                                            <p style="width: 30ch; white-space: normal; overflow-wrap: break-word;">
+                                                {{ blog.description|safe }}
                                             </p>
                                             <div class="border-detail">
                                                 <p class="post-info float-left">
                                                     <span>{{ blog.created_at|date:"d M Y" }}</span>
-                                                    <span>113 Comments</span>
+                                                    <span>113 {% trans "Comments" %}</span>
                                                     <span>{{ blog.author.full_name }}</span>
                                                 </p>
                                                 <div class="btn-group">
                                                     <a href="#">
                                                         <i class="zmdi zmdi-share"></i>
-                                                        <span>Share</span>
+                                                        <span>{% trans "Share" %}</span>
                                                     </a>
                                                     <a href="#" class="email">
                                                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                        <span>SEN TO A FRIEND</span>
+                                                        <span>{% trans "SEND TO A FRIEND" %}</span>
                                                     </a>
                                                     <a href="#" class="print">
                                                         <i class="zmdi zmdi-print"></i>
-                                                        <span>Print</span>
+                                                        <span>{% trans "Print" %}</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -78,7 +79,7 @@
                                                            {{ blog.author.full_name }}
                                                         </span>
                                                     </a>
-                                                    <span>{{ blog.author.profession }}</span>
+                                                    <span><p>{{ blog.author.profession }}</p></span>
                                                 </p>
                                                 <p class="descript">
                                                     {{ blog.author.bio }}
@@ -86,7 +87,7 @@
                                             </div>
                                         </div>
                                         <div class="related">
-                                            <h2 class="title-block">Related News</h2>
+                                            <h2 class="title-block">{% trans "Related News" %}</h2>
                                             <div class="main-blogs">
                                                 <div class="row">
                                                     {% for related in related_blogs %}
@@ -98,9 +99,10 @@
                                                         </div>
                                                         <div class="late-item">
                                                             <p class="content-title">
-                                                                <a href="{% url 'blogs:detail' pk=related.id %}">{{ related.title }}</a>
+                                                                <a
+                                                                   href="{% url 'blogs:detail' pk=related.id %}">{{ related.title }}</a>
                                                             </p>
-                                                            <p class="description">
+                                                            <p style="width: 20ch; white-space: normal; overflow-wrap: break-word;">
                                                                 {{ related.description }}
                                                             </p>
                                                         </div>
@@ -111,16 +113,16 @@
                                         </div>
                                         <div class="reply late-item">
                                             <div class="blog-comment" id="blog-comment">
-                                                <h2 class="title-block">Comments</h2>
+                                                <h2 class="title-block">{% trans "Comments" %}</h2>
                                                 <img src="{% static 'img/blog/user1.jpg' %}" alt="img" class="float-left right">
                                             </div>
                                             <div class="comment-content">
                                                 <p class="user-title">
                                                     <a href="#">JOHN DOE</a>
-                                                    <span class="time">Posted on Mar 17, 2017 at 6:57am /
-                                                        <a href="#">repost</a> /
+                                                    <span class="time">{% trans "Posted on" %} Mar 17, 2017 at 6:57am /
+                                                        <a href="#">{% trans "repost" %}</a> /
                                                         <span class="green">
-                                                            <a href="#">Reply</a>
+                                                            <a href="#">{% trans "Reply" %}</a>
                                                         </span>
                                                     </span>
                                                 </p>
@@ -135,10 +137,10 @@
                                                 <div class="comment-content">
                                                     <p class="user-title">
                                                         <a href="#">JOHN DOE</a>
-                                                        <span class="time">Posted on Mar 17, 2017 at 6:57am /
-                                                            <a href="#">repost</a> /
+                                                        <span class="time">{% trans "Posted on" %} Mar 17, 2017 at 6:57am /
+                                                            <a href="#">{% trans "repost" %}</a> /
                                                             <span class="green">
-                                                                <a href="#">Reply</a>
+                                                                <a href="#">{% trans "Reply" %}</a>
                                                             </span>
                                                         </span>
                                                     </p>
@@ -155,10 +157,10 @@
                                                 <div class="comment-content">
                                                     <p class="user-title">
                                                         <a href="#">JOHN DOE</a>
-                                                        <span class="time">Posted on Mar 17, 2017 at 6:57am /
-                                                            <a href="#">repost</a> /
+                                                        <span class="time">{% trans "Posted on" %} Mar 17, 2017 at 6:57am /
+                                                            <a href="#">{% trans "repost" %}</a> /
                                                             <span class="green">
-                                                                <a href="#">Reply</a>
+                                                                <a href="#">{% trans "Reply" %}</a>
                                                             </span>
                                                         </span>
                                                     </p>
@@ -170,28 +172,28 @@
                                             </div>
                                         </div>
                                         <div class="submit-comment" id="respond">
-                                            <h2 class="title-block">Submit comment</h2>
+                                            <h2 class="title-block">{% trans "Submit comment" %}</h2>
                                             <div id="commentInput">
                                                 <form action="#" method="post" id="commentform">
                                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                                     <div class="row">
                                                         <div class="form-group col col-sm-12 col-md-4 ">
-                                                            <input type="text" class="inputName form-control" name="name" placeholder="Your Name *">
+                                                            <input type="text" class="inputName form-control" name="name" placeholder="{% trans 'Your Name *' %}">
                                                         </div>
                                                         <div class="form-group col col-sm-12  col-md-4">
-                                                            <input type="text" class="inputMail form-control" name="email" placeholder="Your E-mail *">
+                                                            <input type="text" class="inputMail form-control" name="email" placeholder="{% trans 'Your E-mail *' %}">
                                                         </div>
                                                         <div class="form-group col col-sm-12  col-md-4">
-                                                            <input type="text" class="form-control" name="website" placeholder="Your Website">
+                                                            <input type="text" class="form-control" name="website" placeholder="{% trans 'Your Website' %}">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col col-md-12">
-                                                            <textarea tabindex="4" class="inputContent form-control grey" rows="10" name="comment" placeholder="Your Message"></textarea>
+                                                            <textarea tabindex="4" class="inputContent form-control grey" rows="10" name="comment" placeholder="{% trans 'Your Message' %}"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="submit">
-                                                        <input type="submit" name="addComment" id="submitComment" class="btn btn-default" value="Send Message">
+                                                        <input type="submit" name="addComment" id="submitComment" class="btn btn-default" value="{% trans 'Send Message' %}">
                                                     </div>
                                                 </form>
                                             </div>
@@ -206,4 +208,3 @@
         </div>
     </div>
 {% endblock %}
-

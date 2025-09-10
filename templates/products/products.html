@@ -123,7 +123,7 @@
                                                     {% for color in colors %}
                                                     <span class="{% if forloop.counter|divisibleby:"2" %}right
                                                     {% else %}left{% endif %}">
-                                                        <label class="color-item{{ forloop.counter }}"></label>
+                                                        <label style="background-color:#{{ color.code }}" class="color-item1"></label>
                                                         <a onclick="addUrlParameter('color', {{ color.id }})">
                                                             <span>{{ color.title }}
                                                                 <span>{{ color.product.count }}</span>

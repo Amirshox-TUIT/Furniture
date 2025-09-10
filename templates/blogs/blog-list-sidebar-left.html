@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% load static %}
-{% block title %}Furnitica - Minimalist Furniture HTML Template{% endblock %}
+{% load i18n %}
+{% block title %}Furnitica - {% trans "Minimalist Furniture HTML Template" %}{% endblock %}
 {% block body_id %}blog-list-sidebar-left{% endblock %}
 {% block body_class %}blog{% endblock %}
 {% block content %}
@@ -18,17 +19,17 @@
                                     <ol>
                                         <li>
                                             <a href="#">
-                                                <span>Home</span>
+                                                <span>{% trans "Home" %}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span>Living Room</span>
+                                                <span>{% trans "Living Room" %}</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <span>Sofa</span>
+                                                <span>{% trans "Sofa" %}</span>
                                             </a>
                                         </li>
                                     </ol>
@@ -40,7 +41,7 @@
                                 <div class="row">
                                     {% include 'blogs/recent_posts.html' %}
                                     <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
-                                        <h2>Recent Posts</h2>
+                                        <h2>{% trans "Recent Posts" %}</h2>
                                         {% for blog in blogs %}
                                         <div class="list-content row">
                                             <div class="hover-after col-md-5 col-xs-12">
@@ -54,14 +55,14 @@
                                                 </p>
                                                 <p class="post-info">
                                                     <span>{{ blog.created_at|date:"d M Y" }}</span>
-                                                    <span>113 Comments</span>
+                                                    <span>113 {% trans "Comments" %}</span>
                                                     <span>{{ blog.author.full_name }}</span>
                                                 </p>
-                                                <p class="description">
+                                                <p style="width: 30ch; white-space: normal; overflow-wrap: break-word;" class="description">
                                                     {{ blog.description|slice:"100" }}
                                                 </p>
                                                 <span class="view-more">
-                                                    <a href="{% url 'blogs:detail' pk=blog.id %}">view more</a>
+                                                    <a href="{% url 'blogs:detail' pk=blog.id %}">{% trans "view more" %}</a>
                                                 </span>
                                             </div>
                                         </div>
@@ -71,7 +72,7 @@
                                             <ul class="justify-content-center d-flex">
                                                 <li>
                                                     <a rel="prev" href="#" class="previous disabled js-search-link">
-                                                        Previous
+                                                        {% trans "Previous" %}
                                                     </a>
                                                 </li>
                                                 <li class="current active">
@@ -86,7 +87,7 @@
                                                 </li>
                                                 <li>
                                                     <a rel="next" href="#" class="next disabled js-search-link">
-                                                        Next
+                                                        {% trans "Next" %}
                                                     </a>
                                                 </li>
                                             </ul>

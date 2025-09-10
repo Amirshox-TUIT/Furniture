@@ -14,15 +14,13 @@ def products_view(request):
     categories = ProductCategory.objects.filter(sub__isnull=True)
     brands = ProductBrand.objects.all()
     colors = ProductColor.objects.all()
-    sizes = ProductSize.objects.all()
     products = ProductModel.objects.all()
     subcategories = ProductCategory.objects.filter(sub__isnull=False)
     cat_id = request.GET.get('cat')
-    brand_id = request.GET.get('brand_id')
-    color_id = request.GET.get('color_id')
-    size_id = request.GET.get('size_id')
-    tag_id = request.GET.get('tag_id')
-    q = request.GET.get('q')
+    brand_id = request.GET.get('brand')
+    color_id = request.GET.get('color')
+    tag_id = request.GET.get('tag')
+    s = request.GET.get('s')
 
     if cat_id:
         products = products.filter(categories=cat_id)
@@ -31,22 +29,18 @@ def products_view(request):
         products = products.filter(brand=brand_id)
 
     if color_id:
-        products = products.filter(products_quantity__color=color_id)
-
-    if size_id:
-        products = products.filter(products_quantity__size=size_id)
+        products = products.filter(products_quantity__colors=color_id)
 
     if tag_id:
-        products = products.filter(products_quantity__size=tag_id)
+        products = products.filter(tag=tag_id)
 
-    if q:
-        products = products.filter(title__icontains=q)
+    if s:
+        products = products.filter(title__icontains=s)
 
     context = {
             "categories": categories,
             "brands": brands,
             "colors": colors,
-            "sizes": sizes,
             "tags": ProductTag.objects.all(),
             "products": products,
             "subcategories": subcategories,

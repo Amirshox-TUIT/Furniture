@@ -59,7 +59,6 @@ class ProductColor(models.Model):
 
 class ProductBrand(models.Model):
     name = models.CharField(max_length=128)
-    objects = models.Manager()
 
     def __str__(self):
         return self.name

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -117,6 +118,8 @@ LANGUAGES = (
 )
 LOCALE_PATHS = [BASE_DIR / 'locale', ]
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -132,12 +135,17 @@ STATICFILES_DIRS = (BASE_DIR / 'assets',)
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = 'media/'
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
-        'toolbar_all': True,
+        'height': 300,
+        'width': '100%',
+        'enterMode': 1,
+        'shiftEnterMode': 2,
     }
 }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

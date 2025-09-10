@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from apps.pages.forms import ContactForm
+from apps.pages.models import AboutModel
 
 
 def page_404(request):
@@ -8,7 +9,8 @@ def page_404(request):
 
 
 def about_us(request):
-    return render(request, 'pages/about-us.html')
+    admins = AboutModel.objects.all()
+    return render(request, 'pages/about-us.html', {'admins': admins})
 
 
 def contact_view(request):

@@ -73,26 +73,13 @@
                                     <div class="cms-block f-right">
                                         <h3 class="page-subheading no-before">{% trans "MEET OUR TEAM" %}</h3>
                                         <div class="testimonials owl-carousel owl-theme owl-loaded owl-drag">
+                                            {% for admin in admins %}
                                             <div class="item">
-                                                <div class="name">{% trans "William James" %}</div>
-                                                <div class="position">{% trans "Designer - Stylish" %}</div>
-                                                <p>{% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit conse quat ipsum" %}</p>
+                                                <div class="name">{{ admin.name }}</div>
+                                                <div class="position">{{ admin.profession }}</div>
+                                                <p>{{ admin.bio|slice:'50' }}</p>
                                             </div>
-                                            <div class="item">
-                                                <div class="name">{% trans "Seller Smith" %}</div>
-                                                <div class="position">{% trans "Web developer" %}</div>
-                                                <p>{% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris." %}</p>
-                                            </div>
-                                            <div class="item">
-                                                <div class="name">{% trans "Peter Capidal" %}</div>
-                                                <div class="position">{% trans "Front-end Developer" %}</div>
-                                                <p>{% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit conse quat ipsum" %}</p>
-                                            </div>
-                                            <div class="item">
-                                                <div class="name">{% trans "David James" %}</div>
-                                                <div class="position">{% trans "Developer" %}</div>
-                                                <p>{% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit conse quat ipsum" %}</p>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                         <div class="social-content">
                                             <div class="social">

@@ -19,6 +19,20 @@ def blog_detail(request, pk):
 
 def blog_list_sidebar_left(request):
     blogs = BlogsModel.objects.all()
+    cat_id = request.GET.get('cat')
+    tag_id = request.GET.get('tag')
+    s = request.GET.get('s')
+
+    if cat_id:
+        blogs = blogs.filter(category=cat_id)
+
+    if tag_id:
+        blogs = blogs.filter(tag=tag_id)
+
+    if s:
+        blogs = blogs.filter(title__icontains=s)
+
+
     context = {
         'blogs': blogs,
     }
