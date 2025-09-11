@@ -94,7 +94,7 @@
                                                     <div class="col-md-4">
                                                         <div class="hover-after">
                                                             <a href="{% url 'blogs:detail' pk=related.id %}">
-                                                                <img src="{{ related.image }}" alt="img" class="img-fluid">
+                                                                <img src="{{ related.image.url }}" alt="img" class="img-fluid">
                                                             </a>
                                                         </div>
                                                         <div class="late-item">
@@ -103,7 +103,7 @@
                                                                    href="{% url 'blogs:detail' pk=related.id %}">{{ related.title }}</a>
                                                             </p>
                                                             <p style="width: 20ch; white-space: normal; overflow-wrap: break-word;">
-                                                                {{ related.description }}
+                                                                {{ related.description|slice:'100' }}
                                                             </p>
                                                         </div>
                                                     </div>
