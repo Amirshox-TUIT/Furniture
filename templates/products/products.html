@@ -191,7 +191,7 @@
                                                     <div class="item text-center col-md-4">
                                                         <div class="product-miniature js-product-miniature item-one first-item">
                                                             <div class="thumbnail-container border">
-                                                                <a href="product-detail.html">
+                                                                <a href="{% url 'products:detail' pk=product.id%}">
                                                                     <img class="img-fluid image-cover" src="{{ product.image.url }}" alt="img">
                                                                     <img class="img-fluid image-secondary" src="{{ product.image2.url }}" alt="img">
                                                                 </a>
@@ -206,7 +206,7 @@
                                                             <div class="product-description">
                                                                 <div class="product-groups">
                                                                     <div class="product-title">
-                                                                        <a href="product-detail.html">{{ product.title }}</a>
+                                                                        <a href="{% url 'products:detail' pk=product.id%}">{{ product.title }}</a>
                                                                     </div>
                                                                     <div class="rating">
                                                                         <div class="star-content">
@@ -251,7 +251,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="thumbnail-container border">
-                                                                        <a href="product-detail.html">
+                                                                        <a href="{% url 'products:detail' pk=product.id%}">
                                                                             <img class="img-fluid image-cover" src="{{ product.image.url }}" alt="img">
                                                                         </a>
                                                                     </div>
@@ -260,7 +260,7 @@
                                                                     <div class="product-description">
                                                                         <div class="product-groups">
                                                                             <div class="product-title">
-                                                                                <a href="product-detail.html">{{ product.title }}</a>
+                                                                                <a href="{% url 'products:detail' pk=product.id%}">{{ product.title }}</a>
                                                                                 <span class="info-stock">
                                                                                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                                                                     {% trans "In Stock" %}

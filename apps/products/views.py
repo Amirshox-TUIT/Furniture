@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
+
 
 def product_cart(request):
     return render(request, 'products/product-cart.html')
@@ -7,9 +8,21 @@ def product_cart(request):
 def product_checkout(request):
     return render(request, 'products/product-checkout.html')
 
-def product_detail(request):
-    return render(request, 'products/product-detail.html')
+def product_detail(request, pk):
+    product = get_object_or_404(ProductModel, id=pk)
 
+    rproducts = ProductModel.objects.filter(
+        categories__in=product.categories.all()
+    ).exclude(id=pk).distinct()
+
+    return render(
+        request,
+        'products/product-detail.html',
+        context={
+            'product': product,
+            'rproducts': rproducts
+        }
+    )
 def products_view(request):
     categories = ProductCategory.objects.filter(sub__isnull=True)
     brands = ProductBrand.objects.all()
