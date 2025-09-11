@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from apps.pages.forms import ContactForm
 from apps.pages.models import AboutModel
+from apps.products.models import ProductModel
 
 
 def page_404(request):
@@ -27,4 +28,10 @@ def contact_view(request):
     return render(request, "pages/contact.html", {"form": form})
 
 def home3(request):
-    return render(request, 'pages/home3.html')
+    living_prs = ProductModel.objects.filter(categories__sub__title="Living Room").distinct()
+    bathroom_prs = ProductModel.objects.filter(categories__sub__title="Bathroom").distinct()
+    context = {
+        "living_prs": living_prs,
+        "bathroom_prs": bathroom_prs,
+    }
+    return render(request, 'pages/home3.html', context)
