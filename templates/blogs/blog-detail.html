@@ -112,34 +112,32 @@
                                             </div>
                                         </div>
                                         <div class="reply late-item">
+                                            {% for comment in comments %}
                                             <div class="blog-comment" id="blog-comment">
                                                 <h2 class="title-block">{% trans "Comments" %}</h2>
                                                 <img src="{% static 'img/blog/user1.jpg' %}" alt="img" class="float-left right">
                                             </div>
                                             <div class="comment-content">
                                                 <p class="user-title">
-                                                    <a href="#">JOHN DOE</a>
-                                                    <span class="time">{% trans "Posted on" %} Mar 17, 2017 at 6:57am /
+                                                    <a href="#">{{ comment.name }}</a>
+                                                    <span class="time">{% trans "Posted on" %} {{ comment.created_at|date:"M d, Y \\a\\t g:ia" }} /
                                                         <a href="#">{% trans "repost" %}</a> /
                                                         <span class="green">
                                                             <a href="#">{% trans "Reply" %}</a>
                                                         </span>
                                                     </span>
                                                 </p>
-                                                <p class="content-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, do eiusmod tempor
-                                                    incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam.
+                                                <p class="content-comment">
+                                                    {{ comment.text }}
                                                 </p>
                                             </div>
-                                            <div class="blog-comment margin-right-comment">
-                                                <div class="avatar">
-                                                    <img src="{% static 'img/blog/user2.jpg' %}" alt="img" class="float-left">
-                                                </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                         <div class="submit-comment" id="respond">
                                             <h2 class="title-block">{% trans "Submit comment" %}</h2>
                                             <div id="commentInput">
-                                                <form action="#" method="post" id="commentform">
+                                                <form action="" method="post" id="commentform">
+                                                    {% csrf_token %}
                                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                                     <div class="row">
                                                         <div class="form-group col col-sm-12 col-md-4 ">
@@ -154,7 +152,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col col-md-12">
-                                                            <textarea tabindex="4" class="inputContent form-control grey" rows="10" name="comment" placeholder="{% trans 'Your Message' %}"></textarea>
+                                                            <textarea tabindex="4" class="inputContent form-control grey" rows="10" name="text" placeholder="{% trans 'Your Message' %}"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="submit">
