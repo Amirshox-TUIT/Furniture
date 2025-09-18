@@ -8,8 +8,9 @@ load_dotenv(BASE_DIR / ".env")
 
 # Django
 DEBUG = os.getenv("DEBUG", "False") == "True"
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(',')
+SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+
 
 # Database
 DB_NAME = os.getenv("DB_NAME")
