@@ -37,11 +37,20 @@
                     <div class="container">
                         <h1 class="text-center title-page">Log In</h1>
                         <div class="login-form">
-                            <form id="customer-form" action="#" method="post">
+                            <form id="customer-form" action="{% url 'users:user_login' %}" method="post">
+                                {% csrf_token %}
                                 <div>
+                                    {% if messages %}
+                                        <h3 style="color:red">Errors</h3>
+                                        <ul>
+                                        {% for message in messages %}
+                                            <li style="color:red;">{{ message }}</li>
+                                        {% endfor %}
+                                        </ul>
+                                    {% endif %}
                                     <input type="hidden" name="back" value="my-account">
                                     <div class="form-group no-gutters">
-                                        <input class="form-control" name="email" type="email" placeholder=" Email">
+                                        <input class="form-control" name="username" type="text" placeholder="Username">
                                     </div>
                                     <div class="form-group no-gutters">
                                         <div class="input-group js-parent-focus">

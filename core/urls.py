@@ -31,6 +31,7 @@ urlpatterns += i18n_patterns(
     path('blogs/', include('apps.blogs.urls', namespace='blogs')),
     path('products/', include('apps.products.urls', namespace='products')),
     path('', include('apps.pages.urls', namespace='pages')),
+    path('', include('apps.users.urls', namespace='users')),
 )
 
 if settings.DEBUG:

@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
+from apps.blogs.utils import get_pk
 from .models import *
 
 
@@ -8,55 +10,65 @@ def product_cart(request):
 def product_checkout(request):
     return render(request, 'products/product-checkout.html')
 
-def product_detail(request, pk):
-    product = get_object_or_404(ProductModel, id=pk)
+class ProductListView(ListView):
+    template_name = 'products/products.html'
+    context_object_name = 'products'
 
-    rproducts = ProductModel.objects.filter(
-        categories__in=product.categories.all()
-    ).exclude(id=pk).distinct()
+    def get_queryset(self):
+        products = ProductModel.objects.all()
+        return products
 
-    return render(
-        request,
-        'products/product-detail.html',
-        context={
-            'product': product,
-            'rproducts': rproducts
-        }
-    )
-def products_view(request):
-    categories = ProductCategory.objects.filter(sub__isnull=True)
-    brands = ProductBrand.objects.all()
-    colors = ProductColor.objects.all()
-    products = ProductModel.objects.all()
-    subcategories = ProductCategory.objects.filter(sub__isnull=False)
-    cat_id = request.GET.get('cat')
-    brand_id = request.GET.get('brand')
-    color_id = request.GET.get('color')
-    tag_id = request.GET.get('tag')
-    s = request.GET.get('s')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categories = ProductCategory.objects.filter(sub__isnull=True)
+        brands = ProductBrand.objects.all()
+        colors = ProductColor.objects.all()
+        products = ProductModel.objects.all()
+        subcategories = ProductCategory.objects.filter(sub__isnull=False)
+        cat_id = self.request.GET.get('cat')
+        brand_id = self.request.GET.get('brand')
+        color_id = self.request.GET.get('color')
+        tag_id = self.request.GET.get('tag')
+        s = self.request.GET.get('s')
 
-    if cat_id:
-        products = products.filter(categories=cat_id)
+        if cat_id:
+            products = products.filter(categories=cat_id)
 
-    if brand_id:
-        products = products.filter(brand=brand_id)
+        if brand_id:
+            products = products.filter(brand=brand_id)
 
-    if color_id:
-        products = products.filter(products_quantity__colors=color_id)
+        if color_id:
+            products = products.filter(products_quantity__colors=color_id)
 
-    if tag_id:
-        products = products.filter(tag=tag_id)
+        if tag_id:
+            products = products.filter(tag=tag_id)
 
-    if s:
-        products = products.filter(title__icontains=s)
+        if s:
+            products = products.filter(title__icontains=s)
 
-    context = {
-            "categories": categories,
-            "brands": brands,
-            "colors": colors,
-            "tags": ProductTag.objects.all(),
-            "products": products,
-            "subcategories": subcategories,
-        }
+        context['products'] = products
+        context['categories'] = categories
+        context['brands'] = brands
+        context['colors'] = colors
+        context['subcategories'] = subcategories
+        return context
 
-    return render(request, "products/products.html", context)
+
+class ProductDetailView(DetailView):
+    template_name = 'products/product-detail.html'
+    context_object_name = 'product'
+    queryset = ProductModel.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = get_pk(self.request)
+        product = get_object_or_404(ProductModel, id=pk)
+
+        rproducts = ProductModel.objects.filter(
+            categories__in=product.categories.all()
+        ).exclude(id=pk).distinct()
+
+        context['rproducts'] = rproducts
+        context['product'] = product
+        return context
+

@@ -1,51 +1,78 @@
-from django.shortcuts import render, redirect
-
+from django.contrib import messages
+from django.http import Http404
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, CreateView, ListView
 from .forms import CommentsForm
 from .models import *
+from .utils import get_pk
 
-def blog_detail(request, pk):
-    if request.method == "POST":
-        form = CommentsForm(request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.blog_id = pk
-            instance.save()
-            return redirect("blogs:detail", pk=pk)
-    else:
+class BlogDetailView(DetailView, CreateView):
+    queryset = BlogsModel.objects.all()
+    template_name = 'blogs/blog-detail.html'
+    context_object_name = 'blog'
+    pk_url_kwarg = 'pk'
+    success_url = reverse_lazy('blogs:detail')
+    form_class = CommentsForm
+
+    def get_success_url(self):
+        pk = get_pk(self.request)
+        return reverse_lazy('blogs:detail', kwargs={'pk': pk})
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.blog_id = get_pk(self.request)
+        instance.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Comment is error!')
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         try:
+            pk = get_pk(self.request)
             blog = BlogsModel.objects.get(id=pk)
         except BlogsModel.DoesNotExist:
-            return render(request, 'pages/404.html')
+            raise Http404(render(self.request, 'pages/404.html'))
 
         related_blogs = BlogsModel.objects.filter(
             category__in=blog.category.all()
         ).exclude(id=blog.id).distinct()
         comments = CommentsModel.objects.filter(blog=pk)
 
-        context = {
-            "blog": blog,
-            "related_blogs": related_blogs,
-            "comments": comments,
-        }
-        return render(request, 'blogs/blog-detail.html', context)
-
-def blog_list_sidebar_left(request):
-    blogs = BlogsModel.objects.all()
-    cat_id = request.GET.get('cat')
-    tag_id = request.GET.get('tag')
-    s = request.GET.get('s')
-
-    if cat_id:
-        blogs = blogs.filter(category=cat_id)
-
-    if tag_id:
-        blogs = blogs.filter(tag=tag_id)
-
-    if s:
-        blogs = blogs.filter(title__icontains=s)
+        context['comments'] = comments
+        context['blog'] = blog
+        context['related_blogs'] = related_blogs
+        return context
 
 
-    context = {
-        'blogs': blogs,
-    }
-    return render(request, 'blogs/blog-list-sidebar-left.html', context)
+class BlogListView(ListView):
+    queryset = BlogsModel.objects.all()
+    template_name = 'blogs/blog-list-sidebar-left.html'
+    context_object_name = 'blogs'
+
+    def get_queryset(self):
+        queryset = BlogsModel.objects.all()
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        blogs = BlogsModel.objects.all()
+        cat_id = self.request.GET.get('cat')
+        tag_id = self.request.GET.get('tag')
+        s = self.request.GET.get('s')
+
+        if cat_id:
+            blogs = blogs.filter(category=cat_id)
+
+        if tag_id:
+            blogs = blogs.filter(tag=tag_id)
+
+        if s:
+            blogs = blogs.filter(title__icontains=s)
+
+        context['blogs'] = blogs
+        return context
+

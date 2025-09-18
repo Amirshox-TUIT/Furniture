@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%%&tx&ugv8*s7@$zfx857p@px^7$hvoi$t%lz6qbcvaoz+m42l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'apps.blogs',
     'apps.products',
     'apps.users',
-    'ckeditor',
     'ckeditor_uploader',
+    "django_ckeditor_5",
 ]
 
 MIDDLEWARE = [
@@ -138,11 +138,7 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-        'enterMode': 1,
-        'shiftEnterMode': 2,
+    'toolbar': 'full',
     }
 }
 
@@ -151,3 +147,9 @@ CKEDITOR_CONFIGS = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'behruzfayzullayev3@gmail.com'
+EMAIL_HOST_PASSWORD = 'bxim epfr bott bexn'
