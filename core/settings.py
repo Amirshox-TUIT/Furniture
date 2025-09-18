@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import dj_database_url
 from dotenv import load_dotenv
 
 # .env faylini yuklash
@@ -10,7 +9,7 @@ load_dotenv(BASE_DIR / ".env")
 # Django asosiy sozlamalari
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '167.172.110.210:8000', '167.172.110.210']
 
 # Database sozlamalari
 DATABASES = {
