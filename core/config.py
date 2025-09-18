@@ -9,7 +9,7 @@ load_dotenv(BASE_DIR / ".env")
 # Django
 DEBUG = os.getenv("DEBUG", "False") == "True"
 SECRET_KEY = os.getenv("SECRET_KEY")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(',')
 
 # Database
 DB_NAME = os.getenv("DB_NAME")
