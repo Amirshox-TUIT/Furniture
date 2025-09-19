@@ -9,7 +9,7 @@ load_dotenv(BASE_DIR / ".env")
 # Django asosiy sozlamalari
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
-ALLOWED_HOSTS = ['209.38.122.67', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['167.172.110.210', 'localhost', '127.0.0.1']
 
 # Database sozlamalari
 DATABASES = {
