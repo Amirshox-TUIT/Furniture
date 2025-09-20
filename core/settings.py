@@ -82,16 +82,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 import os
-
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASS,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
-    }
+    'default': dj_database_url.config(default='postgresql://amir:gVadjhW5f5u7RVMdtP5Mio5rxp2KuUb0@dpg-d35tmbmr433s73aeg8n0-a/furniture_4mz3')
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': DB_NAME,
+    #     'USER': DB_USER,
+    #     'PASSWORD': DB_PASS,
+    #     'HOST': DB_HOST,
+    #     'PORT': DB_PORT,
+    # }
 }
 
 
