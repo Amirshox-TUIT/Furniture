@@ -25,7 +25,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['167.172.110.210', 'furnitica-su05.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['46.101.235.40', 'furnitica-su05.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -163,3 +163,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = EMAIL
 EMAIL_HOST_PASSWORD = EMAIL_PASS
+
+
