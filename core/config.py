@@ -3,13 +3,12 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 # Загружаем .env
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 # Django
-DEBUG = os.getenv("DEBUG", "False") == "True"
-SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+DEBUG = os.getenv("DEBUG") == "True"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # Database
