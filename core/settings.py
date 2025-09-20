@@ -25,7 +25,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['167.172.110.210', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['167.172.110.210', 'furnitica-su05.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
