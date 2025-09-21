@@ -11,7 +11,6 @@ class BlogDetailView(DetailView, CreateView):
     queryset = BlogsModel.objects.all()
     template_name = 'blogs/blog-detail.html'
     context_object_name = 'blog'
-    pk_url_kwarg = 'pk'
     success_url = reverse_lazy('blogs:detail')
     form_class = CommentsForm
 
@@ -52,6 +51,7 @@ class BlogListView(ListView):
     queryset = BlogsModel.objects.all()
     template_name = 'blogs/blog-list-sidebar-left.html'
     context_object_name = 'blogs'
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = BlogsModel.objects.all()

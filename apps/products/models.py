@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal, ROUND_HALF_UP
 
 import pytz
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -103,6 +104,11 @@ class ProductModel(BaseModel):
             return self.discount > 0
         return False
 
+    def discount_price(self):
+        if self.discount:
+            discounted = self.price * (Decimal(1) - Decimal(self.discount) / Decimal(100))
+            return discounted.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)  # 2 ta xonagacha
+        return self.price.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
     def __str__(self):
         return self.title
@@ -110,6 +116,7 @@ class ProductModel(BaseModel):
     class Meta:
         verbose_name = 'product'
         verbose_name_plural = 'products'
+
 
 
 class ProductQuantity(BaseModel):

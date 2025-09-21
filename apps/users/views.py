@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
@@ -81,3 +81,12 @@ class ConfirmEmailView(View):
         else:
             messages.error(request, "Link is not correct")
             return redirect('users:user_register')
+
+def user_wishlist(request):
+    return render(request, 'users/user-wishlist.html')
+
+def user_reset_password(request):
+    return render(request, 'users/user-reset-password.html')
+
+def user_account(request):
+    return render(request, 'users/user-acount.html')

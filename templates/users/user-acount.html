@@ -1,86 +1,82 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}Furnitica - Minimalist Furniture HTML Template{% endblock %}
 {% block body_id %}{% endblock %}
 {% block body_class %}user-acount{% endblock %}
 {% block content %}
 <!-- main content -->
-    <div class="main-content">
-        <div class="wrap-banner">
-
-            <!-- breadcrumb -->
-            <nav class="breadcrumb-bg">
-                <div class="container no-index">
-                    <div class="breadcrumb">
-                        <ol>
-                            <li>
-                                <a href="#">
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>My Account</span>
-                                </a>
-                            </li>
-                        </ol>
-                    </div>
+<div class="main-content">
+    <div class="wrap-banner">
+        <!-- breadcrumb -->
+        <nav class="breadcrumb-bg">
+            <div class="container no-index">
+                <div class="breadcrumb">
+                    <ol>
+                        <li>
+                            <a href="#">
+                                <span>{% trans "Home" %}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>{% trans "My Account" %}</span>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
-            </nav>
-
-            <div class="acount head-acount">
-                <div class="container">
-                    <div id="main">
-                        <h1 class="title-page">My Account</h1>
-                        <div class="content" id="block-history">
-                            <table class="std table">
-                                <tbody>
-                                    <tr>
-                                        <th class="first_item">My Name :</th>
-                                        <td>David James</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="first_item">Company :</th>
-                                        <td>TivaTheme</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="first_item">Address :</th>
-                                        <td>123 canberra Street, New York, USA</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="first_item">City :</th>
-                                        <td>New York</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="first_item">Postal/Zip Code :</th>
-                                        <td>10001</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="first_item">Phone :</th>
-                                        <td>0123456789</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="first_item">Country:</th>
-                                        <td>USA</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                        <button class="btn btn-primary" data-link-action="sign-in" type="submit">
-                            view Address
-                        </button>
-                        <div class="order">
-                            <h4>Order
-                                <span class="detail">History</span>
-                            </h4>
-                            <p>You haven't placed any orders yet.</p>
-                        </div>
+            </div>
+        </nav>
+        <div class="acount head-acount">
+            <div class="container">
+                <div id="main">
+                    <h1 class="title-page">{% trans "My Account" %}</h1>
+                    <div class="content" id="block-history">
+                        <table class="std table">
+                            <tbody>
+                                <tr>
+                                    <th class="first_item">{% trans "My Name :" %}</th>
+                                    <td>David James</td>
+                                </tr>
+                                <tr>
+                                    <th class="first_item">{% trans "Company :" %}</th>
+                                    <td>TivaTheme</td>
+                                </tr>
+                                <tr>
+                                    <th class="first_item">{% trans "Address :" %}</th>
+                                    <td>123 canberra Street, New York, USA</td>
+                                </tr>
+                                <tr>
+                                    <th class="first_item">{% trans "City :" %}</th>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <th class="first_item">{% trans "Postal/Zip Code :" %}</th>
+                                    <td>10001</td>
+                                </tr>
+                                <tr>
+                                    <th class="first_item">{% trans "Phone :" %}</th>
+                                    <td>0123456789</td>
+                                </tr>
+                                <tr>
+                                    <th class="first_item">{% trans "Country :" %}</th>
+                                    <td>USA</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
+                    <button class="btn btn-primary" data-link-action="sign-in" type="submit">
+                        {% trans "view Address" %}
+                    </button>
+                    <div class="order">
+                        <h4>{% trans "Order" %}
+                            <span class="detail">{% trans "History" %}</span>
+                        </h4>
+                        <p>{% trans "You haven't placed any orders yet." %}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
-

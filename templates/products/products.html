@@ -223,12 +223,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                {% in_basket request product.id as is_true %}
                                                                 <div class="product-buttons d-flex justify-content-center">
-                                                                    <form action="#" method="post" class="formAddToCart">
+                                                                    <form action="{% url 'products:products' %}" method="post" class="formAddToCart">
                                                                         <input type="hidden" name="id_product" value="1">
-                                                                        <a class="add-to-cart" href="#" data-button-action="add-to-cart">
+                                                                        {% if is_true %}
+                                                                        <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=product.id %}" data-button-action="add-to-cart">
                                                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                                                         </a>
+                                                                        {% else %}
+                                                                            <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                        </a>
+                                                                        {% endif %}
                                                                     </form>
                                                                     <a class="addToWishlist" href="#" data-rel="1" onclick="">
                                                                         <i class="fa fa-heart" aria-hidden="true"></i>
@@ -286,9 +293,15 @@
                                                                         </div>
                                                                         <div class="product-buttons d-flex">
                                                                             <form action="#" method="post" class="formAddToCart">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Add to cart" %}
+                                                                                {% if is_true %}
+                                                                                <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Remove cart" %}
                                                                                 </a>
+                                                                                {% else %}
+                                                                                    <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Add to cart" %}
+                                                                                    </a>
+                                                                                {% endif %}
                                                                             </form>
                                                                             <a class="addToWishlist" href="#" data-rel="1" onclick="">
                                                                                 <i class="fa fa-heart" aria-hidden="true"></i>
@@ -312,36 +325,33 @@
                                             <div class="js-product-list-top ">
                                                 <div class="d-flex justify-content-around row">
                                                     <div class="showing col col-xs-12">
-                                                        <span>{% trans "SHOWING 1-3 OF 3 ITEM(S)" %}</span>
+                                                        <span>{% trans "SHOWING" %} {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} {% trans "ITEM(S)" %}  </span>
                                                     </div>
                                                     <div class="page-list col col-xs-12">
                                                         <ul>
+                                                            {% if page_obj.has_previous %}
                                                             <li>
-                                                                <a rel="prev" href="#" class="previous disabled js-search-link">
+                                                                <a rel="prev" onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})"
+                                                                   class="previous disabled js-search-link">
                                                                     {% trans "Previous" %}
                                                                 </a>
                                                             </li>
+                                                            {% endif %}
+                                                            {% for page in page_obj.paginator.page_range %}
                                                             <li class="current active">
-                                                                <a rel="nofollow" href="#" class="disabled js-search-link">
-                                                                    1
+                                                                <a rel="nofollow" onclick="addUrlParameter('page', {{ page }})" class="disabled js-search-link">
+                                                                    {{ page }}
                                                                 </a>
                                                             </li>
+                                                            {% endfor %}
+                                                            {% if page_obj.has_next %}
                                                             <li>
-                                                                <a rel="nofollow" href="#" class="disabled js-search-link">
-                                                                    2
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a rel="nofollow" href="#" class="disabled js-search-link">
-                                                                    3
-                                                                </a>
-                                                            </li>
-
-                                                            <li>
-                                                                <a rel="next" href="#" class="next disabled js-search-link">
+                                                                <a rel="next" onclick="addUrlParameter('page', {{ page_obj.next_page_number }})"
+                                                                   class="next disabled js-search-link">
                                                                     {% trans "Next" %}
                                                                 </a>
                                                             </li>
+                                                            {% endif %}
                                                         </ul>
                                                     </div>
                                                 </div>

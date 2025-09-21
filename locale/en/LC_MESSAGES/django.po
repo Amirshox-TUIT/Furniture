@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-09 18:14+0500\n"
+"POT-Creation-Date: 2025-09-21 21:11+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,29 +25,39 @@ msgstr ""
 
 #: .\templates\blogs\blog-detail.html:22
 #: .\templates\blogs\blog-list-sidebar-left.html:22
-#: .\templates\layout\header-base.html:113 .\templates\pages\about-us.html:20
-#: .\templates\pages\contact.html:49 .\templates\products\products.html:22
+#: .\templates\layout\header-base.html:123
+#: .\templates\layout\header-home.html:78 .\templates\pages\about-us.html:20
+#: .\templates\pages\contact.html:49 .\templates\products\product-cart.html:19
+#: .\templates\products\product-checkout.html:18
+#: .\templates\products\product-detail.html:22
+#: .\templates\products\products.html:22 .\templates\users\user-acount.html:18
+#: .\templates\users\user-login.html:18 .\templates\users\user-register.html:18
+#: .\templates\users\user-wishlist.html:18
 msgid "Home"
 msgstr ""
 
 #: .\templates\blogs\blog-detail.html:27
 #: .\templates\blogs\blog-list-sidebar-left.html:27
+#: .\templates\pages\home3.html:627 .\templates\products\product-detail.html:27
 #: .\templates\products\products.html:27 .\templates\products\products.html:155
 msgid "Living Room"
 msgstr ""
 
 #: .\templates\blogs\blog-detail.html:32
 #: .\templates\blogs\blog-list-sidebar-left.html:32
+#: .\templates\products\product-detail.html:32
 #: .\templates\products\products.html:32
 msgid "Sofa"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:53 .\templates\blogs\blog-detail.html:116
+#: .\templates\blogs\blog-detail.html:53 .\templates\blogs\blog-detail.html:117
 #: .\templates\blogs\blog-list-sidebar-left.html:58
 msgid "Comments"
 msgstr ""
 
 #: .\templates\blogs\blog-detail.html:59
+#: .\templates\products\product-detail.html:303
+#: .\templates\products\product-detail.html:304
 msgid "Share"
 msgstr ""
 
@@ -56,6 +66,8 @@ msgid "SEND TO A FRIEND"
 msgstr ""
 
 #: .\templates\blogs\blog-detail.html:67
+#: .\templates\products\product-detail.html:311
+#: .\templates\products\product-detail.html:312
 msgid "Print"
 msgstr ""
 
@@ -63,70 +75,64 @@ msgstr ""
 msgid "Related News"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:122
-#: .\templates\blogs\blog-detail.html:140
-#: .\templates\blogs\blog-detail.html:160
+#: .\templates\blogs\blog-detail.html:123
 msgid "Posted on"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:123
-#: .\templates\blogs\blog-detail.html:141
-#: .\templates\blogs\blog-detail.html:161
+#: .\templates\blogs\blog-detail.html:124
 msgid "repost"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:125
-#: .\templates\blogs\blog-detail.html:143
-#: .\templates\blogs\blog-detail.html:163
+#: .\templates\blogs\blog-detail.html:126
 msgid "Reply"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:175
+#: .\templates\blogs\blog-detail.html:137
 msgid "Submit comment"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:181
+#: .\templates\blogs\blog-detail.html:144
 msgid "Your Name *"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:184
+#: .\templates\blogs\blog-detail.html:147
 msgid "Your E-mail *"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:187
+#: .\templates\blogs\blog-detail.html:150
 msgid "Your Website"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:192
+#: .\templates\blogs\blog-detail.html:155
 msgid "Your Message"
 msgstr ""
 
-#: .\templates\blogs\blog-detail.html:196
+#: .\templates\blogs\blog-detail.html:159
 msgid "Send Message"
-msgstr ""
-
-#: .\templates\blogs\blog-list-sidebar-left.html:44
-#: .\templates\blogs\recent_posts.html:30
-msgid "Recent Posts"
 msgstr ""
 
 #: .\templates\blogs\blog-list-sidebar-left.html:65
 msgid "view more"
 msgstr ""
 
-#: .\templates\blogs\blog-list-sidebar-left.html:75
-#: .\templates\products\products.html:321
+#: .\templates\blogs\blog-list-sidebar-left.html:76
+#: .\templates\products\products.html:336
 msgid "Previous"
 msgstr ""
 
 #: .\templates\blogs\blog-list-sidebar-left.html:90
-#: .\templates\products\products.html:342
+#: .\templates\products\products.html:351
 msgid "Next"
 msgstr ""
 
-#: .\templates\blogs\recent_posts.html:7 .\templates\products\products.html:47
-#: .\templates\products\products.html:72
+#: .\templates\blogs\recent_posts.html:7
+#: .\templates\products\product-detail.html:45
+#: .\templates\products\products.html:47 .\templates\products\products.html:72
 msgid "Categories"
+msgstr ""
+
+#: .\templates\blogs\recent_posts.html:30
+msgid "Recent Posts"
 msgstr ""
 
 #: .\templates\blogs\recent_posts.html:39
@@ -141,47 +147,58 @@ msgstr ""
 msgid "Blog Tags"
 msgstr ""
 
-#: .\templates\blogs\recent_posts.html:65
+#: .\templates\blogs\recent_posts.html:66
+#: .\templates\products\product-detail.html:173
+#: .\templates\products\products.html:147
 #, python-format
-msgid "Show products matching tag %(tag)s"
+msgid "Show products matching tag %(tag.title)s"
 msgstr ""
 
-#: .\templates\blogs\recent_posts.html:76
+#: .\templates\blogs\recent_posts.html:77
 msgid "banner-2"
 msgstr ""
 
 #: .\templates\layout\footer-base.html:14
+#: .\templates\layout\footer-home.html:16
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod "
 "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:21 .\templates\pages\about-us.html:25
+#: .\templates\layout\footer-base.html:21
+#: .\templates\layout\footer-home.html:32
+#: .\templates\layout\header-home.html:87 .\templates\pages\about-us.html:25
 #: .\templates\pages\about-us.html:37
 msgid "About Us"
 msgstr ""
 
 #: .\templates\layout\footer-base.html:22
+#: .\templates\layout\footer-home.html:33
 msgid "Reasons to shop"
 msgstr ""
 
 #: .\templates\layout\footer-base.html:23
+#: .\templates\layout\footer-home.html:34
 msgid "What our customers say"
 msgstr ""
 
 #: .\templates\layout\footer-base.html:24
+#: .\templates\layout\footer-home.html:35
 msgid "Meet the team"
 msgstr ""
 
 #: .\templates\layout\footer-base.html:25
+#: .\templates\layout\footer-home.html:36
 msgid "Contact our buyers"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:40 .\templates\pages\contact.html:59
+#: .\templates\layout\footer-base.html:40
+#: .\templates\layout\footer-home.html:50
+#: .\templates\layout\header-home.html:90 .\templates\pages\contact.html:59
 msgid "Contact Us"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:46
+#: .\templates\layout\footer-base.html:46 .\templates\users\user-acount.html:46
 msgid "Address :"
 msgstr ""
 
@@ -211,21 +228,21 @@ msgstr ""
 msgid "(Except Holidays)"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:86
+#: .\templates\layout\footer-base.html:86 .\templates\pages\home3.html:1391
 msgid "Newsletter"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:88
+#: .\templates\layout\footer-base.html:88 .\templates\pages\home3.html:1392
 msgid ""
 "Sign up to our newsletter to get the latest articles, lookbooks voucher "
 "codes direct to your inbox"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:93
+#: .\templates\layout\footer-base.html:93 .\templates\pages\home3.html:1396
 msgid "Enter Your Email"
 msgstr ""
 
-#: .\templates\layout\footer-base.html:96
+#: .\templates\layout\footer-base.html:96 .\templates\pages\home3.html:1399
 msgid "Subscribe"
 msgstr ""
 
@@ -241,127 +258,246 @@ msgstr ""
 msgid "Templates Hub"
 msgstr ""
 
-#: .\templates\layout\header-base.html:17
+#: .\templates\layout\footer-home.html:19
+msgid ""
+"Duis aute irure dolor in reprehenderit in voluptate velit exercitation "
+"ullamco"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:29 .\templates\pages\about-us.html:46
+msgid "WHO WE ARE"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:37
+msgid "Cookies & privacy"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:47
+msgid "CUSTOMER SERVICES"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:51
+msgid "Help and advice"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:52
+msgid "Delivery"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:53
+msgid "Terms and conditions"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:54
+msgid "Refund Policy"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:55
+msgid "FAQs"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:65
+msgid "CONTACT US"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:71
+msgid "Showroom:"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:77
+msgid "Opening Hours:"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:109
+msgid "LIVING ROOM"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:111
+#: .\templates\layout\footer-home.html:139
+#: .\templates\layout\footer-home.html:157
+#: .\templates\layout\footer-home.html:182
+msgid "SIDE TABLE"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:112
+#: .\templates\layout\footer-home.html:140
+#: .\templates\layout\footer-home.html:158
+#: .\templates\layout\footer-home.html:183
+msgid "FIREPLACE"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:113
+#: .\templates\layout\footer-home.html:142
+#: .\templates\layout\footer-home.html:159
+#: .\templates\layout\footer-home.html:184
+msgid "ARMCHAIR"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:114
+#: .\templates\layout\footer-home.html:160
+#: .\templates\layout\footer-home.html:185
+msgid "CUSHION"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:115
+#: .\templates\layout\footer-home.html:161
+#: .\templates\layout\footer-home.html:186
+msgid "COFFEE TABLE"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:116
+#: .\templates\layout\footer-home.html:162
+#: .\templates\layout\footer-home.html:187
+msgid "SHELF"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:117
+#: .\templates\layout\footer-home.html:163
+#: .\templates\layout\footer-home.html:188
+msgid "SOFA"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:118
+#: .\templates\layout\footer-home.html:164
+#: .\templates\layout\footer-home.html:189
+msgid "DRESSING TABLE"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:119
+#: .\templates\layout\footer-home.html:143
+#: .\templates\layout\footer-home.html:168
+#: .\templates\layout\footer-home.html:190
+msgid "VIEW ALL"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:131
+msgid "KITCHEN"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:133
+#: .\templates\layout\footer-home.html:165
+msgid "WINDOW CURTAIN"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:134
+#: .\templates\layout\footer-home.html:166
+msgid "CHANDELIER"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:135
+#: .\templates\layout\footer-home.html:167
+msgid "CEILING FAN"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:136
+msgid "WARDROBE"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:137
+msgid "FLOOR LAMP"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:138
+msgid "VASE FLOWER"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:141
+msgid "TABLE LAMP"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:155
+msgid "BEDROOM"
+msgstr ""
+
+#: .\templates\layout\footer-home.html:180
+msgid "BATHROOM"
+msgstr ""
+
+#: .\templates\layout\header-base.html:42
 msgid "Prestashop_Furnitica"
 msgstr ""
 
-#: .\templates\layout\header-base.html:31
-#: .\templates\layout\header-base.html:138
+#: .\templates\layout\header-base.html:56
+#: .\templates\layout\header-base.html:144
+#: .\templates\layout\header-home.html:56
 msgid "Search"
 msgstr ""
 
-#: .\templates\layout\header-base.html:50
-#: .\templates\layout\header-base.html:246
-msgid "Product"
-msgstr ""
-
-#: .\templates\layout\header-base.html:55
-#: .\templates\layout\header-base.html:251
-msgid "Organic Strawberry Fruits"
-msgstr ""
-
-#: .\templates\layout\header-base.html:69
-#: .\templates\layout\header-base.html:265
-msgid "Total:"
-msgstr ""
-
-#: .\templates\layout\header-base.html:76
-#: .\templates\layout\header-base.html:272
-msgid "View Cart"
-msgstr ""
-
-#: .\templates\layout\header-base.html:77
-#: .\templates\layout\header-base.html:179
-#: .\templates\layout\header-base.html:181
-#: .\templates\layout\header-base.html:273
-msgid "Checkout"
-msgstr ""
-
-#: .\templates\layout\header-base.html:98
+#: .\templates\layout\header-base.html:108
 msgid "logo"
 msgstr ""
 
-#: .\templates\layout\header-base.html:115
-msgid "Home Page 3"
+#: .\templates\layout\header-base.html:126
+#: .\templates\layout\header-home.html:81
+msgid "Blogs"
 msgstr ""
 
-#: .\templates\layout\header-base.html:115
-msgid "Home Page"
-msgstr ""
-
-#: .\templates\layout\header-base.html:119
-msgid "Blog"
-msgstr ""
-
-#: .\templates\layout\header-base.html:122
+#: .\templates\layout\header-base.html:129
+#: .\templates\layout\header-home.html:84
 msgid "Products"
 msgstr ""
 
-#: .\templates\layout\header-base.html:125
+#: .\templates\layout\header-base.html:132
 msgid "About Us Page"
 msgstr ""
 
-#: .\templates\layout\header-base.html:128
+#: .\templates\layout\header-base.html:135
 msgid "Contact US"
 msgstr ""
 
-#: .\templates\layout\header-base.html:149
-msgid "Account"
+#: .\templates\layout\header-base.html:191
+msgid "Product"
 msgstr ""
 
-#: .\templates\layout\header-base.html:158
-#: .\templates\layout\header-base.html:165
-msgid "Log in to your customer account"
+#: .\templates\layout\header-base.html:209
+#: .\templates\products\product-cart.html:82
+#: .\templates\products\product-cart.html:127
+#: .\templates\products\product-checkout.html:184
+msgid "Total:"
 msgstr ""
 
-#: .\templates\layout\header-base.html:160
+#: .\templates\layout\header-base.html:215
+#: .\templates\layout\header-home.html:164
+msgid "View Cart"
+msgstr ""
+
+#: .\templates\layout\header-base.html:216
+#: .\templates\layout\header-home.html:165
+#: .\templates\products\product-checkout.html:23
+msgid "Checkout"
+msgstr ""
+
+#: .\templates\layout\header-home.html:42
+msgid "Logo"
+msgstr ""
+
+#: .\templates\layout\header-home.html:102
+#: .\templates\users\user-acount.html:23 .\templates\users\user-acount.html:33
 msgid "My Account"
 msgstr ""
 
-#: .\templates\layout\header-base.html:167
-msgid "Sign in"
+#: .\templates\layout\header-home.html:109
+msgid "Sign in to your account"
 msgstr ""
 
-#: .\templates\layout\header-base.html:172
-#: .\templates\layout\header-base.html:174
+#: .\templates\layout\header-home.html:111
+msgid "Sign In"
+msgstr ""
+
+#: .\templates\layout\header-home.html:115
 msgid "Register Account"
 msgstr ""
 
-#: .\templates\layout\header-base.html:185
-#: .\templates\layout\header-base.html:187
-msgid "My Wishlists"
+#: .\templates\layout\header-home.html:117
+msgid "Register"
 msgstr ""
 
-#: .\templates\layout\header-base.html:194
-msgid "Euro"
-msgstr ""
-
-#: .\templates\layout\header-base.html:197
-msgid "British Pound Sterling"
-msgstr ""
-
-#: .\templates\layout\header-base.html:207
-msgid "English"
-msgstr ""
-
-#: .\templates\layout\header-base.html:213
-msgid "Italiano"
-msgstr ""
-
-#: .\templates\layout\header-base.html:219
-msgid "Français"
-msgstr ""
-
-#: .\templates\layout\header-base.html:225
-msgid "Español"
+#: .\templates\layout\header-home.html:158
+msgid "Total"
 msgstr ""
 
 #: .\templates\pages\about-us.html:4 .\templates\products\products.html:5
 msgid "Furnitica - Minimalist Furniture HTML Template"
-msgstr ""
-
-#: .\templates\pages\about-us.html:46
-msgid "WHO WE ARE"
 msgstr ""
 
 #: .\templates\pages\about-us.html:47 .\templates\pages\about-us.html:58
@@ -441,6 +577,509 @@ msgstr ""
 msgid "Send message"
 msgstr ""
 
+#: .\templates\pages\home3.html:563
+msgid "Modern"
+msgstr ""
+
+#: .\templates\pages\home3.html:563
+msgid "Designer"
+msgstr ""
+
+#: .\templates\pages\home3.html:563
+msgid "Chair"
+msgstr ""
+
+#: .\templates\pages\home3.html:572 .\templates\pages\home3.html:583
+msgid "Creative"
+msgstr ""
+
+#: .\templates\pages\home3.html:573 .\templates\pages\home3.html:584
+msgid "Furniture"
+msgstr ""
+
+#: .\templates\pages\home3.html:574 .\templates\pages\home3.html:585
+msgid "Design"
+msgstr ""
+
+#: .\templates\pages\home3.html:628 .\templates\pages\home3.html:935
+msgid "LOREM IPSUM DOLOR SIT AMET CONSECTETUR"
+msgstr ""
+
+#: .\templates\pages\home3.html:632 .\templates\pages\home3.html:939
+msgid "New Arrivals"
+msgstr ""
+
+#: .\templates\pages\home3.html:635 .\templates\pages\home3.html:942
+msgid "Best Seller"
+msgstr ""
+
+#: .\templates\pages\home3.html:638 .\templates\pages\home3.html:945
+msgid "Featured Product"
+msgstr ""
+
+#: .\templates\pages\home3.html:650 .\templates\pages\home3.html:718
+#: .\templates\pages\home3.html:786 .\templates\pages\home3.html:872
+#: .\templates\pages\home3.html:957 .\templates\pages\home3.html:1017
+#: .\templates\pages\home3.html:1072 .\templates\pages\home3.html:1127
+#: .\templates\pages\home3.html:1184 .\templates\pages\home3.html:1239
+#: .\templates\pages\home3.html:1294
+#: .\templates\products\product-detail.html:74
+#: .\templates\products\product-detail.html:105
+#: .\templates\products\product-detail.html:136
+#: .\templates\products\product-detail.html:190
+#: .\templates\products\product-detail.html:201
+#: .\templates\products\product-detail.html:218
+#: .\templates\products\product-detail.html:226
+#: .\templates\products\product-detail.html:496
+msgid "Product Image"
+msgstr ""
+
+#: .\templates\pages\home3.html:651 .\templates\pages\home3.html:719
+#: .\templates\pages\home3.html:787 .\templates\pages\home3.html:958
+#: .\templates\pages\home3.html:1018 .\templates\pages\home3.html:1073
+#: .\templates\pages\home3.html:1128 .\templates\pages\home3.html:1185
+#: .\templates\pages\home3.html:1240 .\templates\pages\home3.html:1295
+#: .\templates\products\product-detail.html:75
+#: .\templates\products\product-detail.html:106
+#: .\templates\products\product-detail.html:137
+#: .\templates\products\product-detail.html:497
+msgid "Product Secondary Image"
+msgstr ""
+
+#: .\templates\pages\home3.html:690 .\templates\pages\home3.html:758
+#: .\templates\pages\home3.html:826 .\templates\pages\home3.html:898
+#: .\templates\products\product-cart.html:90
+msgid "Remove from Cart"
+msgstr ""
+
+#: .\templates\pages\home3.html:694 .\templates\pages\home3.html:762
+#: .\templates\pages\home3.html:830 .\templates\pages\home3.html:902
+#: .\templates\pages\home3.html:995 .\templates\pages\home3.html:1055
+#: .\templates\pages\home3.html:1110 .\templates\pages\home3.html:1163
+#: .\templates\pages\home3.html:1222 .\templates\pages\home3.html:1277
+#: .\templates\pages\home3.html:1330
+#: .\templates\products\product-detail.html:287
+#: .\templates\products\product-detail.html:530
+msgid "Add to Cart"
+msgstr ""
+
+#: .\templates\pages\home3.html:699 .\templates\pages\home3.html:767
+#: .\templates\pages\home3.html:835 .\templates\pages\home3.html:907
+#: .\templates\pages\home3.html:999 .\templates\pages\home3.html:1059
+#: .\templates\pages\home3.html:1114 .\templates\pages\home3.html:1167
+#: .\templates\pages\home3.html:1226 .\templates\pages\home3.html:1281
+#: .\templates\pages\home3.html:1334
+#: .\templates\products\product-detail.html:290
+#: .\templates\products\product-detail.html:533
+msgid "Add to Wishlist"
+msgstr ""
+
+#: .\templates\pages\home3.html:702 .\templates\pages\home3.html:770
+#: .\templates\pages\home3.html:838 .\templates\pages\home3.html:910
+#: .\templates\pages\home3.html:1002 .\templates\pages\home3.html:1062
+#: .\templates\pages\home3.html:1117 .\templates\pages\home3.html:1170
+#: .\templates\pages\home3.html:1229 .\templates\pages\home3.html:1284
+#: .\templates\pages\home3.html:1337
+#: .\templates\products\product-detail.html:536
+msgid "Quick View"
+msgstr ""
+
+#: .\templates\pages\home3.html:862
+msgid "Deal Of The Day"
+msgstr ""
+
+#: .\templates\pages\home3.html:863
+msgid "Hurry Up, The Same Time Is Not Extended !!!"
+msgstr ""
+
+#: .\templates\pages\home3.html:934
+msgid "Bathroom"
+msgstr ""
+
+#: .\templates\pages\home3.html:1023 .\templates\pages\home3.html:1078
+#: .\templates\pages\home3.html:1132 .\templates\pages\home3.html:1190
+#: .\templates\pages\home3.html:1245 .\templates\pages\home3.html:1299
+msgid "Beige"
+msgstr ""
+
+#: .\templates\pages\home3.html:1024 .\templates\pages\home3.html:1079
+#: .\templates\pages\home3.html:1133 .\templates\pages\home3.html:1191
+#: .\templates\pages\home3.html:1246 .\templates\pages\home3.html:1300
+msgid "Orange"
+msgstr ""
+
+#: .\templates\pages\home3.html:1025 .\templates\pages\home3.html:1080
+#: .\templates\pages\home3.html:1134 .\templates\pages\home3.html:1192
+#: .\templates\pages\home3.html:1247 .\templates\pages\home3.html:1301
+msgid "Green"
+msgstr ""
+
+#: .\templates\pages\home3.html:1032 .\templates\pages\home3.html:1087
+#: .\templates\pages\home3.html:1141 .\templates\pages\home3.html:1199
+#: .\templates\pages\home3.html:1254 .\templates\pages\home3.html:1308
+msgid "Nulla et justo non augue"
+msgstr ""
+
+#: .\templates\pages\home3.html:1362
+msgid "Testimonial Icon"
+msgstr ""
+
+#: .\templates\pages\home3.html:1414
+msgid "Facebook"
+msgstr ""
+
+#: .\templates\pages\home3.html:1419
+msgid "Twitter"
+msgstr ""
+
+#: .\templates\pages\home3.html:1424
+msgid "Google"
+msgstr ""
+
+#: .\templates\pages\home3.html:1429
+msgid "Instagram"
+msgstr ""
+
+#: .\templates\products\product-cart.html:24
+#: .\templates\products\product-cart.html:37
+msgid "Shopping Cart"
+msgstr ""
+
+#: .\templates\products\product-cart.html:61
+msgid "Size:"
+msgstr ""
+
+#: .\templates\products\product-cart.html:65
+msgid "Color:"
+msgstr ""
+
+#: .\templates\products\product-cart.html:74
+msgid "Qty:"
+msgstr ""
+
+#: .\templates\products\product-cart.html:77
+msgid "Update"
+msgstr ""
+
+#: .\templates\products\product-cart.html:102
+#: .\templates\products\product-checkout.html:109
+#: .\templates\products\product-checkout.html:138
+msgid "Continue"
+msgstr ""
+
+#: .\templates\products\product-cart.html:109
+#: .\templates\products\product-checkout.html:166
+msgid "There are"
+msgstr ""
+
+#: .\templates\products\product-cart.html:109
+#: .\templates\products\product-checkout.html:166
+msgid "item in your cart"
+msgstr ""
+
+#: .\templates\products\product-cart.html:113
+#: .\templates\products\product-checkout.html:170
+msgid "Total products:"
+msgstr ""
+
+#: .\templates\products\product-cart.html:119
+#: .\templates\products\product-checkout.html:176
+msgid "Total Shipping:"
+msgstr ""
+
+#: .\templates\products\product-cart.html:121
+#: .\templates\products\product-checkout.html:178
+msgid "Free"
+msgstr ""
+
+#: .\templates\products\product-cart.html:128
+#: .\templates\products\product-checkout.html:185
+msgid "(tax incl.)"
+msgstr ""
+
+#: .\templates\products\product-cart.html:136
+#: .\templates\products\product-cart.html:137
+#: .\templates\products\product-checkout.html:193
+#: .\templates\products\product-checkout.html:194
+msgid "Security policy (edit with Customer reassurance module)"
+msgstr ""
+
+#: .\templates\products\product-cart.html:142
+#: .\templates\products\product-cart.html:143
+#: .\templates\products\product-checkout.html:199
+#: .\templates\products\product-checkout.html:200
+msgid "Delivery policy (edit with Customer reassurance module)"
+msgstr ""
+
+#: .\templates\products\product-cart.html:148
+#: .\templates\products\product-cart.html:149
+#: .\templates\products\product-checkout.html:205
+#: .\templates\products\product-checkout.html:206
+msgid "Return policy (edit with Customer reassurance module)"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:41
+msgid "PERSONAL INFORMATION"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:48
+msgid "ORDER AS A GUEST"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:53
+msgid "SIGN IN"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:63
+msgid "Full name"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:66
+#: .\templates\products\product-checkout.html:120
+#: .\templates\users\user-register.html:50
+msgid "Email"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:69
+msgid "Phone"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:72
+msgid "Create an account"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:73
+msgid "optional"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:75
+msgid "And save time on your next order!"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:79
+#: .\templates\products\product-checkout.html:124
+#: .\templates\users\user-login.html:47 .\templates\users\user-register.html:55
+msgid "Password"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:84
+msgid "Birthdate"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:90
+msgid "Receive offers from our partners"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:96
+msgid "Sign up for our newsletter"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:98
+msgid ""
+"You may unsubscribe at any moment. For that purpose, please find our contact "
+"info in the legal notice."
+msgstr ""
+
+#: .\templates\products\product-checkout.html:130
+#: .\templates\users\user-login.html:53
+msgid "Forgot your password?"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:148
+msgid "Addresses"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:153
+msgid "Shipping Method"
+msgstr ""
+
+#: .\templates\products\product-checkout.html:158
+msgid "Payment"
+msgstr ""
+
+#: .\templates\products\product-detail.html:67
+msgid "Best seller"
+msgstr ""
+
+#: .\templates\products\product-detail.html:81
+#: .\templates\products\product-detail.html:112
+#: .\templates\products\product-detail.html:143
+msgid "Nulla et justo augue"
+msgstr ""
+
+#: .\templates\products\product-detail.html:168
+#: .\templates\products\product-detail.html:376
+#: .\templates\products\products.html:141
+msgid "Product Tags"
+msgstr ""
+
+#: .\templates\products\product-detail.html:194
+msgid "Expand Image"
+msgstr ""
+
+#: .\templates\products\product-detail.html:246
+msgid "Availability:"
+msgstr ""
+
+#: .\templates\products\product-detail.html:248
+msgid "OUT STOCK"
+msgstr ""
+
+#: .\templates\products\product-detail.html:248
+msgid "IN STOCK"
+msgstr ""
+
+#: .\templates\products\product-detail.html:254
+msgid "size :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:256
+msgid "Choose your size"
+msgstr ""
+
+#: .\templates\products\product-detail.html:263
+msgid "Color :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:274
+msgid "QTY :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:277
+msgid "Increase Quantity"
+msgstr ""
+
+#: .\templates\products\product-detail.html:280
+msgid "Decrease Quantity"
+msgstr ""
+
+#: .\templates\products\product-detail.html:288
+#: .\templates\products\products.html:302
+msgid "Add to cart"
+msgstr ""
+
+#: .\templates\products\product-detail.html:307
+msgid "Send to a Friend"
+msgstr ""
+
+#: .\templates\products\product-detail.html:308
+msgid "SEN TO A FRIEND"
+msgstr ""
+
+#: .\templates\products\product-detail.html:318
+msgid "REVIEW :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:331
+msgid "Read Reviews"
+msgstr ""
+
+#: .\templates\products\product-detail.html:332
+msgid "READ REVIEWS (3)"
+msgstr ""
+
+#: .\templates\products\product-detail.html:337
+msgid "Write a Review"
+msgstr ""
+
+#: .\templates\products\product-detail.html:338
+msgid "WRITE A REVIEW"
+msgstr ""
+
+#: .\templates\products\product-detail.html:343
+msgid "SKU :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:348
+msgid "Categories :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:355
+msgid "tags :"
+msgstr ""
+
+#: .\templates\products\product-detail.html:373
+msgid "Description"
+msgstr ""
+
+#: .\templates\products\product-detail.html:379
+msgid "Reviews (2)"
+msgstr ""
+
+#: .\templates\products\product-detail.html:393
+msgid "Apr 14, 2018"
+msgstr ""
+
+#: .\templates\products\product-detail.html:406
+#: .\templates\products\product-detail.html:426
+msgid ""
+"In feugiat venenatis enim, non finibus metus bibendum eu. Proin massa justo, "
+"eleifend fermentum varius quis, semper gravida quam. Cras nec enim sed lacus "
+"viverra luctus. Nunc quis accumsan mauris. Aliquam fermentum sit amet est id "
+"scelerisque. Nam porta risus metus."
+msgstr ""
+
+#: .\templates\products\product-detail.html:413
+msgid "Apr 13, 2018"
+msgstr ""
+
+#: .\templates\products\product-detail.html:434
+msgid "Write a review"
+msgstr ""
+
+#: .\templates\products\product-detail.html:437
+msgid "Your Rating"
+msgstr ""
+
+#: .\templates\products\product-detail.html:440
+msgid "Awesome - 5 stars"
+msgstr ""
+
+#: .\templates\products\product-detail.html:443
+msgid "Pretty good - 4 stars"
+msgstr ""
+
+#: .\templates\products\product-detail.html:446
+msgid "Meh - 3 stars"
+msgstr ""
+
+#: .\templates\products\product-detail.html:449
+msgid "Kinda bad - 2 stars"
+msgstr ""
+
+#: .\templates\products\product-detail.html:452
+msgid "Sucks big time - 1 star"
+msgstr ""
+
+#: .\templates\products\product-detail.html:459
+msgid "Enter your name"
+msgstr ""
+
+#: .\templates\products\product-detail.html:462
+msgid "Enter your email"
+msgstr ""
+
+#: .\templates\products\product-detail.html:468
+msgid "Write your comments here"
+msgstr ""
+
+#: .\templates\products\product-detail.html:473
+msgid "Submit Review"
+msgstr ""
+
+#: .\templates\products\product-detail.html:478
+#: .\templates\products\product-detail.html:479
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit "
+"amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut "
+"labore et dolore magna aliqua."
+msgstr ""
+
+#: .\templates\products\product-detail.html:486
+msgid "Related Products"
+msgstr ""
+
 #: .\templates\products\products.html:70
 msgid "Catalog"
 msgstr ""
@@ -455,15 +1094,6 @@ msgstr ""
 
 #: .\templates\products\products.html:121
 msgid "By Color"
-msgstr ""
-
-#: .\templates\products\products.html:141
-msgid "Product Tags"
-msgstr ""
-
-#: .\templates\products\products.html:147
-#, python-format
-msgid "Show products matching tag %(tag.title)s"
 msgstr ""
 
 #: .\templates\products\products.html:168
@@ -490,14 +1120,154 @@ msgstr ""
 msgid "Price, high to low"
 msgstr ""
 
-#: .\templates\products\products.html:266
+#: .\templates\products\products.html:273
 msgid "In Stock"
 msgstr ""
 
-#: .\templates\products\products.html:290
-msgid "Add to cart"
+#: .\templates\products\products.html:298
+msgid "Remove cart"
 msgstr ""
 
-#: .\templates\products\products.html:315
-msgid "SHOWING 1-3 OF 3 ITEM(S)"
+#: .\templates\products\products.html:328
+msgid "SHOWING"
+msgstr ""
+
+#: .\templates\products\products.html:328
+msgid "ITEM(S)"
+msgstr ""
+
+#: .\templates\users\user-acount.html:38
+msgid "My Name :"
+msgstr ""
+
+#: .\templates\users\user-acount.html:42
+msgid "Company :"
+msgstr ""
+
+#: .\templates\users\user-acount.html:50
+msgid "City :"
+msgstr ""
+
+#: .\templates\users\user-acount.html:54
+msgid "Postal/Zip Code :"
+msgstr ""
+
+#: .\templates\users\user-acount.html:58
+msgid "Phone :"
+msgstr ""
+
+#: .\templates\users\user-acount.html:62
+msgid "Country :"
+msgstr ""
+
+#: .\templates\users\user-acount.html:69
+msgid "view Address"
+msgstr ""
+
+#: .\templates\users\user-acount.html:72
+msgid "Order"
+msgstr ""
+
+#: .\templates\users\user-acount.html:73
+msgid "History"
+msgstr ""
+
+#: .\templates\users\user-acount.html:75
+msgid "You haven't placed any orders yet."
+msgstr ""
+
+#: .\templates\users\user-login.html:23
+msgid "Login"
+msgstr ""
+
+#: .\templates\users\user-login.html:36
+msgid "Log In"
+msgstr ""
+
+#: .\templates\users\user-login.html:43 .\templates\users\user-register.html:45
+msgid "Username"
+msgstr ""
+
+#: .\templates\users\user-login.html:62
+msgid "Sign in"
+msgstr ""
+
+#: .\templates\users\user-register.html:23
+msgid "About us"
+msgstr ""
+
+#: .\templates\users\user-register.html:39
+#: .\templates\users\user-register.html:69
+msgid "Create Account"
+msgstr ""
+
+#: .\templates\users\user-register.html:61
+msgid "Confirm Password"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:23
+msgid "Wishlists"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:39
+msgid "My Wishlists"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:42
+msgid "New wishlist"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:44
+#: .\templates\users\user-wishlist.html:55
+msgid "Name"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:45
+msgid "Show"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:45
+msgid "Hide"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:46
+msgid "Save"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:56
+msgid "Qty"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:57
+msgid "Viewed"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:58
+msgid "Created"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:59
+msgid "Direct Link"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:60
+msgid "Default"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:61
+#: .\templates\users\user-wishlist.html:83
+msgid "Delete"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:75
+msgid "View"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:83
+msgid "Do you really want to delete this wishlist ?"
+msgstr ""
+
+#: .\templates\users\user-wishlist.html:91
+#: .\templates\users\user-wishlist.html:92
+msgid "Homepage"
 msgstr ""

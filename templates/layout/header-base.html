@@ -1,6 +1,30 @@
 {% load static %}
 {% load i18n %}
 {% load custom_filters %}
+{% if messages %}
+        <div style="position: relative; width: 100%; z-index: 999;">
+            {% for message in messages %}
+                <div style="
+                    padding: 10px 20px;
+                    margin: 5px auto;
+                    border-radius: 6px;
+                    width: 90%;
+                    font-weight: bold;
+                    {% if message.tags == 'success' %}
+                        background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+                    {% elif message.tags == 'error' %}
+                        background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;
+                    {% elif message.tags == 'warning' %}
+                        background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;
+                    {% else %}
+                        background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;
+                    {% endif %}
+                ">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 <header>
     <!-- header left mobie -->
     <div class="header-mobile d-md-none">
@@ -13,7 +37,7 @@
 
             <!-- logo -->
             <div class="mobile-logo">
-                <a href="index-2.html">
+                <a href="{% url 'pages:home3' %}">
                     <img class="logo-mobile img-fluid" src="{% static 'img/home/logo-mobie.png' %}"
                          alt="{% trans 'Prestashop_Furnitica' %}">
                 </a>
@@ -38,7 +62,7 @@
             <div class="desktop_cart">
                 <div class="blockcart block-cart cart-preview tiva-toggle">
                     <div class="header-cart tiva-toggle-btn">
-                        <span class="cart-products-count">1</span>
+                        <span class="cart-products-count">{{ basket|length }}</span>
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </div>
                     <div class="dropdown-content">
@@ -64,7 +88,7 @@
                                      alt="English" width="16" height="11">
                             {% elif language.code == "uz" %}
                                 <img class="img-fluid" src="{% static 'img/home/home1-flas2.jpg' %}"
-                                     alt="O'zbekcha" width="16" height="11">
+                                     alt="O'zbek" width="16" height="11">
                             {% endif %}
                         </a>
                     </li>
@@ -80,7 +104,7 @@
                 <!-- logo -->
                 <div class="col-sm-2 col-md-2 d-flex align-items-center">
                     <div id="logo">
-                        <a href="index-2.html">
+                        <a href="{% url 'pages:home3' %}">
                             <img src="{% static 'img/home/logo.png' %}" alt="{% trans 'logo' %}" class="img-fluid">
                         </a>
                     </div>
@@ -99,7 +123,7 @@
                                 <a href="{% url 'pages:home3' %}" class="parent">{% trans 'Home' %}</a>
                             </li>
                             <li class="{% if request.path == blogs_url %}nav-link{% endif %}">
-                                <a href="{% url 'blogs:list_sidebar_left' %}" class="parent">{% trans 'Blog' %}</a>
+                                <a href="{% url 'blogs:list_sidebar_left' %}" class="parent">{% trans 'Blogs' %}</a>
                             </li>
                             <li class="{% if request.path == products_url %}nav-link{% endif %}">
                                 <a href="{% url 'products:products' %}" class="parent">{% trans 'Products' %}</a>
@@ -153,25 +177,49 @@
                     <div class="desktop_cart">
                        <div class="blockcart block-cart cart-preview tiva-toggle">
                            <div class="header-cart tiva-toggle-btn">
-                               <span class="cart-products-count">1</span>
+                               <span class="cart-products-count">{{ basket|length }}</span>
                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                            </div>
                            <div class="dropdown-content">
                                <div class="cart-content">
-                           {# <table>#} {# <tbody>#} {# <tr>#} {# <td class="product-image">#}
-                           {# <a href="#">#} {# <img src="{% static 'img/product/5.jpg' %}" alt="{% trans 'Product' %}">#}
-                           {# </a>#} {# </td>#} {# <td>#} {# <div class="product-name">#}
-                           {# <a href="#">{% trans 'Organic Strawberry Fruits' %}</a>#}
-                           {# </div>#} {# <div>#} {# 2 x#} {# <span class="product-price">£28.98</span>#}
-                           {# </div>#} {# </td>#} {# <td class="action">#} {# <a class="remove" href="#">#}
-                           {# <i class="fa fa-trash-o" aria-hidden="true"></i>#} {# </a>#} {# </td>#}
-                           {# </tr>#} {# <tr class="total">#} {# <td colspan="2">{% trans 'Total:' %}</td>#}
-                           {# <td>£92.96</td>#} {# </tr>#} {##} {# <tr>#}
-                           {# <td colspan="3" class="d-flex justify-content-center">#}
-                           {# <div class="cart-button">#}
-                           {# <a href="../products/product-cart.html" title="{% trans 'View Cart' %}">{% trans 'View Cart' %}</a>#}
-                           {# <a href="../products/product-checkout.html" title="{% trans 'Checkout' %}">{% trans 'Checkout' %}</a>#}
-                           {# </div>#} {# </td>#} {# </tr>#} {# </tbody>#} {# </table>#}
+                                   <table>
+                                       {% for item in basket %}
+                                       <tbody>
+                                           <tr>
+                                               <td class="product-image">
+                                                    <a href="{% url 'products:detail' pk=item.product.id %}">
+                                                        <img src="{{ item.product.image.url }}" alt="{% trans 'Product' %}">
+                                                    </a>
+                                               </td>
+                                               <td>
+                                                    <div class="product-name">{{ item.product.title }}
+                                                        <a href="{% url 'products:detail' pk=item.product.id %}"></a>
+                                                    </div>
+                                                    <div>
+                                                        {{ item.product.quantity }} x<span class="product-price">£{{ item.product.price }}</span>
+                                                    </div>
+                                               </td>
+                                               <td class="action">
+                                                   <a class="remove" href="{% url 'basket:basket_remove' product_id=item.product.id %}">
+                                                   <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                   </a>
+                                               </td>
+                                           </tr>
+                                           <tr class="total">
+                                               <td colspan="{{ basket|length }}">{% trans 'Total:' %}</td>
+                                               <td>£{{ basket.get_total_price }}</td>
+                                           </tr>
+                                           <tr>
+                                               <td colspan="3" class="d-flex justify-content-center">
+                                                    <div class="cart-button">
+                                                        <a href="{% url 'products:cart' %}" title="{% trans 'View Cart' %}">{% trans 'View Cart' %}</a>
+                                                        <a href="{% url 'products:checkout' %}" title="{% trans 'Checkout' %}">{% trans 'Checkout' %}</a>
+                                                    </div>
+                                               </td>
+                                           </tr>
+                                       </tbody>
+                                       {% endfor %}
+                                   </table>
                                </div>
                            </div>
                        </div>

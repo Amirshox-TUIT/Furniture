@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'apps.blogs',
     'apps.products',
     'apps.users',
+    'apps.basket',
+    'ckeditor',
     'ckeditor_uploader',
-    "django_ckeditor_5",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "apps.blogs.context_processors.sidebar_data",
+                'apps.basket.context_processor.basket',
             ],
         },
     },
@@ -164,4 +166,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = EMAIL
 EMAIL_HOST_PASSWORD = EMAIL_PASS
 
+BASKET_SESSION_ID = 'basket'
+SESSION_COOKIE_AGE = 86400  # 1 day
+SESSION_SAVE_EVERY_REQUEST = True
 

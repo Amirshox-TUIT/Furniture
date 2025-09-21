@@ -1,263 +1,262 @@
 {% load static %}
-<header>
-        <!-- header left mobie -->
-        <div class="header-mobile d-md-none">
-            <div class="mobile hidden-md-up text-xs-center d-flex align-items-center justify-content-around">
-
-                <!-- menu left -->
-                <div id="mobile_mainmenu" class="item-mobile-top">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </div>
-
-                <!-- logo -->
-                <div class="mobile-logo">
-                    <a href="home3.html">
-                        <img class="logo-mobile img-fluid" src="{% static 'img/home/logo-mobie.png' %}" alt="Prestashop_Furnitica">
-                    </a>
-                </div>
-
-                <!-- menu right -->
-                <div class="mobile-menutop" data-target="#mobile-pagemenu">
-                    <i class="zmdi zmdi-more"></i>
-                </div>
+{% load i18n %}
+{% load custom_filters %}
+{% if messages %}
+    <div style="position: relative; width: 100%; z-index: 999;">
+        {% for message in messages %}
+            <div style="
+                padding: 10px 20px;
+                margin: 5px auto;
+                border-radius: 6px;
+                width: 90%;
+                font-weight: bold;
+                {% if message.tags == 'success' %}
+                    background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+                {% elif message.tags == 'error' %}
+                    background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;
+                {% elif message.tags == 'warning' %}
+                    background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;
+                {% else %}
+                    background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;
+                {% endif %}
+            ">
+                {{ message }}
             </div>
-
-            <!-- search -->
-            <div id="mobile_search" class="d-flex">
-                <div id="mobile_search_content">
-                    <form method="get" action="#">
-
-                        <input type="text" name="s" value="" placeholder="Search">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="desktop_cart">
-                    <div class="blockcart block-cart cart-preview tiva-toggle">
-                        <div class="header-cart tiva-toggle-btn">
-                            <span class="cart-products-count">1</span>
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        </div>
-                        <div class="dropdown-content">
-                            <div class="cart-content">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-image">
-                                                <a href="../products/product-detail.html">
-                                                    <img src="{% static 'img/product/5.jpg' %}" alt="Product">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div class="product-name">
-                                                    <a href="../products/product-detail.html">Organic Strawberry Fruits</a>
-                                                </div>
-                                                <div>
-                                                    2 x
-                                                    <span class="product-price">£28.98</span>
-                                                </div>
-                                            </td>
-                                            <td class="action">
-                                                <a class="remove" href="#">
-                                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="total">
-                                            <td colspan="2">Total:</td>
-                                            <td>£92.96</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td colspan="3" class="d-flex justify-content-center">
-                                                <div class="cart-button">
-                                                    <a href="../products/product-cart.html" title="View Cart">View Cart</a>
-                                                    <a href="../products/product-checkout.html" title="Checkout">Checkout</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+<header>
+    <!-- header left mobie -->
+    <div class="header-mobile d-md-none">
+        <div class="mobile hidden-md-up text-xs-center d-flex align-items-center justify-content-around">
+            <!-- menu left -->
+            <div id="mobile_mainmenu" class="item-mobile-top">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <!-- logo -->
+            <div class="mobile-logo">
+                <a href="{% url 'pages:home3' %}">
+                    <img class="logo-mobile img-fluid" src="{% static 'img/home/logo-mobie.png' %}" alt="{% trans 'Prestashop_Furnitica' %}">
+                </a>
+            </div>
+            <!-- menu right -->
+            <div class="mobile-menutop" data-target="#mobile-pagemenu">
+                <i class="zmdi zmdi-more"></i>
+            </div>
+        </div>
+        <!-- search -->
+        <div id="mobile_search" class="d-flex">
+            <div id="mobile_search_content">
+                <form method="get" action="#">
+                    <input type="text" name="s" value="" placeholder="{% trans 'Search' %}">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="desktop_cart">
+                <div class="blockcart block-cart cart-preview tiva-toggle">
+                    <div class="header-cart tiva-toggle-btn">
+                        <span class="cart-products-count">{{ basket|length }}</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="cart-content">
+                            <table>
+                                {% for item in basket %}
+                                <tbody>
+                                    <tr>
+                                        <td class="product-image">
+                                            <a href="{% url 'products:detail' pk=item.product.id %}">
+                                                <img src="{{ item.product.image.url }}" alt="{% trans 'Product' %}">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <div class="product-name">
+                                                <a href="{% url 'products:detail' pk=item.product.id %}">{{ item.product.title }}</a>
+                                            </div>
+                                            <div>
+                                                {{ item.quantity }} x
+                                                <span class="product-price">£{{ item.product.price }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="action">
+                                            <a class="remove" href="{% url 'basket:basket_remove' product_id=item.product.id %}">
+                                                <i class="fa fa-trash-o" aria-hidden="true" title="{% trans 'Remove' %}"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td colspan="2">{% trans 'Total:' %}</td>
+                                        <td>£{{ item.total_price }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="d-flex justify-content-center">
+                                            <div class="cart-button">
+                                                <a href="{% url 'products:cart' %}" title="{% trans 'View Cart' %}">{% trans 'View Cart' %}</a>
+                                                <a href="{% url 'products:checkout' %}" title="{% trans 'Checkout' %}">{% trans 'Checkout' %}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="topbar">
-            <div class="container">
-                <div class="row">
-                    <!-- menu -->
-                    <div class="main-menu d-flex align-items-center justify-content-start navbar-expand-md col-md-6">
-                        <div class="menu navbar collapse navbar-collapse">
-                            <ul class="menu-top navbar-nav">
-                                {% url 'pages:home3' as home_url%}
-                            {% url 'pages:contact' as contact_url%}
-                            {% url 'pages:about_us' as about_url%}
-                            {% url 'products:products' as products_url%}
-                            {% url 'blogs:list_sidebar_left' as blogs_url%}
+    </div>
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <!-- menu -->
+                <div class="main-menu d-flex align-items-center justify-content-start navbar-expand-md col-md-6">
+                    <div class="menu navbar collapse navbar-collapse">
+                        <ul class="menu-top navbar-nav">
+                            {% url 'pages:home3' as home_url %}
+                            {% url 'pages:contact' as contact_url %}
+                            {% url 'pages:about_us' as about_url %}
+                            {% url 'products:products' as products_url %}
+                            {% url 'blogs:list_sidebar_left' as blogs_url %}
                             <li class="{% if request.path == home_url %}nav-link{% endif %}">
-                                <a href="{% url 'pages:home3' %}" class="parent">Home</a>
-                                <div class="dropdown-menu">
-                                    <a href="{% url 'pages:home3' %}" title="Home Page 3">Home Page</a>
-                                </div>
+                                <a href="{% url 'pages:home3' %}" class="parent">{% trans 'Home' %}</a>
                             </li>
                             <li class="{% if request.path == blogs_url %}nav-link{% endif %}">
-                                <a href="{% url 'blogs:list_sidebar_left' %}" class="parent">Blog</a>
+                                <a href="{% url 'blogs:list_sidebar_left' %}" class="parent">{% trans 'Blogs' %}</a>
                             </li>
                             <li class="{% if request.path == products_url %}nav-link{% endif %}">
-                                <a href="{% url 'products:products' %}" class="parent">Products</a>
+                                <a href="{% url 'products:products' %}" class="parent">{% trans 'Products' %}</a>
                             </li>
                             <li class="{% if request.path == about_url %}nav-link{% endif %}">
-                                <a href="{% url 'pages:about_us' %}" class="parent">About Us Page</a>
+                                <a href="{% url 'pages:about_us' %}" class="parent">{% trans 'About Us Page' %}</a>
                             </li>
                             <li class="{% if request.path == contact_url %}nav-link{% endif %}">
-                                <a href="{% url 'pages:contact' %}" class="parent">Contact US</a>
+                                <a href="{% url 'pages:contact' %}" class="parent">{% trans 'Contact US' %}</a>
                             </li>
-                            </ul>
+                        </ul>
+                    </div>
+                </div>
+                <!-- search_widget -->
+                <div class="search_widget col-lg-6 col-md-6 d-flex justify-content-end hidden-xs">
+                    <!-- My Account -->
+                    <div id="block_myaccount_info" class="hidden-sm-down dropdown d-flex align-items-center">
+                        <div class="myaccount-title">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <a href="#acount" data-toggle="collapse" class="acount">
+                                <span>{% trans 'My Account' %}</span>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div id="acount" class="collapse">
+                            <div class="account-list-content">
+                                <div>
+                                    <a class="login" href="{% url 'users:user_account' %}" rel="nofollow" title="{% trans 'Log in to your customer account' %}">
+                                        <i class="fa fa-cog"></i>
+                                        <span>{% trans 'My Account' %}</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="login" href="{% url 'users:user_login' %}" rel="nofollow" title="{% trans 'Log in to your customer account' %}">
+                                        <i class="fa fa-sign-in"></i>
+                                        <span>{% trans 'Sign in' %}</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="register" href="{% url 'users:user_register' %}" rel="nofollow" title="{% trans 'Register Account' %}">
+                                        <i class="fa fa-user"></i>
+                                        <span>{% trans 'Register Account' %}</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="check-out" href="{% url 'products:checkout' %}" rel="nofollow" title="{% trans 'Checkout' %}">
+                                        <i class="fa fa-check" aria-hidden="true"></i>{% trans 'Checkout' %}
+                                    </a>
+                                </div>
+                                <div class="link_wishlist">
+                                    <a href="{% url 'users:user_wishlist' %}" title="{% trans 'My Wishlists' %}">
+                                        <i class="fa fa-heart"></i>
+                                        <span>{% trans 'My Wishlists' %}</span>
+                                    </a>
+                                </div>
+                                <div id="desktop_currency_selector" class="currency-selector groups-selector hidden-sm-down">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a title="{% trans 'Euro' %}" rel="nofollow" href="#">{% trans 'EUR' %}</a>
+                                        </li>
+                                        <li class="current list-inline-item">
+                                            <a title="{% trans 'British Pound Sterling' %}" rel="nofollow" href="#">{% trans 'GBP' %}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="desktop_language_selector" class="language-selector groups-selector hidden-sm-down">
+                                    <ul class="list-inline">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% get_available_languages as LANGUAGES %}
+                                        {% get_language_info_list for LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                        <li class="list-inline-item {% if language.code == LANGUAGE_CODE %}current{% endif %}">
+                                            <a href="{% get_full_url request language.code %}">
+                                                {% if language.code == "en" %}
+                                                    <img class="img-fluid" src="{% static 'img/home/home1-flas.jpg' %}" alt="{% trans 'English' %}" width="16" height="11">
+                                                {% elif language.code == "uz" %}
+                                                    <img class="img-fluid" src="{% static 'img/home/home1-flas2.jpg' %}" alt="{% trans "O'zbekcha" %}" width="16" height="11">
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- search_widget -->
-                    <div class="search_widget col-lg-6 col-md-6 d-flex justify-content-end hidden-xs">
-
-                        <!-- My Account -->
-                        <div id="block_myaccount_info" class="hidden-sm-down dropdown d-flex align-items-center">
-                            <div class="myaccount-title">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <a href="#acount" data-toggle="collapse" class="acount">
-                                    <span>My Account</span>
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
+                    <!-- currency -->
+                    <div class="desktop-currency-selector hidden-sm-down dropdown d-flex align-items-center">
+                        <div class="dropdown-currency myaccount-title">
+                            <a href="#currency" data-toggle="collapse" class="acount">
+                                <span class="expand-more">{% trans 'GBP' %}</span>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div id="currency" class="collapse">
+                            <div class="currency-item currency-list-content acount">
+                                <a title="{% trans 'Euro' %}" rel="nofollow" href="#">
+                                    <span>€</span>{% trans 'EUR' %}</a>
                             </div>
-                            <div id="acount" class="collapse">
-                                <div class="account-list-content">
-                                    <div>
-                                        <a class="login" href="../users/user-acount.html" rel="nofollow" title="Log in to your customer account">
-                                            <i class="fa fa-cog"></i>
-                                            <span>My Account</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a class="login" href="../users/user-login.html" rel="nofollow" title="Log in to your customer account">
-                                            <i class="fa fa-sign-in"></i>
-                                            <span>Sign in</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a class="register" href="../users/user-register.html" rel="nofollow" title="Register Account">
-                                            <i class="fa fa-user"></i>
-                                            <span>Register Account</span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a class="check-out" href="../products/product-checkout.html" rel="nofollow" title="Checkout">
-                                            <i class="fa fa-check" aria-hidden="true"></i>Checkout
-                                        </a>
-                                    </div>
-
-                                    <div class="link_wishlist">
-                                        <a href="../users/user-wishlist.html" title="My Wishlists">
-                                            <i class="fa fa-heart"></i>
-                                            <span>My Wishlists</span>
-                                        </a>
-                                    </div>
-                                    <div id="desktop_currency_selector" class="currency-selector groups-selector hidden-sm-down">
-                                        <ul class="list-inline">
-                                            <li>
-                                                <a title="Euro" rel="nofollow" href="#">EUR</a>
-                                            </li>
-                                            <li class="current list-inline-item">
-                                                <a title="British Pound Sterling" rel="nofollow" href="#">GBP</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div id="desktop_language_selector" class="language-selector groups-selector hidden-sm-down">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item current">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="{% static 'img/home/home1-flas.jpg' %}" alt="English" width="16" height="11">
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="{% static 'img/home/home1-flas2.jpg' %}" alt="Italiano" width="16" height="11">
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="{% static 'img/home/home1-flas3.jpg' %}" alt="Français" width="16" height="11">
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#">
-                                                    <img class="img-fluid" src="{% static 'img/home/home1-flas4.jpg' %}" alt="Español" width="16" height="11">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="currency-item current flex-first">
+                                <a title="{% trans 'British Pound Sterling' %}" rel="nofollow" href="#">
+                                    <span>£</span>{% trans 'GBP' %}</a>
                             </div>
                         </div>
-
-                        <!-- currency -->
-                        <div class="desktop-currency-selector hidden-sm-down dropdown d-flex align-items-center">
-                            <div class="dropdown-currency myaccount-title">
-                                <a href="#currency" data-toggle="collapse" class="acount">
-                                    <span class="expand-more">GBP</span>
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div id="currency" class="collapse">
-                                <div class="currency-item currency-list-content acount">
-                                    <a title="Euro" rel="nofollow" href="#">
-                                        <span>€</span>EUR</a>
-                                </div>
-                                <div class="currency-item current flex-first">
-                                    <a title="British Pound Sterling" rel="nofollow" href="#">
-                                        <span>£</span>GBP</a>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="desktop-language-selector language-selector groups-selector hidden-sm-down d-flex align-items-center">
+                        <div class="dropdown-language myaccount-title">
+                            <a href="#language" data-toggle="collapse" class="acount">
+                                <span class="expand-more">
+                                    {% if LANGUAGE_CODE == "en" %}
+                                        <img class="img-fluid" src="{% static 'img/home/home1-flas.jpg' %}" alt="{% trans 'English' %}" width="16" height="11">
+                                    {% elif LANGUAGE_CODE == "uz" %}
+                                        <img class="img-fluid" src="{% static 'img/home/home1-flas2.jpg' %}" alt="{% trans "O'zbekcha" %}" width="16" height="11">
+                                    {% endif %}
+                                </span>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </a>
                         </div>
-
-                        <!-- language -->
-                        <div class="desktop-language-selector language-selector groups-selector hidden-sm-down d-flex align-items-center">
-                            <div class="dropdown-language myaccount-title">
-                                <a href="#language" data-toggle="collapse" class="acount">
-                                    <span class="expand-more">
-                                        <img class="img-fluid" src="{% static 'img/home/lg1.jpg' %}" alt="English" width="16" height="11">
-                                    </span>
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div id="language" class="collapse">
-                                <div class="language-list-content">
-                                    <div class="language-item current flex-first language-list-content">
-                                        <a href="#">
-                                            <img class="img-fluid" src="{% static 'img/home/lg1.jpg' %}" alt="English" width="16" height="11">
-                                            <span>English</span>
-                                        </a>
-                                    </div>
-                                    <div class="language-item language-list-content">
-                                        <a href="#">
-                                            <img class="img-fluid" src="{% static 'img/home/lg2.jpg' %}" alt="Italiano" width="16" height="11">
-                                            <span>Italiano</span>
-                                        </a>
-                                    </div>
-                                    <div class="language-item language-list-content">
-                                        <a href="#">
-                                            <img class="img-fluid" src="{% static 'img/home/lg3.jpg' %}" alt="Français" width="16" height="11">
-                                            <span>Français</span>
-                                        </a>
-                                    </div>
-                                    <div class="language-item">
-                                        <a href="#">
-                                            <img class="img-fluid" src="{% static 'img/home/lg4.jpg' %}" alt="Español" width="16" height="11">
-                                            <span>Español</span>
-                                        </a>
-                                    </div>
+                        <div id="language" class="collapse">
+                            <div class="language-list-content">
+                                {% for language in languages %}
+                                <div class="language-item current flex-first language-list-content">
+                                    <a href="{% get_full_url request language.code %}">
+                                        {% if language.code == "en" %}
+                                            <img class="img-fluid" src="{% static 'img/home/home1-flas.jpg' %}" alt="{% trans 'English' %}" width="16" height="11">
+                                            <span>{% trans 'English' %}</span>
+                                        {% elif language.code == "uz" %}
+                                            <img class="img-fluid" src="{% static 'img/home/home1-flas2.jpg' %}" alt="{% trans "O'zbek" %}" width="16" height="11">
+                                            <span>{% trans "O'zbek" %}</span>
+                                        {% endif %}
+                                    </a>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -271,7 +270,7 @@
                     <!-- logo -->
                     <div class="col-sm-8 col-md-4 align-items-center">
                         <div class="vertical-header d-flex align-items-center">
-                            <div class="dropdown vertical-dropdown has-showmore" data-textshowmore="Show More" data-textless="Hide" data-desktop_item="5">
+                            <div class="dropdown vertical-dropdown has-showmore" data-textshowmore="{% trans 'Show More' %}" data-textless="{% trans 'Hide' %}">
                                 <div data-toggle="collapse" data-target="#show-menu">
                                     <div id="nav_icon3">
                                         <span></span>
@@ -281,13 +280,12 @@
                                 </div>
                             </div>
                             <div id="logo">
-                                <a href="home3.html">
-                                    <img src="{% static 'img/home/logo.png' %}" alt="logo">
+                                <a href="{% url 'pages:home3' %}">
+                                    <img src="{% static 'img/home/logo.png' %}" alt="{% trans 'logo' %}">
                                 </a>
                             </div>
                         </div>
                     </div>
-
                     <!--policy-->
                     <div class="policy-home col-sm-0 col-md-5 d-flex justify-content-start">
                         <div class="col-lg-6 col-md-6">
@@ -295,9 +293,9 @@
                                 <div class="block-content">
                                     <div class="policy-item">
                                         <div class="policy-content iconpolicy1">
-                                            <img src="{% static 'img/home/home1-policy.png' %}" alt="img">
-                                            <div>FREE DELIVERY</div>
-                                            <div>From $ 250</div>
+                                            <img src="{% static 'img/home/home1-policy.png' %}" alt="{% trans 'Free Delivery Icon' %}">
+                                            <div>{% trans 'FREE DELIVERY' %}</div>
+                                            <div>{% trans 'From $ 250' %}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -308,75 +306,73 @@
                                 <div class="block-content">
                                     <div class="policy-item">
                                         <div class="policy-content iconpolicy3">
-                                            <img src="{% static 'img/home/home1-policy3.png' %}" alt="img">
-                                            <div>MONEY BACK</div>
-                                            <div>GUARANTEED</div>
+                                            <img src="{% static 'img/home/home1-policy3.png' %}" alt="{% trans 'Money Back Icon' %}">
+                                            <div>{% trans 'MONEY BACK' %}</div>
+                                            <div>{% trans 'GUARANTEED' %}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- search -->
                     <div id="search_widget" class="col-sm-4 col-md-3 align-items-center justify-content-start d-flex">
                         <form method="get" action="#">
-
                             <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-                            <input type="text" name="s" value="" placeholder="Search" class="ui-autocomplete-input" autocomplete="off">
+                            <input type="text" name="s" value="" placeholder="{% trans 'Search' %}" class="ui-autocomplete-input" autocomplete="off">
                             <button type="button">
                                 <i class="fa fa-search"></i>
                             </button>
                         </form>
-
                         <div class="desktop_cart">
                             <div class="blockcart block-cart cart-preview tiva-toggle">
                                 <div class="header-cart tiva-toggle-btn">
-                                    <span class="cart-products-count">1</span>
+                                    <span class="cart-products-count">{{ basket|length }}</span>
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 </div>
                                 <div class="dropdown-content">
                                     <div class="cart-content">
                                         <table>
+                                            {% for item in basket %}
                                             <tbody>
                                                 <tr>
                                                     <td class="product-image">
-                                                        <a href="../products/product-detail.html">
-                                                            <img src="{% static 'img/product/5.jpg' %}" alt="Product">
+                                                        <a href="{% url 'products:detail' pk=item.product.id %}">
+                                                            <img src="{{ item.product.image.url }}" alt="{% trans 'Product' %}">
                                                         </a>
                                                     </td>
                                                     <td>
                                                         <div class="product-name">
-                                                            <a href="../products/product-detail.html">Organic Strawberry Fruits</a>
+                                                            <a href="{% url 'products:detail' pk=item.product.id %}">{% trans 'Organic Strawberry Fruits' %}</a>
                                                         </div>
                                                         <div>
-                                                            2 x
-                                                            <span class="product-price">£28.98</span>
+                                                            {{ item.quantity }} x
+                                                            <span class="product-price">£{{ item.product.price }}</span>
                                                         </div>
                                                     </td>
                                                     <td class="action">
-                                                        <a class="remove" href="#">
-                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                        <a class="remove" href="{% url 'basket:basket_remove' product_id=item.product.id %}">
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="{% trans 'Remove' %}"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
                                                 <tr class="total">
-                                                    <td colspan="2">Total:</td>
-                                                    <td>£92.96</td>
+                                                    <td colspan="2">{% trans 'Total:' %}</td>
+                                                    <td>£{{ item.total_price }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="3" class="d-flex justify-content-center">
                                                         <div class="cart-button">
-                                                            <a href="../products/product-cart.html" title="View Cart">View Cart</a>
-                                                            <a href="../products/product-checkout.html" title="Checkout">Checkout</a>
+                                                            <a href="{% url 'products:cart' %}" title="{% trans 'View Cart' %}">{% trans 'View Cart' %}</a>
+                                                            <a href="{% url 'products:checkout' %}" title="{% trans 'Checkout' %}">{% trans 'Checkout' %}</a>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            {% endfor %}
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

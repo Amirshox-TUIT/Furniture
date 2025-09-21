@@ -1,254 +1,131 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}Furnitica - Minimalist Furniture HTML Template{% endblock %}
 {% block body_id %}{% endblock %}
 {% block body_class %}product-cart checkout-cart blog{% endblock %}
 {% block content %}
 <!-- main content -->
 <div class="main-content" id="cart">
-        <!-- main -->
-        <div id="wrapper-site">
-            <!-- breadcrumb -->
-            <nav class="breadcrumb-bg">
-                <div class="container no-index">
-                    <div class="breadcrumb">
-                        <ol>
-                            <li>
-                                <a href="#">
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Shopping Cart</span>
-                                </a>
-                            </li>
-                        </ol>
-                    </div>
+    <!-- main -->
+    <div id="wrapper-site">
+        <!-- breadcrumb -->
+        <nav class="breadcrumb-bg">
+            <div class="container no-index">
+                <div class="breadcrumb">
+                    <ol>
+                        <li>
+                            <a href="{% url 'pages:home3' %}">
+                                <span>{% trans "Home" %}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>{% trans "Shopping Cart" %}</span>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
-            </nav>
-            <div class="container">
-                <div class="row">
-                    <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 onecol">
-                        <section id="main">
-                            <div class="cart-grid row">
-                                <div class="col-md-9 col-xs-12 check-info">
-                                    <h1 class="title-page">Shopping Cart</h1>
-                                    <div class="cart-container">
-                                        <div class="cart-overview js-cart">
-                                            <ul class="cart-items">
-                                                <li class="cart-item">
-                                                    <div class="product-line-grid row justify-content-between">
-                                                        <!--  products left content: image-->
-                                                        <div class="product-line-grid-left col-md-2">
-                                                            <span class="product-image media-middle">
-                                                                <a href="product-detail.html">
-                                                                    <img class="img-fluid" src="{% static 'img/product/3.jpg' %}" alt="Organic Strawberry Fruits">
-                                                                </a>
-                                                            </span>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 onecol">
+                    <section id="main">
+                        <div class="cart-grid row">
+                            <div class="col-md-9 col-xs-12 check-info">
+                                <h1 class="title-page">{% trans "Shopping Cart" %}</h1>
+                                <div class="cart-container">
+                                    <div class="cart-overview js-cart">
+                                        <ul class="cart-items">
+                                            {% for item in basket %}
+                                            <li class="cart-item">
+                                                <div class="product-line-grid row justify-content-between">
+                                                    <!--  products left content: image-->
+                                                    <div class="product-line-grid-left col-md-2">
+                                                        <span class="product-image media-middle">
+                                                            <a href="{% url 'products:detail' pk=item.product.id %}">
+                                                                <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                    <div class="product-line-grid-body col-md-6">
+                                                        <div class="product-line-info">
+                                                            <a class="label" href="{% url 'products:detail' pk=item.product.id %}"
+                                                               data-id_customization="0">{{ item.product.title }}</a>
                                                         </div>
-                                                        <div class="product-line-grid-body col-md-6">
-                                                            <div class="product-line-info">
-                                                                <a class="label" href="product-detail.html" data-id_customization="0">Organic Strawberry Fruits</a>
-                                                            </div>
-                                                            <div class="product-line-info product-price">
-                                                                <span class="value">£20.00</span>
-                                                            </div>
-                                                            <div class="product-line-info">
-                                                                <span class="label-atrr">Size:</span>
-                                                                <span class="value">S</span>
-                                                            </div>
-                                                            <div class="product-line-info">
-                                                                <span class="label-atrr">Color:</span>
-                                                                <span class="value">Blue</span>
-                                                            </div>
+                                                        <div class="product-line-info product-price">
+                                                            <span class="value">£{{ item.product.price }}</span>
                                                         </div>
-                                                        <div class="product-line-grid-right text-center product-line-actions col-md-4">
-                                                            <div class="row">
-                                                                <div class="col-md-5 col qty">
-                                                                    <div class="label">Qty:</div>
-                                                                    <div class="quantity">
-                                                                        <input type="text" name="qty" value="1" class="input-group form-control">
-
-                                                                        <span class="input-group-btn-vertical">
-                                                                            <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button">
-                                                                                +
-                                                                            </button>
-                                                                            <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button">
-                                                                                -
-                                                                            </button>
-                                                                        </span>
+                                                        <div class="product-line-info">
+                                                            <span class="label-atrr">{% trans "Size:" %}</span>
+                                                            <span class="value">{{ item.size }}</span>
+                                                        </div>
+                                                        <div class="product-line-info">
+                                                            <span class="label-atrr">{% trans "Color:" %}</span>
+                                                            <span class="value">{{ item.color }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-line-grid-right text-center product-line-actions col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-md-5 col qty">
+                                                                <form method="post" action="{% url 'basket:basket_update' product_id=item.product.id %}" class="d-inline">
+                                                                    {% csrf_token %}
+                                                                    <div class="label">{% trans "Qty:" %}</div>
+                                                                    <div class="quantity input-group">
+                                                                        <input type="number" name="qty" value="{{ item.quantity }}" min="1" class="form-control text-center">
+                                                                        <button type="submit" class="btn btn-success ms-2 rounded-pill">{% trans "Update" %}</button>
                                                                     </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-5 col price">
+                                                                <div class="label">{% trans "Total:" %}</div>
+                                                                <div class="product-price total">
+                                                                    £{{ item.total_price }}
                                                                 </div>
-                                                                <div class="col-md-5 col price">
-                                                                    <div class="label">Total:</div>
-                                                                    <div class="product-price total">
-                                                                        £20.00
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2 col text-xs-right align-self-end">
-                                                                    <div class="cart-line-product-actions ">
-                                                                        <a class="remove-from-cart" rel="nofollow" href="#" data-link-action="delete-from-cart" data-id-product="1">
-                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
+                                                            </div>
+                                                            <div class="col-md-2 col text-end align-self-end">
+                                                                <div class="cart-line-product-actions">
+                                                                    <a class="remove-from-cart" rel="nofollow" href="#" data-link-action="delete-from-cart" data-id-product="1">
+                                                                        <i class="fa fa-trash-o" aria-hidden="true" title="{% trans "Remove from Cart" %}"></i>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="cart-item">
-                                                    <div class="product-line-grid row justify-content-between">
-                                                        <!--  products left content: image-->
-                                                        <div class="product-line-grid-left col-md-2">
-                                                            <span class="product-image media-middle">
-                                                                <a href="product-detail.html">
-                                                                    <img class="img-fluid" src="{% static 'img/product/2.jpg' %}" alt="Organic Strawberry Fruits">
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                        <div class="product-line-grid-body col-md-6">
-                                                            <div class="product-line-info">
-                                                                <a class="label" href="product-detail.html" data-id_customization="0">
-                                                                    Etiam Congue Nisl Nec</a>
-                                                            </div>
-                                                            <div class="product-line-info product-price">
-                                                                <span class="value">£30.00</span>
-                                                            </div>
-                                                            <div class="product-line-info">
-                                                                <span class="label-atrr">Size:</span>
-                                                                <span class="value">S</span>
-                                                            </div>
-                                                            <div class="product-line-info">
-                                                                <span class="label-atrr">Color:</span>
-                                                                <span class="value">Blue</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-line-grid-right text-center product-line-actions col-md-4">
-                                                            <div class="row">
-                                                                <div class="col-md-5 qty col">
-                                                                    <div class="label">Qty:</div>
-                                                                    <div class="quantity">
-                                                                        <input type="text" name="qty" value="2" class="input-group form-control">
-
-                                                                        <span class="input-group-btn-vertical">
-                                                                            <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button">
-                                                                                +
-                                                                            </button>
-                                                                            <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button">
-                                                                                -
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-5 price col">
-                                                                    <div class="label">Total:</div>
-                                                                    <div class="product-price total">
-                                                                        £60.00
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2 text-xs-right align-self-end col">
-                                                                    <div class="cart-line-product-actions ">
-                                                                        <a class="remove-from-cart" rel="nofollow" href="#" data-link-action="delete-from-cart" data-id-product="1">
-                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="cart-item">
-                                                    <div class="product-line-grid row justify-content-between">
-                                                        <!--  products left content: image-->
-                                                        <div class="product-line-grid-left col-md-2">
-                                                            <span class="product-image media-middle">
-                                                                <a href="product-detail.html">
-                                                                    <img class="img-fluid" src="{% static 'img/product/1.jpg' %}" alt="Organic Strawberry Fruits">
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                        <div class="product-line-grid-body col-md-6">
-                                                            <div class="product-line-info">
-                                                                <a class="label" href="product-detail.html" data-id_customization="0">Nulla Et Justo Non Augue</a>
-                                                            </div>
-                                                            <div class="product-line-info product-price">
-                                                                <span class="value">£40.00</span>
-                                                            </div>
-                                                            <div class="product-line-info">
-                                                                <span class="label-atrr">Size:</span>
-                                                                <span class="value">S</span>
-                                                            </div>
-                                                            <div class="product-line-info">
-                                                                <span class="label-atrr">Color:</span>
-                                                                <span class="value">Blue</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-line-grid-right text-center product-line-actions col-md-4">
-                                                            <div class="row">
-                                                                <div class="col-md-5 col qty">
-                                                                    <div class="label">Qty:</div>
-                                                                    <div class="quantity">
-                                                                        <input type="text" name="qty" value="3" class="input-group form-control">
-
-                                                                        <span class="input-group-btn-vertical">
-                                                                            <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button">
-                                                                                +
-                                                                            </button>
-                                                                            <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button">
-                                                                                -
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-5 col price">
-                                                                    <div class="label">Total:</div>
-                                                                    <div class="product-price total">
-                                                                        £120.00
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2 col text-xs-right align-self-end">
-                                                                    <div class="cart-line-product-actions ">
-                                                                        <a class="remove-from-cart" rel="nofollow" href="#" data-link-action="delete-from-cart" data-id-product="1">
-                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                {% endfor %}
                                             </ul>
                                         </div>
                                     </div>
-                                    <a href="product-checkout.html" class="continue btn btn-primary pull-xs-right">
-                                        Continue
+                                    <a href="{% url 'products:checkout' %}" class="continue btn btn-primary pull-xs-right">
+                                        {% trans "Continue" %}
                                     </a>
                                 </div>
                                 <div class="cart-grid-right col-xs-12 col-lg-3">
                                     <div class="cart-summary">
                                         <div class="cart-detailed-totals">
                                             <div class="cart-summary-products">
-                                                <div class="summary-label">There are 3 item in your cart</div>
+                                                <div class="summary-label">{% trans "There are" %} {{ basket|length }} {% trans "item in your cart" %}</div>
                                             </div>
                                             <div class="cart-summary-line" id="cart-subtotal-products">
                                                 <span class="label js-subtotal">
-                                                    Total products:
+                                                    {% trans "Total products:" %}
                                                 </span>
-                                                <span class="value">£200.00</span>
+                                                <span class="value">£{{ basket.get_total_price }}</span>
                                             </div>
                                             <div class="cart-summary-line" id="cart-subtotal-shipping">
                                                 <span class="label">
-                                                    Total Shipping:
+                                                    {% trans "Total Shipping:" %}
                                                 </span>
-                                                <span class="value">Free</span>
+                                                <span class="value">{% trans "Free" %}</span>
                                                 <div>
                                                     <small class="value"></small>
                                                 </div>
                                             </div>
                                             <div class="cart-summary-line cart-total">
-                                                <span class="label">Total:</span>
-                                                <span class="value">£200.00 (tax incl.)</span>
+                                                <span class="label">{% trans "Total:" %}</span>
+                                                <span class="value">£{{ basket.get_total_price }} {% trans "(tax incl.)" %}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -256,20 +133,20 @@
                                         <ul>
                                             <li>
                                                 <div class="block-reassurance-item">
-                                                    <img src="{% static 'img/product/check1.png' %}" alt="Security policy (edit with Customer reassurance module)">
-                                                    <span>Security policy (edit with Customer reassurance module)</span>
+                                                    <img src="{% static 'img/product/check1.png' %}" alt="{% trans "Security policy (edit with Customer reassurance module)" %}">
+                                                    <span>{% trans "Security policy (edit with Customer reassurance module)" %}</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="block-reassurance-item">
-                                                    <img src="{% static 'img/product/check2.png' %}" alt="Delivery policy (edit with Customer reassurance module)">
-                                                    <span>Delivery policy (edit with Customer reassurance module)</span>
+                                                    <img src="{% static 'img/product/check2.png' %}" alt="{% trans "Delivery policy (edit with Customer reassurance module)" %}">
+                                                    <span>{% trans "Delivery policy (edit with Customer reassurance module)" %}</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="block-reassurance-item">
-                                                    <img src="{% static 'img/product/check3.png' %}" alt="Return policy (edit with Customer reassurance module)">
-                                                    <span>Return policy (edit with Customer reassurance module)</span>
+                                                    <img src="{% static 'img/product/check3.png' %}" alt="{% trans "Return policy (edit with Customer reassurance module)" %}">
+                                                    <span>{% trans "Return policy (edit with Customer reassurance module)" %}</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -283,4 +160,3 @@
         </div>
     </div>
 {% endblock %}
-

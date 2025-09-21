@@ -50,7 +50,7 @@
                                             <div class="border-detail">
                                                 <p class="post-info float-left">
                                                     <span>{{ blog.created_at|date:"d M Y" }}</span>
-                                                    <span>113 {% trans "Comments" %}</span>
+                                                    <span>{{ comments|length }} {% trans "Comments" %}</span>
                                                     <span>{{ blog.author.full_name }}</span>
                                                 </p>
                                                 <div class="btn-group">

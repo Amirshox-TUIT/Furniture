@@ -1,3 +1,4 @@
+from django.db.models import Max
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -54,6 +55,11 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         living_prs = ProductModel.objects.filter(categories__sub__title="Living Room").distinct()
         bathroom_prs = ProductModel.objects.filter(categories__sub__title="Bathroom").distinct()
+        big_sales = ProductModel.objects.order_by('-discount')[:3]
+
+        about = AboutModel.objects.all()
         context['living_prs'] = living_prs
         context['bathroom_prs'] = bathroom_prs
+        context['about'] = about
+        context['big_sales'] = big_sales
         return context
