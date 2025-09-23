@@ -12,7 +12,7 @@
     }
   },
   {
-    "model": "app_name.aboutmodel",
+    "model": "pages.aboutmodel",
     "pk": 2,
     "fields": {
       "name": "Maryam Karimova",
