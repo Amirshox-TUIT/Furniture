@@ -28,7 +28,7 @@ class RegisterCreateView(CreateView):
         email_thread.start()
 
         message = "We sent a mail to your email, please verify it!"
-        messages.error(request=self.request, message=message)
+        messages.warning(request=self.request, message=message)
         return super().form_valid(form)
 
     def form_invalid(self, form):
