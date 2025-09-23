@@ -47,8 +47,8 @@
         <!-- search -->
         <div id="mobile_search" class="d-flex">
             <div id="mobile_search_content">
-                <form method="get" action="#">
-                    <input type="text" name="s" value="" placeholder="{% trans 'Search' %}">
+                <form method="get" action="{% url 'products:products' %}">
+                    <input type="text" name="s" value="" placeholder="{% trans 'Search' %}" required>
                     <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>
@@ -156,18 +156,20 @@
                                         <span>{% trans 'My Account' %}</span>
                                     </a>
                                 </div>
-                                <div>
-                                    <a class="login" href="{% url 'users:user_login' %}" rel="nofollow" title="{% trans 'Log in to your customer account' %}">
-                                        <i class="fa fa-sign-in"></i>
-                                        <span>{% trans 'Sign in' %}</span>
-                                    </a>
-                                </div>
-                                <div>
-                                    <a class="register" href="{% url 'users:user_register' %}" rel="nofollow" title="{% trans 'Register Account' %}">
-                                        <i class="fa fa-user"></i>
-                                        <span>{% trans 'Register Account' %}</span>
-                                    </a>
-                                </div>
+                                {% if user.is_authenticated %}
+                                    <div>
+                                        <a class="login" href="{% url 'users:user_login' %}" rel="nofollow" title="{% trans 'Log in to your customer account' %}">
+                                            <i class="fa fa-sign-in"></i>
+                                            <span>{% trans 'Sign in' %}</span>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a class="register" href="{% url 'users:user_register' %}" rel="nofollow" title="{% trans 'Register Account' %}">
+                                            <i class="fa fa-user"></i>
+                                            <span>{% trans 'Register Account' %}</span>
+                                        </a>
+                                    </div>
+                                {% endif %}
                                 <div>
                                     <a class="check-out" href="{% url 'products:checkout' %}" rel="nofollow" title="{% trans 'Checkout' %}">
                                         <i class="fa fa-check" aria-hidden="true"></i>{% trans 'Checkout' %}
@@ -317,7 +319,7 @@
                     </div>
                     <!-- search -->
                     <div id="search_widget" class="col-sm-4 col-md-3 align-items-center justify-content-start d-flex">
-                        <form method="get" action="#">
+                        <form method="get" action="{% url 'products:products' %}">
                             <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
                             <input type="text" name="s" value="" placeholder="{% trans 'Search' %}" class="ui-autocomplete-input" autocomplete="off">
                             <button type="button">

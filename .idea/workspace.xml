@@ -5,38 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/basket/cart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/basket/context_processor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/basket/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/pages/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/products/templatetags/custom_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/templatetags/custom_filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/products/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/basket/context_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/basket/context_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/libs/font-awesome/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/libs/font-awesome/css/font-awesome.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/libs/owl-carousel/assets/owl.video.play.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/libs/owl-carousel/assets/owl.video.play.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.mo" beforeDir="false" afterPath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.mo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.po" beforeDir="false" afterPath="$PROJECT_DIR$/locale/uz/LC_MESSAGES/django.po" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blogs/blog-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/footer-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/footer-home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/header-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/header-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-left.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/home3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/products/product-cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/products/product-checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/products/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/products/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/user-acount.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user-acount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/user-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user-login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/user-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user-register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/user-wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user-wishlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +189,15 @@
       <workItem from="1758429522032" duration="7153000" />
       <workItem from="1758447910664" duration="6189000" />
       <workItem from="1758457249502" duration="2275000" />
-      <workItem from="1758466999106" duration="5812000" />
+      <workItem from="1758466999106" duration="6634000" />
+      <workItem from="1758523879016" duration="5000" />
+      <workItem from="1758524094499" duration="8000" />
+      <workItem from="1758535895166" duration="7058000" />
+      <workItem from="1758549539374" duration="1393000" />
+      <workItem from="1758553742002" duration="6000" />
+      <workItem from="1758604019114" duration="3457000" />
+      <workItem from="1758614439141" duration="1710000" />
+      <workItem from="1758622712127" duration="983000" />
     </task>
     <servers />
   </component>

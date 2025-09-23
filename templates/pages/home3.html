@@ -957,7 +957,7 @@
                                                 <img class="img-fluid image-cover" src="{{ bathroom_pr.image.url }}" alt="{% trans "Product Image" %}">
                                                 <img class="img-fluid image-secondary" src="{{ bathroom_pr.image2.url }}" alt="{% trans "Product Secondary Image" %}">
                                             </a>
-                                            <div class="product-flags discount">-{{"bathroom_pr.discount" }}%</div>
+                                            <div class="product-flags discount">-{{bathroom_pr.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
                                                     {% for quantity in bathroom_pr.products_quantity.all %}

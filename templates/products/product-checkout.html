@@ -14,12 +14,12 @@
                 <div class="breadcrumb">
                     <ol>
                         <li>
-                            <a href="#">
+                            <a href="{% url 'pages:home3' %}">
                                 <span>{% trans "Home" %}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{% url 'products:checkout' %}">
                                 <span>{% trans "Checkout" %}</span>
                             </a>
                         </li>
@@ -66,7 +66,7 @@
                                                             <input class="form-control" name="email" type="email" placeholder="{% trans "Email" %}">
                                                         </div>
                                                         <div class="form-group row">
-                                                            <input class="form-control" name="email" type="email" placeholder="{% trans "Phone" %}">
+                                                            <input class="form-control" name="phone" type="text" placeholder="{% trans "Phone" %}">
                                                         </div>
                                                         <div class="desc-password">
                                                             <span class="font-weight-bold">{% trans "Create an account" %}</span>

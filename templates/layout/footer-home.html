@@ -29,7 +29,7 @@
                                     {% trans "WHO WE ARE" %}
                                 </div>
                                 <ul>
-                                    <li><a href="#">{% trans "About Us" %}</a></li>
+                                    <li><a href="{% url 'pages:about_us' %}">{% trans "About Us" %}</a></li>
                                     <li><a href="#">{% trans "Reasons to shop" %}</a></li>
                                     <li><a href="#">{% trans "What our customers say" %}</a></li>
                                     <li><a href="#">{% trans "Meet the team" %}</a></li>
@@ -47,7 +47,7 @@
                                     {% trans "CUSTOMER SERVICES" %}
                                 </div>
                                 <ul>
-                                    <li><a href="#">{% trans "Contact Us" %}</a></li>
+                                    <li><a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a></li>
                                     <li><a href="#">{% trans "Help and advice" %}</a></li>
                                     <li><a href="#">{% trans "Delivery" %}</a></li>
                                     <li><a href="#">{% trans "Terms and conditions" %}</a></li>
@@ -80,7 +80,7 @@
                                     <div class="support d-dflex align-self-stretch">
                                         <div class="data mail-support">
                                             <i class="fa fa-envelope float-left"></i>
-                                            <div>support@domain.com</div>
+                                            <div>behruzfayzullayev3@gmail.com</div>
                                         </div>
                                     </div>
                                     <div class="data d-flex align-self-stretch phone-support">
@@ -101,97 +101,25 @@
         <div class="container">
             <div class="footer-list">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="block">
-                            <div class="block-content">
-                                <ul class="list-inline">
-                                    <li class="name-list list-inline-item">
-                                        <span>{% trans "LIVING ROOM" %}</span> :
-                                    </li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SIDE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "FIREPLACE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "ARMCHAIR" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CUSHION" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "COFFEE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SHELF" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SOFA" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "DRESSING TABLE" %}</a></li>
-                                    <li class="list-inline-item views"><a href="../products/products.html">{% trans "VIEW ALL" %}</a></li>
-                                </ul>
+                    {% for category in categories %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="block">
+                                <div class="block-content">
+                                    <ul class="list-inline">
+                                        <li class="name-list list-inline-item">
+                                            <span>{{ category.title|upper }} </span> :
+                                        </li>
+                                        {% for subcat in subcategories %}
+                                            {% if subcat.sub.id == category.id %}
+                                                <li class="list-inline-item"><a href="{% url 'products:products' %}?cat={{ subcat.id }}">{{ subcat.title|upper }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <li class="list-inline-item views"><a href="{% url 'products:products' %}?cat={{ category.id }}">{% trans "VIEW ALL" %}</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Kitchen -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="block">
-                            <div class="block-content">
-                                <ul class="list-inline">
-                                    <li class="name-list list-inline-item">
-                                        <span>{% trans "KITCHEN" %}</span> :
-                                    </li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "WINDOW CURTAIN" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CHANDELIER" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CEILING FAN" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "WARDROBE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "FLOOR LAMP" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "VASE FLOWER" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SIDE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "FIREPLACE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "TABLE LAMP" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "ARMCHAIR" %}</a></li>
-                                    <li class="list-inline-item views"><a href="../products/products.html">{% trans "VIEW ALL" %}</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bedroom -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="block">
-                            <div class="block-content">
-                                <ul class="list-inline">
-                                    <li class="name-list list-inline-item">
-                                        <span>{% trans "BEDROOM" %}</span> :
-                                    </li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SIDE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "FIREPLACE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "ARMCHAIR" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CUSHION" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "COFFEE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SHELF" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SOFA" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "DRESSING TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "WINDOW CURTAIN" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CHANDELIER" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CEILING FAN" %}</a></li>
-                                    <li class="list-inline-item views"><a href="../products/products.html">{% trans "VIEW ALL" %}</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bathroom -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="block">
-                            <div class="block-content">
-                                <ul class="list-inline">
-                                    <li class="name-list list-inline-item">
-                                        <span>{% trans "BATHROOM" %}</span> :
-                                    </li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SIDE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "FIREPLACE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "ARMCHAIR" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "CUSHION" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "COFFEE TABLE" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SHELF" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "SOFA" %}</a></li>
-                                    <li class="list-inline-item"><a href="../products/products.html">{% trans "DRESSING TABLE" %}</a></li>
-                                    <li class="list-inline-item views"><a href="../products/products.html">{% trans "VIEW ALL" %}</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -140,7 +140,7 @@
 
                 <!-- search and acount -->
                 <div class="col-sm-5 col-md-5 d-flex align-items-center justify-content-end" id="search_widget">
-                    <form method="get" action="#">
+                    <form method="get" action="{% url 'products:products' %}">
                         <input type="text" name="s" value="" placeholder="{% trans 'Search' %}" autocomplete="off">
                         <button type="submit">
                             <i class="fa fa-search"></i>
