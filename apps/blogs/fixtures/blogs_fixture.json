@@ -1,0 +1,196 @@
+[
+  {
+    "model": "blogs.categoriesmodel",
+    "pk": 1,
+    "fields": {
+      "title_en": "Living Room",
+      "title_uz": "Mehmonxona",
+      "sub": null,
+      "created_at": "2025-09-23T10:00:00Z",
+      "update_at": "2025-09-23T10:00:00Z"
+    }
+  },
+  {
+    "model": "blogs.categoriesmodel",
+    "pk": 2,
+    "fields": {
+      "title_en": "Dining Room",
+      "title_uz": "Ovqatlanish xonasi",
+      "sub": null,
+      "created_at": "2025-09-23T10:01:00Z",
+      "update_at": "2025-09-23T10:01:00Z"
+    }
+  },
+  {
+    "model": "blogs.categoriesmodel",
+    "pk": 3,
+    "fields": {
+      "title_en": "Bathroom",
+      "title_uz": "Hammom",
+      "sub": null,
+      "created_at": "2025-09-23T10:02:00Z",
+      "update_at": "2025-09-23T10:02:00Z"
+    }
+  },
+  {
+    "model": "blogs.categoriesmodel",
+    "pk": 4,
+    "fields": {
+      "title_en": "Kitchen",
+      "title_uz": "Oshxona",
+      "sub": null,
+      "created_at": "2025-09-23T10:03:00Z",
+      "update_at": "2025-09-23T10:03:00Z"
+    }
+  },
+
+  { "model": "shop.productcategory", "pk": 5,
+    "fields": { "title_en": "Sofas", "title_uz": "Divanlar", "sub": 1,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 6,
+    "fields": { "title_en": "Armchairs", "title_uz": "Kreslolar", "sub": 1,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 7,
+    "fields": { "title_en": "Coffee Tables", "title_uz": "Choy stollari", "sub": 1,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+
+  { "model": "shop.productcategory", "pk": 8,
+    "fields": { "title_en": "Dining Tables", "title_uz": "Ovqat stollari", "sub": 2,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 9,
+    "fields": { "title_en": "Chairs", "title_uz": "Stullar", "sub": 2,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 10,
+    "fields": { "title_en": "Cabinets", "title_uz": "Shkaflar", "sub": 2,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+
+  { "model": "shop.productcategory", "pk": 11,
+    "fields": { "title_en": "Sinks", "title_uz": "Rakivalar", "sub": 3,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 12,
+    "fields": { "title_en": "Mirrors", "title_uz": "Oynalar", "sub": 3,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 13,
+    "fields": { "title_en": "Storage", "title_uz": "Saqlash joylari", "sub": 3,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+
+  { "model": "shop.productcategory", "pk": 14,
+    "fields": { "title_en": "Kitchen Cabinets", "title_uz": "Oshxona shkaflari", "sub": 4,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 15,
+    "fields": { "title_en": "Cookware", "title_uz": "Pishirish anjomlari", "sub": 4,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+  { "model": "shop.productcategory", "pk": 16,
+    "fields": { "title_en": "Dining Sets", "title_uz": "Ovqatlanish garniturlari", "sub": 4,
+      "created_at": "2025-09-23T18:00:00Z", "update_at": "2025-09-23T18:00:00Z" }
+  },
+
+  {
+    "model": "blogs.authorsmodel",
+    "pk": 1,
+    "fields": {
+      "full_name": "John Smith",
+      "profession": "Interior Designer",
+      "email": "john.smith@example.com",
+      "bio": "Specialist in modern home design / Zamonaviy uy interyeri bo‘yicha mutaxassis",
+      "photo": "photos/john.jpg",
+      "created_at": "2025-09-23T10:05:00Z",
+      "update_at": "2025-09-23T10:05:00Z"
+    }
+  },
+
+  {
+    "model": "blogs.tagsmodel",
+    "pk": 1,
+    "fields": {
+      "title": "Furniture / Mebel",
+      "created_at": "2025-09-23T10:10:00Z",
+      "update_at": "2025-09-23T10:10:00Z"
+    }
+  },
+  {
+    "model": "blogs.tagsmodel",
+    "pk": 2,
+    "fields": {
+      "title": "Design / Dizayn",
+      "created_at": "2025-09-23T10:11:00Z",
+      "update_at": "2025-09-23T10:11:00Z"
+    }
+  },
+
+  {
+    "model": "blogs.blogsmodel",
+    "pk": 1,
+    "fields": {
+      "title_en": "How to Choose the Perfect Sofa",
+      "title_uz": "Ideal divanni tanlash bo‘yicha maslahatlar",
+      "description_en": "<p>The sofa is the heart of the living room. Learn how to choose the right size, material, and color.</p>",
+      "description_uz": "<p>Divan mehmonxonaning yuragi hisoblanadi. To‘g‘ri o‘lcham, material va rangni qanday tanlashni bilib oling.</p>",
+      "author": 1,
+      "image": "blogs/3.jpg",
+      "category": [1, 5],
+      "tag": [1, 2],
+      "created_at": "2025-09-23T10:20:00Z",
+      "update_at": "2025-09-23T10:20:00Z"
+    }
+  },
+  {
+    "model": "blogs.blogsmodel",
+    "pk": 2,
+    "fields": {
+      "title_en": "Modern Dining Tables for Family Gatherings",
+      "title_uz": "Oila yig‘ilishlari uchun zamonaviy ovqat stollari",
+      "description_en": "<p>Dining tables bring families together. Explore modern styles that suit your home.</p>",
+      "description_uz": "<p>Ovqatlanish stollari oilani birlashtiradi. Uyingizga mos keladigan zamonaviy uslublarni kashf eting.</p>",
+      "author": 1,
+      "image": "blogs/6.jpg",
+      "category": [2, 8],
+      "tag": [1, 2],
+      "created_at": "2025-09-23T10:25:00Z",
+      "update_at": "2025-09-23T10:25:00Z"
+    }
+  },
+  {
+    "model": "blogs.blogsmodel",
+    "pk": 3,
+    "fields": {
+      "title_en": "Smart Bathroom Gadgets",
+      "title_uz": "Zamonaviy hammom gadjetlari",
+      "description_en": "<p>From smart mirrors to automatic faucets, discover technology that makes bathrooms smarter.</p>",
+      "description_uz": "<p>Aqlli oynalar va avtomatik kranlardan tortib hammomni yanada qulay qiluvchi texnologiyalarni o‘rganing.</p>",
+      "author": 1,
+      "image": "blogs/2.jpg",
+      "category": [3, 11, 13],
+      "tag": [2],
+      "created_at": "2025-09-23T10:30:00Z",
+      "update_at": "2025-09-23T10:30:00Z"
+    }
+  },
+  {
+    "model": "blogs.blogsmodel",
+    "pk": 4,
+    "fields": {
+      "title_en": "Essential Kitchen Appliances",
+      "title_uz": "Oshxona uchun zaruriy texnika",
+      "description_en": "<p>Blenders, ovens, and smart refrigerators — explore the appliances every kitchen needs.</p>",
+      "description_uz": "<p>Blender, pech va aqlli muzlatkichlar — har bir oshxonada bo‘lishi kerak bo‘lgan texnikalarni bilib oling.</p>",
+      "author": 1,
+      "image": "blogs/1.jpg",
+      "category": [4, 16],
+      "tag": [2],
+      "created_at": "2025-09-23T10:35:00Z",
+      "update_at": "2025-09-23T10:35:00Z"
+    }
+  }
+]

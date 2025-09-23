@@ -1,0 +1,26 @@
+[
+  {
+    "model": "pages.aboutmodel",
+    "pk": 1,
+    "fields": {
+      "name": "John Doe",
+      "profession_en": "Full Stack Developer",
+      "profession_uz": "To‘liq Stack Dasturchi",
+      "avatar": "photos/user2.jpg",
+      "bio_en": "Passionate developer with expertise in Python, Django, and modern web technologies.",
+      "bio_uz": "Python, Django va zamonaviy veb texnologiyalarida tajribaga ega, o‘z ishini sevuvchi dasturchi."
+    }
+  },
+  {
+    "model": "app_name.aboutmodel",
+    "pk": 2,
+    "fields": {
+      "name": "Maryam Karimova",
+      "profession_en": "UI/UX Designer",
+      "profession_uz": "UI/UX Dizayner",
+      "avatar": "photos/user.jpg",
+      "bio_en": "Creative designer focused on user-friendly and visually appealing interfaces.",
+      "bio_uz": "Foydalanuvchi uchun qulay va chiroyli interfeyslar yaratishga ixtisoslashgan ijodkor dizayner."
+    }
+  }
+]
