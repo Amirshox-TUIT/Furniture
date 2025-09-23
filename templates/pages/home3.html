@@ -154,7 +154,7 @@
                                                 <img class="img-fluid image-cover" src="{{ living_pr.image.url }}" alt="{% trans "Product Image" %}">
                                                 <img class="img-fluid image-secondary" src="{{ living_pr.image2.url }}" alt="{% trans "Product Secondary Image" %}">
                                             </a>
-                                            <div class="product-flags discount">-{{"living_pr.discount" }}%</div>
+                                            <div class="product-flags discount">-{{living_pr.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
                                                     {% for quantity in living_pr.products_quantity.all %}
@@ -179,7 +179,7 @@
                                                 </div>
                                                 <div class="product-group-price">
                                                     <div class="product-price-and-shipping">
-                                                        <span class="price">£{{ living_pr.price }}</span>
+                                                        <span class="price">£{{ living_pr.discount_price }}</span>
                                                         <del class="regular-price">£{{ living_pr.price }}</del>
                                                     </div>
                                                 </div>
@@ -222,7 +222,7 @@
                                                 <img class="img-fluid image-cover" src="{{ big_sale.image.url }}" alt="{% trans "Product Image" %}">
                                                 <img class="img-fluid image-secondary" src="{{ big_sale.image2.url }}" alt="{% trans "Product Secondary Image" %}">
                                             </a>
-                                            <div class="product-flags discount">-{{"big_sale.discount" }}%</div>
+                                            <div class="product-flags discount">-{{ big_sale.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
                                                     {% for quantity in big_sale.products_quantity.all %}
