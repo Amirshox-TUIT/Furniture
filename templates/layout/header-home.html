@@ -156,7 +156,7 @@
                                         <span>{% trans 'My Account' %}</span>
                                     </a>
                                 </div>
-                                {% if user.is_authenticated %}
+                                {% if not user.is_authenticated %}
                                     <div>
                                         <a class="login" href="{% url 'users:user_login' %}" rel="nofollow" title="{% trans 'Log in to your customer account' %}">
                                             <i class="fa fa-sign-in"></i>

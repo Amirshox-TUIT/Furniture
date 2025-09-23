@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/basket/context_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/basket/context_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/libs/font-awesome/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/libs/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/libs/owl-carousel/assets/owl.video.play.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/libs/owl-carousel/assets/owl.video.play.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/footer-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/footer-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/header-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/header-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-left.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/home3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/products/product-checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-checkout.html" afterDir="false" />
-    </list>
+    <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +183,7 @@
       <workItem from="1758553742002" duration="6000" />
       <workItem from="1758604019114" duration="3457000" />
       <workItem from="1758614439141" duration="1710000" />
-      <workItem from="1758622712127" duration="983000" />
+      <workItem from="1758622712127" duration="1283000" />
     </task>
     <servers />
   </component>
