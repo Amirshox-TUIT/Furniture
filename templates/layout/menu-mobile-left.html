@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <div class="mobile-top-menu d-md-none">
         <button type="button" class="close" aria-label="Close">
             <i class="zmdi zmdi-close"></i>
@@ -9,13 +10,13 @@
                     <ul class="menu level1">
                         {% for category in categories %}
                         <li class="item  parent">
-                            <a href="#" class="hasicon" title="SIDE TABLE">
+                            <a href="#" class="hasicon" title="{{ category.title|upper }}">
                                 <img src="{% static 'img/home/table-lamp.png' %}" alt="img">{{ category.title|upper }}</a>
-                            <span class="arrow collapsed" data-toggle="collapse" data-target="#{{ category.title|upper }}" aria-expanded="false" role="status">
+                            <span class="arrow collapsed" data-toggle="collapse" data-target="#{{ category.title|nospace }}" aria-expanded="false" role="status">
                                 <i class="zmdi zmdi-minus"></i>
                                 <i class="zmdi zmdi-plus"></i>
                             </span>
-                            <div class="subCategory collapse" id="{{ category.title|upper }}" aria-expanded="true" role="status">
+                            <div class="subCategory collapse" id="{{ category.title|nospace }}" aria-expanded="true" role="status">
                                 <ul>
                                     {% for subcat in subcategories %}
                                         {% if subcat.sub.id == category.id %}

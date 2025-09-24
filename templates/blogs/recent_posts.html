@@ -36,13 +36,13 @@
                         <p style="width: 20ch; white-space: normal; overflow-wrap: break-word" class="content-title">{{ r_blog.title }}</p>
                     </a>
                     <span>
-                        <i class="zmdi zmdi-comments"></i>13 {% trans "comment" %}
+                        <i class="zmdi zmdi-comments"></i>{{ r_blog.comments.count }} {% trans "comment" %}
                     </span>
                     <span>
                         <i class="zmdi zmdi-calendar-note"></i>{{ r_blog.created_at|date:"d M Y" }}
                     </span>
                     <p class="description" style="width: 30ch; white-space: normal; overflow-wrap: break-word;">
-                        {{ r_blog.description|slice:'150' }}
+                        {{ r_blog.description|slice:'150'|striptags }}
                     </p>
                     <p class="remove">
                         <a href="{% url 'blogs:detail' pk=r_blog.id %}">{% trans "READ MORE" %}</a>

@@ -42,7 +42,7 @@
                                     {% include 'blogs/recent_posts.html' %}
                                     <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
                                     <h2>Recent Posts</h2>
-                                        {% for blog in blogs %}
+                                        {% for blog in page_obj %}
                                         <div class="list-content row">
                                             <div class="hover-after col-md-5 col-xs-12">
                                                 <a href="{% url 'blogs:detail' pk=blog.id %}">
@@ -55,11 +55,11 @@
                                                 </p>
                                                 <p class="post-info">
                                                     <span>{{ blog.created_at|date:"d M Y" }}</span>
-                                                    <span>113 {% trans "Comments" %}</span>
+                                                    <span>{{ blog.comments.count }} {% trans "Comments" %}</span>
                                                     <span>{{ blog.author.full_name }}</span>
                                                 </p>
                                                 <p style="width: 30ch; white-space: normal; overflow-wrap: break-word;" class="description">
-                                                    {{ blog.description|slice:"100" }}
+                                                    {{ blog.description|striptags|slice:"100" }}
                                                 </p>
                                                 <span class="view-more">
                                                     <a href="{% url 'blogs:detail' pk=blog.id %}">{% trans "view more" %}</a>
