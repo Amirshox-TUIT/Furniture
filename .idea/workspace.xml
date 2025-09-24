@@ -7,8 +7,6 @@
     <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blogs/recent_posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/recent_posts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-left.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +192,7 @@
       <workItem from="1758614439141" duration="1710000" />
       <workItem from="1758622712127" duration="8147000" />
       <workItem from="1758641927170" duration="5644000" />
-      <workItem from="1758694326169" duration="3375000" />
+      <workItem from="1758694326169" duration="7567000" />
     </task>
     <servers />
   </component>

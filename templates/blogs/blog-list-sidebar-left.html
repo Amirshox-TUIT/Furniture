@@ -78,7 +78,7 @@
                                                     </li>
                                                 {% endif %}
                                                 {% for page in page_obj.paginator.page_range %}
-                                                    <li class="{% if page == page_obj.number %}current active{% endif %}">
+                                                    <li class={% if page == page_obj.number %}"current active"{% endif %}>
                                                         <a rel="nofollow" onclick="addUrlParameter('page', {{ page }} )" class="disabled js-search-link">
                                                             {{ page }}
                                                         </a>
