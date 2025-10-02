@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['46.101.235.40', 'furnitica-su05.onrender.com', 'localhost', '127.0.0.1']
 
@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "apps.blogs.context_processors.sidebar_data",
+                "apps.blogs.context_processors.social_medias",
                 'apps.basket.context_processor.basket',
                 'apps.basket.context_processor.products_categories',
             ],
@@ -170,4 +171,13 @@ EMAIL_HOST_PASSWORD = EMAIL_PASS
 BASKET_SESSION_ID = 'basket'
 SESSION_COOKIE_AGE = 86400  # 1 day
 SESSION_SAVE_EVERY_REQUEST = True
+
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
+CSRF_TRUSTED_ORIGINS = [
+    'http://46.101.235.40',
+    'http://127.0.0.1:8000',
+]
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

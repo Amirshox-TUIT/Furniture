@@ -1,3 +1,4 @@
+import decimal
 from decimal import Decimal
 
 from django.conf import settings
@@ -28,6 +29,7 @@ class Basket:
                 'price': str(product.price),
                 'color': color.title if color else None,
                 'size': size.title if size else None,
+                'discount': str(product.discount),
             }
         if override_quantity:
             self.basket[product_id]['quantity'] = quantity
@@ -63,7 +65,7 @@ class Basket:
             product_id = str(product.id)
             if product_id in self.basket:
                 item = self.basket[product_id].copy()
-                item['price'] = Decimal(item['price'])
+                item['price'] = Decimal(product.discount_price())
                 item['total_price'] = item['price'] * item['quantity']
                 item['product'] = product  # Add product object to the yielded item
                 yield item
@@ -78,8 +80,9 @@ class Basket:
         """
         Calculate the total cost of items in the basket.
         """
-        return sum(Decimal(item['price']) * item['quantity']
-                   for item in self.basket.values())
+        total_sum =  Decimal(sum(Decimal(item['price']) * Decimal(1 - Decimal(item['discount']) / 100) * Decimal(item['quantity'])
+                   for item in self.basket.values()))
+        return total_sum.quantize(Decimal('0.01'), rounding=decimal.ROUND_HALF_UP)
 
     def clear(self):
         """

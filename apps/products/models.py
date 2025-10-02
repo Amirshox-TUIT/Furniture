@@ -2,6 +2,7 @@ from datetime import datetime
 from decimal import Decimal, ROUND_HALF_UP
 
 import pytz
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
@@ -85,6 +86,12 @@ class ProductModel(BaseModel):
         validators=[MaxValueValidator(100), MinValueValidator(1)]
     )
     raiting = models.PositiveSmallIntegerField(default=0)
+    sender = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='added_products',
+        verbose_name='Added by', null=True, blank=True
+    )
 
     def is_new(self):
         tashkent_tz = pytz.timezone('Asia/Tashkent')

@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 # Django
-DEBUG = os.getenv("DEBUG") == "True"
+DEBUG = os.getenv("DEBUG")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 

@@ -1,5 +1,10 @@
 from django.contrib import admin
-from apps.users.models import UserModel
+from .models import ProfileModel
 
 
-admin.site.register(UserModel)
+@admin.register(ProfileModel)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'company', 'city', 'country', 'phone')
+    search_fields = ('user__username', 'company', 'city', 'country', 'phone')
+    list_filter = ('city', 'country')
+

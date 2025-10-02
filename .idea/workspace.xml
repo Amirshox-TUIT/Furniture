@@ -5,9 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/blogs/managers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/tokens.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/blogs/blog_add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/products/product-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Furnitica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Furnitica.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/basket/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/basket/cart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/basket/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/basket/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/context_processors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blogs/blog-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/footer-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/footer-base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/header-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/header-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/header-home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/menu-mobile-right.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/about-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/about-us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/home3.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/product-cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/user-acount.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user-acount.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/user-wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user-wishlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +90,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.Furnitica.executor&quot;: &quot;Run&quot;,
+    &quot;Django Server.Fr2.executor&quot;: &quot;Run&quot;,
+    &quot;Django Server.Furnitica.executor&quot;: &quot;Profiler&quot;,
     &quot;Django Server.Unnamed.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.blog-list-sidebar-left.html.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -63,7 +103,7 @@
     &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/makhk/PycharmProjects/Furnitica/media/blogs&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/makhk/PycharmProjects/Furnitica&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -79,13 +119,14 @@
       <recent name="C:\Users\makhk\PycharmProjects\Furnitica\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\makhk\PycharmProjects\Furnitica\apps\blogs" />
       <recent name="C:\Users\makhk\PycharmProjects\Furnitica\assets\libs\font-awesome\css" />
       <recent name="C:\Users\makhk\PycharmProjects\Furnitica\apps" />
       <recent name="C:\Users\makhk\PycharmProjects\Furnitica\apps\users" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Furnitica" type="Python.DjangoServer" factoryName="Django server">
+  <component name="RunManager" selected="Django Server.Fr2">
+    <configuration name="Fr2" type="Python.DjangoServer" factoryName="Django server">
       <module name="Furnitica" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -95,9 +136,8 @@
         <env name="DJANGO_SETTINGS_MODULE" value="core.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (Furnitica)" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
@@ -111,6 +151,35 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Furnitica" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Furnitica" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="core.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django Server.Fr2" />
+      <item itemvalue="Django Server.Furnitica" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -193,6 +262,25 @@
       <workItem from="1758622712127" duration="8147000" />
       <workItem from="1758641927170" duration="5644000" />
       <workItem from="1758694326169" duration="7567000" />
+      <workItem from="1758702294420" duration="860000" />
+      <workItem from="1758779243026" duration="30000" />
+      <workItem from="1758886802437" duration="1639000" />
+      <workItem from="1758896235058" duration="2370000" />
+      <workItem from="1758942893819" duration="2428000" />
+      <workItem from="1759035933889" duration="14000" />
+      <workItem from="1759220367714" duration="1777000" />
+      <workItem from="1759222498504" duration="784000" />
+      <workItem from="1759232383442" duration="284000" />
+      <workItem from="1759234797190" duration="9355000" />
+      <workItem from="1759249166456" duration="6520000" />
+      <workItem from="1759285613274" duration="5223000" />
+      <workItem from="1759291009054" duration="915000" />
+      <workItem from="1759313406122" duration="11843000" />
+      <workItem from="1759330234566" duration="10571000" />
+      <workItem from="1759375417823" duration="336000" />
+      <workItem from="1759382330227" duration="3497000" />
+      <workItem from="1759389854890" duration="521000" />
+      <workItem from="1759406966696" duration="8154000" />
     </task>
     <servers />
   </component>

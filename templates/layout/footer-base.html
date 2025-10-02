@@ -18,7 +18,7 @@
                             <div class="block">
                                 <div class="block-content">
                                     <ul>
-                                        <li><a href="#">{% trans "About Us" %}</a></li>
+                                        <li><a href="{% url 'pages:about_us' %}">{% trans "About Us" %}</a></li>
                                         <li><a href="#">{% trans "Reasons to shop" %}</a></li>
                                         <li><a href="#">{% trans "What our customers say" %}</a></li>
                                         <li><a href="#">{% trans "Meet the team" %}</a></li>
@@ -112,16 +112,16 @@
                                             <div class="social">
                                                 <ul class="list-inline mb-0 justify-content-end">
                                                     <li class="list-inline-item mb-0">
-                                                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                        <a href="{{ telegram }}" target="_blank"><i class="fa fa-telegram"></i></a>
                                                     </li>
                                                     <li class="list-inline-item mb-0">
-                                                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                        <a href="{{ twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
                                                     </li>
                                                     <li class="list-inline-item mb-0">
-                                                        <a href="#" target="_blank"><i class="fa fa-google"></i></a>
+                                                        <a href="{{ linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
                                                     </li>
                                                     <li class="list-inline-item mb-0">
-                                                        <a href="#" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                        <a href="{{ github }}" target="_blank"><i class="fa fa-github"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-
+from apps.users.views import ConfirmEmailView
 
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
@@ -33,6 +33,7 @@ urlpatterns += i18n_patterns(
     path('', include('apps.pages.urls', namespace='pages')),
     path('', include('apps.users.urls', namespace='users')),
     path('', include('apps.basket.urls', namespace='basket')),
+    path('confirmation/<uidb64>/<token>/', ConfirmEmailView.as_view(), name='confirmation'),
 )
 
 if settings.DEBUG:

@@ -55,7 +55,8 @@
                                                                data-id_customization="0">{{ item.product.title }}</a>
                                                         </div>
                                                         <div class="product-line-info product-price">
-                                                            <span class="value">£{{ item.product.price }}</span>
+                                                            <span style="color:red" class="value">£{{ item.price }}</span>
+                                                            <del class="regular-price">£{{ item.product.price }}</del>
                                                         </div>
                                                         <div class="product-line-info">
                                                             <span class="label-atrr">{% trans "Size:" %}</span>
@@ -93,6 +94,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                                 </li>
                                                 {% endfor %}
                                             </ul>

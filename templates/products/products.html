@@ -1,365 +1,359 @@
-{% extends 'layout/base.html' %}
-{% load static %}
-{% load i18n %}
-{% load custom_filters %}
-{% block title %}{% trans "Furnitica - Minimalist Furniture HTML Template" %}{% endblock %}
-{% block body_id %}product-sidebar-left{% endblock %}
-{% block body_class %}product-grid-sidebar-left{% endblock %}
-{% block content %}
-<!-- main content -->
-<div class="main-content">
-        <div id="wrapper-site">
-            <div id="content-wrapper" class="full-width">
-                <div id="main">
-                    <div class="page-home">
-                        <!-- breadcrumb -->
-                        <nav class="breadcrumb-bg">
-                            <div class="container no-index">
-                                <div class="breadcrumb">
-                                    <ol>
-                                        <li>
-                                            <a href="#">
-                                                <span>{% trans "Home" %}</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>{% trans "Living Room" %}</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>{% trans "Sofa" %}</span>
-                                            </a>
-                                        </li>
-                                    </ol>
+    {% extends 'layout/base.html' %}
+    {% load static %}
+    {% load i18n %}
+    {% load custom_filters %}
+    {% block title %}{% trans "Furnitica - Minimalist Furniture HTML Template" %}{% endblock %}
+    {% block body_id %}product-sidebar-left{% endblock %}
+    {% block body_class %}product-grid-sidebar-left{% endblock %}
+    {% block content %}
+    <!-- main content -->
+    <div class="main-content">
+            <div id="wrapper-site">
+                <div id="content-wrapper" class="full-width">
+                    <div id="main">
+                        <div class="page-home">
+                            <!-- breadcrumb -->
+                            <nav class="breadcrumb-bg">
+                                <div class="container no-index">
+                                    <div class="breadcrumb">
+                                        <ol>
+                                            <li>
+                                                <a href="{% url 'pages:home3' %}">
+                                                    <span>{% trans "Home" %}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'products:products' %}">
+                                                    <span>{% trans "Products" %}</span>
+                                                </a>
+                                            </li>
+                                        </ol>
+                                    </div>
                                 </div>
-                            </div>
-                        </nav>
+                            </nav>
 
-                        <div class="container">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="sidebar-3 sidebar-collection col-lg-3 col-md-4 col-sm-4">
+                            <div class="container">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="sidebar-3 sidebar-collection col-lg-3 col-md-4 col-sm-4">
 
-                                        <!-- category menu -->
-                                        <div class="sidebar-block">
-                                            <div class="title-block">{% trans "Categories" %}</div>
-                                            <div class="block-content">
-                                                {% for cat in categories %}
-                                                <div class="cateTitle hasSubCategory open level1">
-                                                    <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#{{ cat.title|nospace|lower }}" aria-expanded="false" role="status">
-                                                        <i class="zmdi zmdi-minus"></i>
-                                                        <i class="zmdi zmdi-plus"></i>
-                                                    </span>
-                                                    <a class="cateItem" href="#">{{ cat.title }}</a>
-                                                    <div class="subCategory collapse" id="{{ cat.title|nospace|lower }}" aria-expanded="true" role="status">
-                                                        {% for sub in cat.sub_category.all %}
-                                                        <div class="cateTitle">
-                                                            <a onclick="addUrlParameter('cat', {{ sub.id }})" class="cateItem">{{ sub.title }}</a>
+                                            <!-- category menu -->
+                                            <div class="sidebar-block">
+                                                <div class="title-block">{% trans "Categories" %}</div>
+                                                <div class="block-content">
+                                                    {% for cat in categories %}
+                                                    <div class="cateTitle hasSubCategory open level1">
+                                                        <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#{{ cat.title|nospace|lower }}" aria-expanded="false" role="status">
+                                                            <i class="zmdi zmdi-minus"></i>
+                                                            <i class="zmdi zmdi-plus"></i>
+                                                        </span>
+                                                        <a class="cateItem" href="#">{{ cat.title }}</a>
+                                                        <div class="subCategory collapse" id="{{ cat.title|nospace|lower }}" aria-expanded="true" role="status">
+                                                            {% for sub in cat.sub_category.all %}
+                                                            <div class="cateTitle">
+                                                                <a onclick="addUrlParameter('cat', {{ sub.id }})" class="cateItem">{{ sub.title }}</a>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                            <!-- best seller -->
+                                            <div class="sidebar-block">
+                                                <div class="title-block">{% trans "Catalog" %}</div>
+                                                <div class="new-item-content">
+                                                    <h3 class="title-product">{% trans "Categories" %}</h3>
+                                                    <ul class="scroll-product">
+                                                        {% for sub in subcategories %}
+                                                        <li>
+                                                            <label class="check">
+                                                                <input type="checkbox" {% if cat_id == sub.id %}checked{% endif %}>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <a onclick="addUrlParameter('cat', {{ sub.id }})">
+                                                                <b>{{ sub.title }}</b>
+                                                                <span class="quantity">{{ sub.products.count }}</span>
+                                                            </a>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                                <div class="new-item-content">
+                                                    <h3 class="title-product">{% trans "Manufacture" %}</h3>
+                                                    <ul class="scroll-product">
+                                                        {% for brand in brands %}
+                                                        <li>
+                                                            <label class="check">
+                                                                <input type="checkbox" {% if brand_id == brand.id %}checked{% endif %}>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                            <a onclick="addUrlParameter('brand', {{ brand.id }})">
+                                                                <b>{{ brand.name }}</b>
+                                                                <span class="quantity">{{ brand.products.count }}</span>
+                                                            </a>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                                <div class="sidebar-block by-color">
+                                                    <h3 class="title-product">{% trans "By Color" %}</h3>
+                                                    <div>
+                                                        {% for color in colors %}
+                                                        <span class="{% if forloop.counter|divisibleby:"2" %}right{% else %}left{% endif %}">
+                                                            <label
+                                                                style="background-color:#{{ color.code }}; width:25px; height:25px; display:inline-block; border-radius:4px; cursor:pointer; text-align:center; line-height:25px; color:white; font-size:16px;">
+                                                                {% if color_id == color.id %}✔{% endif %}
+                                                            </label>
+                                                            <a onclick="addUrlParameter('color', {{ color.id }})">
+                                                                <span>{{ color.title }}
+                                                                    <span>({{ color.products_quantity.count }})</span>
+                                                                </span>
+                                                            </a>
+                                                        </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- products tag -->
+                                            <div class="sidebar-block product-tags">
+                                                <div class="title-block">
+                                                    {% trans "Product Tags" %}
+                                                </div>
+                                                <div class="block-content">
+                                                    <ul class="listSidebarBlog list-unstyled">
+                                                        {% for tag in tags %}
+                                                        <li>
+                                                            <a onclick="addUrlParameter('tag', {{ tag.id }})"
+                                                               {% if tag_id == tag.id %}style="background-color:black; color:white; padding:6px 12px; display:inline-block; border-radius:4px; text-decoration:none;"{% endif %}
+                                                               title="{% blocktrans %}Show products matching tag {{ tag.title }}{% endblocktrans %}">
+                                                                {{ tag.title }}
+                                                            </a>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8 col-lg-9 col-md-8 product-container">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h1 class="mb-0">{% trans "Products" %}</h1>
+                                                <a href="{% url 'products:add' %}" class="btn btn-primary">
+                                                    <i class="fa fa-plus"></i> {% trans "Add Product" %}
+                                                </a>
+                                            </div>
+                                            <div class="js-product-list-top firt nav-top">
+                                                <div class="d-flex justify-content-around row">
+                                                    <div class="col col-xs-12">
+                                                        <ul class="nav nav-tabs">
+                                                            <li>
+                                                                <a href="#grid" data-toggle="tab" class="active show fa fa-th-large"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#list" data-toggle="tab" class="fa fa-list-ul"></a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="hidden-sm-down total-products">
+                                                            <p>{% trans "There are"%} {{ products.count }} {% trans 'products.' %}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-xs-12">
+                                                        <div class="d-flex sort-by-row justify-content-lg-end justify-content-md-end">
+
+                                                            <div class="products-sort-order dropdown">
+                                                                <select class="select-title">
+                                                                    <option value="">{% trans "Sort by" %}</option>
+                                                                    <option value="">{% trans "Name, A to Z" %}</option>
+                                                                    <option value="">{% trans "Name, Z to A" %}</option>
+                                                                    <option value="">{% trans "Price, low to high" %}</option>
+                                                                    <option value="">{% trans "Price, high to low" %}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content product-items">
+                                                <div id="grid" class="related tab-pane fade in active show">
+                                                    <div class="row">
+                                                        {% for product in page_obj %}
+                                                        <div class="item text-center col-md-4">
+                                                            <div class="product-miniature js-product-miniature item-one first-item">
+                                                                <div class="thumbnail-container border">
+                                                                    <a href="{% url 'products:detail' pk=product.id%}">
+                                                                        <img class="img-fluid image-cover" src="{{ product.image.url }}" alt="img">
+                                                                        <img class="img-fluid image-secondary" src="{{ product.image2.url }}" alt="img">
+                                                                    </a>
+                                                                    <div class="highlighted-informations">
+                                                                        <div class="variant-links">
+                                                                            {% for color in colors %}
+                                                                            <a onclick="addUrlParameter('color', {{ color.id }})" class="color {{ color.title }}" title="{{ color.title }}"></a>
+                                                                            {% endfor %}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-description">
+                                                                    <div class="product-groups">
+                                                                        <div class="product-title">
+                                                                            <a href="{% url 'products:detail' pk=product.id%}">{{ product.title }}</a>
+                                                                        </div>
+                                                                        <div class="rating">
+                                                                            <div class="star-content">
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product-group-price">
+                                                                            <div class="product-price-and-shipping">
+                                                                                <span style="color:red" class="price">£{{ product.discount_price }}</span>
+                                                                                <del class="regular-price">£{{ product.price }}</del>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% in_basket request product.id as is_true %}
+                                                                    <div class="product-buttons d-flex justify-content-center">
+                                                                        <form action="{% url 'products:products' %}" method="post" class="formAddToCart">
+                                                                            <input type="hidden" name="id_product" value="1">
+                                                                            {% if is_true %}
+                                                                            <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                            </a>
+                                                                            {% else %}
+                                                                                <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                            </a>
+                                                                            {% endif %}
+                                                                        </form>
+                                                                        <a class="addToWishlist" href="#" data-rel="1" onclick="">
+                                                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                        </a>
+                                                                        <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
+                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         {% endfor %}
                                                     </div>
                                                 </div>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-
-                                        <!-- best seller -->
-                                        <div class="sidebar-block">
-                                            <div class="title-block">{% trans "Catalog" %}</div>
-                                            <div class="new-item-content">
-                                                <h3 class="title-product">{% trans "Categories" %}</h3>
-                                                <ul class="scroll-product">
-                                                    {% for sub in subcategories %}
-                                                    <li>
-                                                        <label class="check">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <a onclick="addUrlParameter('cat', {{ sub.id }})">
-                                                            <b>{{ sub.title }}</b>
-                                                            <span class="quantity">{{ sub.products.count }}</span>
-                                                        </a>
-                                                    </li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
-                                            <div class="new-item-content">
-                                                <h3 class="title-product">{% trans "Manufacture" %}</h3>
-                                                <ul class="scroll-product">
-                                                    {% for brand in brands %}
-                                                    <li>
-                                                        <label class="check">
-                                                            <input type="checkbox">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                        <a onclick="addUrlParameter('brand', {{ brand.id }})">
-                                                            <b>{{ brand.name }}</b>
-                                                            <span class="quantity">{{ brand.products.count }}</span>
-                                                        </a>
-                                                    </li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
-                                            <div class="tiva-filter-price new-item-content sidebar-block">
-                                                <h3 class="title-product">{% trans "By Price" %}</h3>
-                                                <div id="block_price_filter" class="block">
-                                                    <div class="block-content">
-                                                        <div id="slider-range" class="tiva-filter">
-                                                            <div class="filter-itemprice-filter">
-                                                                <div class="layout-slider">
-                                                                    <input id="price-filter" name="price" value="0;100" />
-                                                                </div>
-                                                                <div class="layout-slider-settings"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="sidebar-block by-color">
-                                                <h3 class="title-product">{% trans "By Color" %}</h3>
-                                                <div>
-                                                    {% for color in colors %}
-                                                    <span class="{% if forloop.counter|divisibleby:"2" %}right
-                                                    {% else %}left{% endif %}">
-                                                        <label style="background-color:#{{ color.code }}" class="color-item1"></label>
-                                                        <a onclick="addUrlParameter('color', {{ color.id }})">
-                                                            <span>{{ color.title }}
-                                                                <span>{{ color.product.count }}</span>
-                                                            </span>
-                                                        </a>
-                                                    </span>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- products tag -->
-                                        <div class="sidebar-block product-tags">
-                                            <div class="title-block">
-                                                {% trans "Product Tags" %}
-                                            </div>
-                                            <div class="block-content">
-                                                <ul class="listSidebarBlog list-unstyled">
-                                                    {% for tag in tags %}
-                                                    <li>
-                                                        <a onclick="addUrlParameter('tag', {{ tag.id }})" title="{% blocktrans %}Show products matching tag {{ tag.title }}{% endblocktrans %}">{{ tag.title }}</a>
-                                                    </li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-8 col-lg-9 col-md-8 product-container">
-                                        <h1>{% trans "Living Room" %}</h1>
-                                        <div class="js-product-list-top firt nav-top">
-                                            <div class="d-flex justify-content-around row">
-                                                <div class="col col-xs-12">
-                                                    <ul class="nav nav-tabs">
-                                                        <li>
-                                                            <a href="#grid" data-toggle="tab" class="active show fa fa-th-large"></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#list" data-toggle="tab" class="fa fa-list-ul"></a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="hidden-sm-down total-products">
-                                                        <p>{% trans "There are 12 products." %}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-xs-12">
-                                                    <div class="d-flex sort-by-row justify-content-lg-end justify-content-md-end">
-
-                                                        <div class="products-sort-order dropdown">
-                                                            <select class="select-title">
-                                                                <option value="">{% trans "Sort by" %}</option>
-                                                                <option value="">{% trans "Name, A to Z" %}</option>
-                                                                <option value="">{% trans "Name, Z to A" %}</option>
-                                                                <option value="">{% trans "Price, low to high" %}</option>
-                                                                <option value="">{% trans "Price, high to low" %}</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-content product-items">
-                                            <div id="grid" class="related tab-pane fade in active show">
-                                                <div class="row">
-                                                    {% for product in products %}
-                                                    <div class="item text-center col-md-4">
-                                                        <div class="product-miniature js-product-miniature item-one first-item">
-                                                            <div class="thumbnail-container border">
-                                                                <a href="{% url 'products:detail' pk=product.id%}">
-                                                                    <img class="img-fluid image-cover" src="{{ product.image.url }}" alt="img">
-                                                                    <img class="img-fluid image-secondary" src="{{ product.image2.url }}" alt="img">
-                                                                </a>
-                                                                <div class="highlighted-informations">
-                                                                    <div class="variant-links">
-                                                                        {% for color in colors %}
-                                                                        <a onclick="addUrlParameter('color', {{ color.id }})" class="color {{ color.title }}" title="{{ color.title }}"></a>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product-description">
-                                                                <div class="product-groups">
-                                                                    <div class="product-title">
-                                                                        <a href="{% url 'products:detail' pk=product.id%}">{{ product.title }}</a>
-                                                                    </div>
-                                                                    <div class="rating">
-                                                                        <div class="star-content">
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
-                                                                            <div class="star"></div>
+                                                <div id="list" class="related tab-pane fade">
+                                                    <div class="row">
+                                                        {% for product in products %}
+                                                        <div class="item col-md-12">
+                                                            <div class="product-miniature item-one first-item">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="thumbnail-container border">
+                                                                            <a href="{% url 'products:detail' pk=product.id%}">
+                                                                                <img class="img-fluid image-cover" src="{{ product.image.url }}" alt="img">
+                                                                            </a>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="product-group-price">
-                                                                        <div class="product-price-and-shipping">
-                                                                            <span class="price">£{{ product.price }}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                {% in_basket request product.id as is_true %}
-                                                                <div class="product-buttons d-flex justify-content-center">
-                                                                    <form action="{% url 'products:products' %}" method="post" class="formAddToCart">
-                                                                        <input type="hidden" name="id_product" value="1">
-                                                                        {% if is_true %}
-                                                                        <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=product.id %}" data-button-action="add-to-cart">
-                                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                        </a>
-                                                                        {% else %}
-                                                                            <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=product.id %}" data-button-action="add-to-cart">
-                                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                        </a>
-                                                                        {% endif %}
-                                                                    </form>
-                                                                    <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            <div id="list" class="related tab-pane fade">
-                                                <div class="row">
-                                                    {% for product in products %}
-                                                    <div class="item col-md-12">
-                                                        <div class="product-miniature item-one first-item">
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="thumbnail-container border">
-                                                                        <a href="{% url 'products:detail' pk=product.id%}">
-                                                                            <img class="img-fluid image-cover" src="{{ product.image.url }}" alt="img">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="{% url 'products:detail' pk=product.id%}">{{ product.title }}</a>
-                                                                                <span class="info-stock">
-                                                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                                                                    {% trans "In Stock" %}
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="product-description">
+                                                                            <div class="product-groups">
+                                                                                <div class="product-title">
+                                                                                    <a href="{% url 'products:detail' pk=product.id%}">{{ product.title }}</a>
+                                                                                    <span class="info-stock">
+                                                                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                                                                        {% trans "In Stock" %}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="rating">
+                                                                                    <div class="star-content">
+                                                                                        <div class="star"></div>
+                                                                                        <div class="star"></div>
+                                                                                        <div class="star"></div>
+                                                                                        <div class="star"></div>
+                                                                                        <div class="star"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="product-group-price">
+                                                                                    <div class="product-price-and-shipping">
+                                                                                        <span class="price">£{{ product.price }}</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="discription">
+                                                                                    {{ product.short_description }}
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£{{ product.price }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="discription">
-                                                                                {{ product.short_description }}
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex">
-                                                                            <form action="#" method="post" class="formAddToCart">
-                                                                                {% if is_true %}
-                                                                                <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=product.id %}" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Remove cart" %}
-                                                                                </a>
-                                                                                {% else %}
-                                                                                    <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=product.id %}" data-button-action="add-to-cart">
-                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Add to cart" %}
+                                                                            <div class="product-buttons d-flex">
+                                                                                <form action="#" method="post" class="formAddToCart">
+                                                                                    {% if is_true %}
+                                                                                    <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Remove cart" %}
                                                                                     </a>
-                                                                                {% endif %}
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
+                                                                                    {% else %}
+                                                                                        <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=product.id %}" data-button-action="add-to-cart">
+                                                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>{% trans "Add to cart" %}
+                                                                                        </a>
+                                                                                    {% endif %}
+                                                                                </form>
+                                                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
+                                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                                </a>
+                                                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
+                                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                                </a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        {% endfor %}
                                                     </div>
-                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                            <!-- pagination -->
+                                            <div class="pagination">
+                                                <div class="js-product-list-top ">
+                                                    <div class="d-flex justify-content-around row">
+                                                        <div class="showing col col-xs-12">
+                                                            <span>{% trans "SHOWING" %} {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} {% trans "ITEM(S)" %}  </span>
+                                                        </div>
+                                                        <div class="page-list col col-xs-12">
+                                                            <ul>
+                                                                {% if page_obj.has_previous %}
+                                                                <li>
+                                                                    <a rel="prev" onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})"
+                                                                       class="previous disabled js-search-link">
+                                                                        {% trans "Previous" %}
+                                                                    </a>
+                                                                </li>
+                                                                {% endif %}
+                                                                {% for page in page_obj.paginator.page_range %}
+                                                                <li class="current active">
+                                                                    <a rel="nofollow" onclick="addUrlParameter('page', {{ page }})" class="disabled js-search-link">
+                                                                        {{ page }}
+                                                                    </a>
+                                                                </li>
+                                                                {% endfor %}
+                                                                {% if page_obj.has_next %}
+                                                                <li>
+                                                                    <a rel="next" onclick="addUrlParameter('page', {{ page_obj.next_page_number }})"
+                                                                       class="next disabled js-search-link">
+                                                                        {% trans "Next" %}
+                                                                    </a>
+                                                                </li>
+                                                                {% endif %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- pagination -->
-                                        <div class="pagination">
-                                            <div class="js-product-list-top ">
-                                                <div class="d-flex justify-content-around row">
-                                                    <div class="showing col col-xs-12">
-                                                        <span>{% trans "SHOWING" %} {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }} {% trans "ITEM(S)" %}  </span>
-                                                    </div>
-                                                    <div class="page-list col col-xs-12">
-                                                        <ul>
-                                                            {% if page_obj.has_previous %}
-                                                            <li>
-                                                                <a rel="prev" onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})"
-                                                                   class="previous disabled js-search-link">
-                                                                    {% trans "Previous" %}
-                                                                </a>
-                                                            </li>
-                                                            {% endif %}
-                                                            {% for page in page_obj.paginator.page_range %}
-                                                            <li class="current active">
-                                                                <a rel="nofollow" onclick="addUrlParameter('page', {{ page }})" class="disabled js-search-link">
-                                                                    {{ page }}
-                                                                </a>
-                                                            </li>
-                                                            {% endfor %}
-                                                            {% if page_obj.has_next %}
-                                                            <li>
-                                                                <a rel="next" onclick="addUrlParameter('page', {{ page_obj.next_page_number }})"
-                                                                   class="next disabled js-search-link">
-                                                                    {% trans "Next" %}
-                                                                </a>
-                                                            </li>
-                                                            {% endif %}
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- end col-md-9-1 -->
                                     </div>
-
-                                    <!-- end col-md-9-1 -->
                                 </div>
                             </div>
                         </div>
@@ -367,19 +361,18 @@
                 </div>
             </div>
         </div>
-    </div>
-{% endblock %}
+    {% endblock %}
 
-{% block extra_libs_js %}
-<script>
-    function addUrlParameter(name, value) {
-        let searchParams = new URLSearchParams(window.location.search)
-        if (searchParams.has(name) && searchParams.get(name) == value) {
-            searchParams.delete(name)
-        } else {
-            searchParams.set(name, value)
+    {% block extra_libs_js %}
+    <script>
+        function addUrlParameter(name, value) {
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has(name) && searchParams.get(name) == value) {
+                searchParams.delete(name)
+            } else {
+                searchParams.set(name, value)
+            }
+            window.location.search = searchParams.toString()
         }
-        window.location.search = searchParams.toString()
-    }
-</script>
-{% endblock %}
+    </script>
+    {% endblock %}

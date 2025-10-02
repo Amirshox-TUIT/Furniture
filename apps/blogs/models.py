@@ -1,8 +1,8 @@
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
+from apps.blogs.managers import BlogManager
 
-from apps.users.models import UserModel
 
 
 class BaseModel(models.Model):
@@ -14,6 +14,7 @@ class BaseModel(models.Model):
 
 
 class AuthorsModel(BaseModel):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
     full_name = models.CharField(max_length=128)
     profession = models.CharField(max_length=128)
     email = models.EmailField()
@@ -55,13 +56,24 @@ class TagsModel(BaseModel):
         verbose_name_plural = 'Tags'
 
 
+from django.db import models
+
 class BlogsModel(BaseModel):
+    class Status(models.TextChoices):
+        PUBLISHED = 'published', 'Published'
+        DELETED = 'deleted', 'Deleted'
+
     title = models.CharField(max_length=255)
     description = RichTextUploadingField()
-    author = models.ForeignKey(AuthorsModel, on_delete=models.CASCADE, related_name='blogs')
+    author = models.ForeignKey('AuthorsModel', on_delete=models.CASCADE, related_name='blogs')
     image = models.ImageField(upload_to='blogs/')
-    category = models.ManyToManyField(CategoriesModel, related_name='blogs')
-    tag = models.ManyToManyField(TagsModel, related_name='blogs')
+    category = models.ManyToManyField('CategoriesModel', related_name='blogs')
+    tag = models.ManyToManyField('TagsModel', related_name='blogs')
+    status = models.CharField(
+        max_length=10,
+        choices=Status.choices,
+        default=Status.PUBLISHED
+    )
 
     def __str__(self):
         return self.title
@@ -70,13 +82,15 @@ class BlogsModel(BaseModel):
         verbose_name = 'Blog'
         verbose_name_plural = 'Blogs'
 
+    objects = BlogManager()
+
+
 
 class CommentsModel(BaseModel):
     blog = models.ForeignKey(BlogsModel, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=255)
     email = models.EmailField()
     text = models.TextField()
-    website = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.name} - {self.blog.title}"
@@ -84,6 +98,8 @@ class CommentsModel(BaseModel):
     class Meta:
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
+
+
 
 
 

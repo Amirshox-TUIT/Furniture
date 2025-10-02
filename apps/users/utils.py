@@ -1,18 +1,18 @@
-from django.conf import settings
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.urls import reverse
-from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.urls import reverse
+from django.core.mail import EmailMessage
+from django.conf import settings
+
+from apps.users.tokens import email_verification_token
+from django.template.loader import render_to_string
 
 
 def send_email_confirmation(user, request):
-    token = default_token_generator.make_token(user)
+    token = email_verification_token.make_token(user)
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-
     confirmation_link = request.build_absolute_uri(
-        reverse('users:confirmation', kwargs={'uidb64': uidb64, 'token': token})
+        reverse('confirmation', kwargs={'uidb64': uidb64, 'token': token})
     )
 
     subject = "Confirm Your Email Address"
@@ -28,4 +28,4 @@ def send_email_confirmation(user, request):
         to=[user.email],
     )
     email.content_subtype = 'html'
-    email.send()
+    email.send(fail_silently=False)

@@ -5,38 +5,6 @@
 {% block body_class %}blog{% endblock %}
 {% block content %}
 
-<!-- Стили только для уведомлений -->
-<style>
-    .alert-success {
-        background: #d4edda;
-        color: #155724;
-        padding: 12px;
-        border-radius: 8px;
-        margin-top: 15px;
-        text-align: center;
-        font-weight: 500;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .alert-danger {
-        background: #f8d7da;
-        color: #721c24;
-        padding: 12px;
-        border-radius: 8px;
-        margin-top: 15px;
-        text-align: center;
-        font-weight: 500;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .text-danger {
-        color: #e3342f;
-        font-size: 14px;
-        margin-top: 5px;
-        display: block;
-    }
-</style>
-
 <div class="main-content">
     <div id="wrapper-site">
         <div id="content-wrapper">
@@ -70,8 +38,7 @@
                                             <div class="item-right d-flex">
                                                 <div class="title">{% trans "Email:" %}</div>
                                                 <div class="contact-content">
-                                                    <a href="mailto:support@domain.com">support@domain.com</a><br>
-                                                    <a href="mailto:contact@domain.com">contact@domain.com</a>
+                                                    <a href="mailto:support@najottalim.uz">support@najottalim.uz</a><br>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,8 +52,7 @@
                                             <div class="item-right d-flex">
                                                 <div class="title">{% trans "Address:" %}</div>
                                                 <div class="contact-content">
-                                                    23 Suspendis matti, Visaosang Building<br>
-                                                    District, NY Accums, North American
+                                                    1, Khadra Massif, Shayxontohur District, Tashkent, Uzbekistan
                                                 </div>
                                             </div>
                                         </div>
@@ -100,7 +66,7 @@
                                             <div class="item-right d-flex">
                                                 <div class="title">{% trans "Hotline:" %}</div>
                                                 <div class="contact-content">
-                                                    0123-456-78910<br>0987-654-32100
+                                                    +998-78-888-9888
                                                 </div>
                                             </div>
                                         </div>
@@ -111,14 +77,14 @@
                             <!-- Map -->
                             <div class="contact-map">
                                 <div id="map">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.3785754726428!2d105.78134315594316!3d21.01753304734255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454ab43c0c4db%3A0xdb6effebd6991106!2sKeangnam+Hanoi+Landmark+Tower!5e0!3m2!1svi!2s!4v1530175498947" allowfullscreen></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.256926458215!2d69.24263117587535!3d41.32502617130788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8bfaedfe3e1d%3A0x23ac4a5a705b84ab!2sNajot%20Ta&#39;lim%20Xadra%20filiali!5e0!3m2!1sru!2s!4v1759243791363!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
 
                             <!-- Contact Form -->
                             <div class="input-contact">
                                 <p class="text-intro text-center">
-                                    {% trans "Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris." %}
+                                    {% trans "Najot Ta’lim Xadra branch in Tashkent is a modern educational center offering courses in programming, web development, data science, and IT skills. Our experienced instructors provide hands-on training to help students and professionals enhance their technical knowledge and career opportunities. The branch features well-equipped classrooms, a supportive learning environment, and access to the latest software and technologies." %}
                                 </p>
 
                                 <p class="icon text-center">
@@ -170,18 +136,6 @@
                                                     </button>
                                                 </div>
                                             </form>
-
-                                            <!-- Сообщения об успехе/ошибке -->
-                                            {% if messages %}
-                                                <div class="mt-3">
-                                                    {% for message in messages %}
-                                                        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
-                                                            {{ message }}
-                                                        </div>
-                                                    {% endfor %}
-                                                </div>
-                                            {% endif %}
-
                                         </div>
                                     </div>
                                 </div>

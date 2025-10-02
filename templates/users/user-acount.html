@@ -31,44 +31,105 @@
             <div class="container">
                 <div id="main">
                     <h1 class="title-page">{% trans "My Account" %}</h1>
-                    <div class="content" id="block-history">
-                        <table class="std table">
-                            <tbody>
-                                <tr>
-                                    <th class="first_item">{% trans "My Name :" %}</th>
-                                    <td>David James</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">{% trans "Company :" %}</th>
-                                    <td>TivaTheme</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">{% trans "Address :" %}</th>
-                                    <td>123 canberra Street, New York, USA</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">{% trans "City :" %}</th>
-                                    <td>New York</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">{% trans "Postal/Zip Code :" %}</th>
-                                    <td>10001</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">{% trans "Phone :" %}</th>
-                                    <td>0123456789</td>
-                                </tr>
-                                <tr>
-                                    <th class="first_item">{% trans "Country :" %}</th>
-                                    <td>USA</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button class="btn btn-primary" data-link-action="sign-in" type="submit">
-                        {% trans "view Address" %}
-                    </button>
-                    <div class="order">
+                    <form method="POST" action="{% url 'users:user_account' pk=user.id %}" id="profileForm">
+                        {% csrf_token %}
+                        <input type="hidden" name="edit_field" id="edit_field" value="">
+
+                        <div class="content" id="block-history">
+                            <table class="std table">
+                                <tbody>
+                                    <tr>
+                                        <th class="first_item">{% trans "My Name :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="username" value="{{ profile.user.username }}" class="form-control" readonly id="name_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="name">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">{% trans "Company :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="company" {% if profile.company is None %}placeholder="Add your company"{% endif %} value="{{ profile.company }}" class="form-control" readonly id="company_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="company">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">{% trans "Address :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="address" {% if profile.address is None %}placeholder="Add your address"{% endif %} value="{{ profile.address }}" class="form-control" readonly id="address_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="address">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">{% trans "City :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="city" {% if profile.city is None %}placeholder="Add your city"{% endif %} value="{{ profile.city }}" class="form-control" readonly id="city_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="city">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">{% trans "Postal/Zip Code :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="postal_code" {% if profile.postal_code is None %}placeholder="Add your postal code"{% endif %} value="{{ profile.postal_code }}" class="form-control" readonly id="postal_code_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="postal_code">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">{% trans "Phone :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="phone" {% if profile.phone is None %}placeholder="Add your phone number"{% endif %} value="{{ profile.phone }}" class="form-control" readonly id="phone_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="phone">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="first_item">{% trans "Country :" %}</th>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" name="country" {% if profile.country is None %}placeholder="Add your country"{% endif %} value="{{ profile.country }}" class="form-control" readonly id="country_field">
+                                                <button type="button" class="btn-edit edit-btn" data-field="country">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="button-group" style="display: none;" id="actionButtons">
+                            <button class="btn btn-dark" type="submit" id="submitBtn">
+                                {% trans "SAVE CHANGES" %}
+                            </button>
+                            <button class="btn btn-dark" type="button" id="cancelBtn">
+                                {% trans "Cancel" %}
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="order mt-4">
                         <h4>{% trans "Order" %}
                             <span class="detail">{% trans "History" %}</span>
                         </h4>
@@ -79,4 +140,125 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-btn');
+    const submitBtn = document.getElementById('submitBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const editFieldInput = document.getElementById('edit_field');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const fieldName = this.getAttribute('data-field');
+            const inputField = document.getElementById(fieldName + '_field');
+
+            // Barcha fieldlarni readonly qilish
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                input.setAttribute('readonly', true);
+            });
+
+            // Tanlangan fieldni editable qilish
+            inputField.removeAttribute('readonly');
+            inputField.focus();
+
+            // Hidden inputga field nomini qo'shish
+            editFieldInput.value = fieldName;
+
+            // Tugmalar guruhini ko'rsatish
+            document.getElementById('actionButtons').style.display = 'block';
+        });
+    });
+
+    cancelBtn.addEventListener('click', function() {
+        // Barcha fieldlarni readonly qilish
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.setAttribute('readonly', true);
+        });
+
+        // Tugmalar guruhini yashirish
+        document.getElementById('actionButtons').style.display = 'none';
+
+        // Formani reset qilish
+        document.getElementById('profileForm').reset();
+        editFieldInput.value = '';
+    });
+});
+</script>
+
+<style>
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group .form-control {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 8px 40px 8px 12px;
+    width: 100%;
+}
+
+.input-group .form-control[readonly] {
+    background-color: #f9f9f9;
+    border-color: #e0e0e0;
+    cursor: default;
+}
+
+.input-group .form-control:not([readonly]) {
+    background-color: #fff;
+    border-color: #007bff;
+}
+
+.btn-edit {
+    position: absolute;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.btn-edit:hover {
+    color: #007bff;
+}
+
+.btn-edit i {
+    font-size: 14px;
+}
+
+.std.table td {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-dark {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-dark:hover {
+    background-color: #000;
+}
+</style>
 {% endblock %}

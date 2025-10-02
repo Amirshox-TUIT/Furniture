@@ -46,3 +46,4 @@ def basket_update(request, product_id):
     basket.add(product=product, quantity=quantity, color=color, size=size, override_quantity=True)
     messages.success(request, f'{product.title} updated from your basket!')
     return redirect('products:cart')
+

@@ -1,0 +1,110 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Furnitica - {% trans "Add New Product" %}{% endblock %}
+{% block body_id %}product-create{% endblock %}
+{% block body_class %}product{% endblock %}
+
+{% block extra_head %}
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+
+    <!-- Admin JS -->
+    <script src="{% static 'admin/js/core.js' %}"></script>
+    <script src="{% static 'admin/js/admin/RelatedObjectLookup.js' %}"></script>
+    <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'admin/js/jquery.init.js' %}"></script>
+    <script src="{% static 'admin/js/actions.js' %}"></script>
+    <script src="{% static 'admin/js/inlines.js' %}"></script>
+
+    <style>
+        /* Oq fon */
+        body, #content, .module, .inline-group, .submit-row {
+            background: #fff !important;
+            color: #000 !important;
+        }
+        .module h2 {
+            background: #f0f0f0 !important;
+            color: #000 !important;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .form-row {
+            margin: 10px 0;
+        }
+        .submit-row {
+            border-top: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .submit-row input {
+            margin-right: 8px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="colM">
+    <h1>{% trans "Add New Product" %}</h1>
+
+    <form method="post" enctype="multipart/form-data" action="{% url 'products:add' %}" id="product-form">
+        {% csrf_token %}
+
+        <fieldset class="module aligned">
+            <h2>{% trans "Basic Information" %}</h2>
+
+            <div class="form-row">{{ form.title.label_tag }} {{ form.title }}</div>
+            <div class="form-row">{{ form.short_description.label_tag }} {{ form.short_description }}</div>
+            <div class="form-row">{{ form.long_description.label_tag }} {{ form.long_description }}</div>
+            <div class="form-row">{{ form.image.label_tag }} {{ form.image }}</div>
+            <div class="form-row">{{ form.image2.label_tag }} {{ form.image2 }}</div>
+        </fieldset>
+
+        <fieldset class="module aligned">
+            <h2>{% trans "Product Details" %}</h2>
+
+            <div class="form-row">{{ form.categories.label_tag }} {{ form.categories }}</div>
+            <div class="form-row">{{ form.brand.label_tag }} {{ form.brand }}</div>
+            <div class="form-row">{{ form.price.label_tag }} {{ form.price }}</div>
+            <div class="form-row">{{ form.discount_price.label_tag }} {{ form.discount_price }}</div>
+            <div class="form-row">{{ form.tags.label_tag }} {{ form.tags }}</div>
+        </fieldset>
+
+        <!-- Inline Product Images -->
+        <fieldset class="module">
+            <h2>{% trans "Product Images" %}</h2>
+            <div class="inline-group" id="productimage_set-group">
+                {{ image_formset.management_form }}
+                {% for form in image_formset %}
+                    <div class="form-row dynamic-productimage_set">{{ form }}</div>
+                {% endfor %}
+                <div class="form-row empty-form" id="productimage_set-empty_form" style="display:none">
+                    {{ image_formset.empty_form }}
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Inline Product Quantities -->
+        <fieldset class="module">
+            <h2>{% trans "Product Quantities" %}</h2>
+            <div class="inline-group" id="productquantity_set-group">
+                {{ quantity_formset.management_form }}
+                {% for form in quantity_formset %}
+                    <div class="form-row dynamic-productquantity_set">{{ form }}</div>
+                {% endfor %}
+                <div class="form-row empty-form" id="productquantity_set-empty_form" style="display:none">
+                    {{ quantity_formset.empty_form }}
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="submit-row">
+            <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
+            <input type="submit" value="{% trans 'Save and add another' %}" name="_addanother">
+            <input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue">
+        </div>
+    </form>
+</div>
+{% endblock %}

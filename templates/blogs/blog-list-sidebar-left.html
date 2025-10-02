@@ -18,18 +18,13 @@
                                 <div class="breadcrumb">
                                     <ol>
                                         <li>
-                                            <a href="#">
+                                            <a href="{% url 'pages:home3' %}">
                                                 <span>{% trans "Home" %}</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
-                                                <span>{% trans "Living Room" %}</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>{% trans "Sofa" %}</span>
+                                            <a href="{% url 'blogs:list_sidebar_left' %}">
+                                                <span>{% trans "Blogs" %}</span>
                                             </a>
                                         </li>
                                     </ol>
@@ -41,7 +36,15 @@
                                 <div class="row">
                                     {% include 'blogs/recent_posts.html' %}
                                     <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
-                                    <h2>Recent Posts</h2>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                                       <h2 style="margin:0;">Recent Posts</h2>
+                                       {% if request.user %}<a href="{% url 'blogs:add' %}"
+                                          style="background:#3e2723; color:#fff; padding:6px 14px; border-radius:6px;
+                                                 text-decoration:none; font-size:14px; font-weight:600;">
+                                          + Add Blog
+                                       </a>
+                                    </div>
+
                                         {% for blog in page_obj %}
                                         <div class="list-content row">
                                             <div class="hover-after col-md-5 col-xs-12">
@@ -57,6 +60,11 @@
                                                     <span>{{ blog.created_at|date:"d M Y" }}</span>
                                                     <span>{{ blog.comments.count }} {% trans "Comments" %}</span>
                                                     <span>{{ blog.author.full_name }}</span>
+                                                    <span>
+                                                        <a class="remove" href="{% url 'blogs:delete' pk=blog.id %}">
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="{% trans 'Remove' %}"> {% trans 'Delete' %} </i>
+                                                        </a>
+                                                    </span>
                                                 </p>
                                                 <p style="width: 30ch; white-space: normal; overflow-wrap: break-word;" class="description">
                                                     {{ blog.description|striptags|slice:"100" }}
@@ -68,25 +76,25 @@
                                         </div>
                                         {% endfor %}
 
-                                        <div class="page-list col">
-                                            <ul class="justify-content-center d-flex">
+                                        <div class="page-list col" style="display: flex; justify-content: center; align-items: center; padding: 10px 0;">
+                                            <ul class="justify-content-center d-flex" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 10px;">
                                                 {% if page_obj.has_previous %}
-                                                    <li>
-                                                        <a rel="prev" onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})" class="previous disabled js-search-link">
+                                                    <li style="margin: 0;">
+                                                        <a rel="prev" onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})" class="previous disabled js-search-link" style="text-decoration: none; color: #333; padding: 8px 15px; background-color: #e0e0e0; border-radius: 20px; display: inline-block; font-size: 14px;">
                                                             {% trans "Previous" %}
                                                         </a>
                                                     </li>
                                                 {% endif %}
                                                 {% for page in page_obj.paginator.page_range %}
-                                                    <li class={% if page == page_obj.number %}"current active"{% endif %}>
-                                                        <a rel="nofollow" onclick="addUrlParameter('page', {{ page }} )" class="disabled js-search-link">
+                                                    <li style="margin: 0;">
+                                                        <a rel="nofollow" onclick="addUrlParameter('page', {{ page }})" class="disabled js-search-link" style="text-decoration: none; color: #fff; padding: 8px 15px; background-color: {% if page == page_obj.number %} #000 {% else %} #b0b0b0 {% endif %}; border-radius: 20px; display: inline-block; font-size: 14px; transition: background-color 0.3s;">
                                                             {{ page }}
                                                         </a>
                                                     </li>
                                                 {% endfor %}
                                                 {% if page_obj.has_next %}
-                                                    <li>
-                                                        <a rel="next" onclick="addUrlParameter('page', {{ page_obj.next_page_number }})" class="next disabled js-search-link">
+                                                    <li style="margin: 0;">
+                                                        <a rel="next" onclick="addUrlParameter('page', {{ page_obj.next_page_number }})" class="next disabled js-search-link" style="text-decoration: none; color: #333; padding: 8px 15px; background-color: #e0e0e0; border-radius: 20px; display: inline-block; font-size: 14px;">
                                                             {% trans "Next" %}
                                                         </a>
                                                     </li>

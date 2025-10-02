@@ -58,14 +58,6 @@
                                                         <i class="zmdi zmdi-share"></i>
                                                         <span>{% trans "Share" %}</span>
                                                     </a>
-                                                    <a href="#" class="email">
-                                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                        <span>{% trans "SEND TO A FRIEND" %}</span>
-                                                    </a>
-                                                    <a href="#" class="print">
-                                                        <i class="zmdi zmdi-print"></i>
-                                                        <span>{% trans "Print" %}</span>
-                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,24 +105,29 @@
                                         </div>
                                         <div class="reply late-item">
                                             {% for comment in comments %}
-                                            <div class="blog-comment" id="blog-comment">
-                                                <h2 class="title-block">{% trans "Comments" %}</h2>
-                                                <img src="{% static 'img/blog/user1.jpg' %}" alt="img" class="float-left right">
-                                            </div>
-                                            <div class="comment-content">
-                                                <p class="user-title">
-                                                    <a href="#">{{ comment.name }}</a>
-                                                    <span class="time">{% trans "Posted on" %} {{ comment.created_at|date:"M d, Y \\a\\t g:ia" }} /
-                                                        <a href="#">{% trans "repost" %}</a> /
-                                                        <span class="green">
-                                                            <a href="#">{% trans "Reply" %}</a>
-                                                        </span>
-                                                    </span>
-                                                </p>
-                                                <p class="content-comment">
-                                                    {{ comment.text }}
-                                                </p>
-                                            </div>
+                                                    <div class="blog-comment" id="blog-comment">
+                                                        {% if forloop.first %}
+                                                            <h2 class="title-block">{% trans 'Comments' %}</h2>
+                                                            {% else %}
+                                                            <h2 class="title-block">_________________________________________</h2>
+                                                        {% endif %}
+                                                        <img src="{% static 'img/blog/user2.jpg' %}" alt="img" class="float-left">
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <p class="user-title">
+                                                            <a href="#">{{ comment.name }}</a>
+                                                            <span class="time">Posted on {{ comment.created_at|date:"M d, Y \\a\\t g:ia" }}/
+                                                                <a href="#">repost</a> /
+                                                                <span class="green">
+                                                                    <a href="#">Reply</a>
+                                                                </span>
+                                                            </span>
+                                                        </p>
+                                                        <p class="content-comment">
+                                                            {{ comment.text }}
+                                                        </p>
+                                                    </div>
+
                                             {% endfor %}
                                         </div>
                                         <div class="submit-comment" id="respond">
@@ -139,17 +136,6 @@
                                                 <form action="" method="post" id="commentform">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                                                    <div class="row">
-                                                        <div class="form-group col col-sm-12 col-md-4 ">
-                                                            <input type="text" class="inputName form-control" name="name" placeholder="{% trans 'Your Name *' %}">
-                                                        </div>
-                                                        <div class="form-group col col-sm-12  col-md-4">
-                                                            <input type="text" class="inputMail form-control" name="email" placeholder="{% trans 'Your E-mail *' %}">
-                                                        </div>
-                                                        <div class="form-group col col-sm-12  col-md-4">
-                                                            <input type="text" class="form-control" name="website" placeholder="{% trans 'Your Website' %}">
-                                                        </div>
-                                                    </div>
                                                     <div class="row">
                                                         <div class="form-group col col-md-12">
                                                             <textarea tabindex="4" class="inputContent form-control grey" rows="10" name="text" placeholder="{% trans 'Your Message' %}"></textarea>
@@ -171,3 +157,32 @@
         </div>
     </div>
 {% endblock %}
+<script>
+    const shareButton = document.querySelector('.btn-group a');
+
+    async function shareContent() {
+
+      const shareData = {
+        title: document.title,
+        text: 'Check out this amazing content!', // Translated from Uzbek to English
+        url: window.location.href
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+          console.log('Successfully shared!'); // Translated from Uzbek to English
+        } else {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Link copied! You can now paste it anywhere.'); // Translated from Uzbek to English
+        }
+      } catch (error) {
+        console.error('Error sharing:', error); // Translated from Uzbek to English
+      }
+    }
+
+    shareButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      shareContent();
+    });
+</script>

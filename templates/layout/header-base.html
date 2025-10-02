@@ -6,7 +6,7 @@
             {% for message in messages %}
                 <div style="
                     padding: 10px 20px;
-                    margin: 5px auto;
+                    margin:  auto;
                     border-radius: 6px;
                     width: 90%;
                     font-weight: bold;
@@ -152,27 +152,31 @@
                     </div>
 
                     <!-- 🌍 Desktop Language Switcher -->
-                    <div id="desktop_language_selector"
-                         class="language-selector groups-selector hidden-sm-down">
-                        <ul class="list-inline">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <li class="list-inline-item {% if language.code == LANGUAGE_CODE %}current{% endif %}">
-                                    <a href="{% get_full_url request language.code %}">
-                                        {% if language.code == "en" %}
-                                            <img class="img-fluid" src="{% static 'img/home/home1-flas.jpg' %}"
-                                                 alt="English" width="16" height="11">
-                                        {% elif language.code == "uz" %}
-                                            <img class="img-fluid" src="{% static 'img/home/home1-flas2.jpg' %}"
-                                                 alt="O'zbekcha" width="16" height="11">
-                                        {% endif %}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                    <div class="desktop-language-selector language-selector groups-selector hidden-sm-down d-flex align-items-center" style="position: relative; display: flex; align-items: center;">
+    <div class="dropdown-language myaccount-title" style="cursor: pointer; padding: 5px 10px; border: 1px solid #ddd; border-radius: 20px; background-color: #fff;">
+        <a href="#language" data-toggle="collapse" class="acount" style="text-decoration: none; color: #333;">
+            <span class="expand-more" style="font-size: 14px; font-weight: bold;">
+                {{ LANGUAGE_CODE|upper }}
+            </span>
+            <i class="fa fa-angle-down" style="margin-left: 5px;" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div id="language" class="collapse" style="display: none; position: absolute; top: 100%; left: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 5px; min-width: 100px; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <div class="language-list-content" style="padding: 5px 0;">
+            {% for language in languages %}
+            <div class="language-item current flex-first language-list-content" style="padding: 5px 15px;">
+                <a href="{% get_full_url request language.code %}" style="text-decoration: none; color: #333; display: block; font-size: 14px;">
+                    {% if language.code == "en" %}
+                        <span>{% trans 'English' %}</span>
+                    {% elif language.code == "uz" %}
+                        <span>{% trans "O'zbek" %}</span>
+                    {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
                     <div class="desktop_cart">
                        <div class="blockcart block-cart cart-preview tiva-toggle">
@@ -183,42 +187,84 @@
                            <div class="dropdown-content">
                                <div class="cart-content">
                                    <table>
-                                       {% for item in basket %}
-                                       <tbody>
-                                           <tr>
-                                               <td class="product-image">
-                                                    <a href="{% url 'products:detail' pk=item.product.id %}">
-                                                        <img src="{{ item.product.image.url }}" alt="{% trans 'Product' %}">
-                                                    </a>
-                                               </td>
-                                               <td>
-                                                    <div class="product-name">{{ item.product.title }}
-                                                        <a href="{% url 'products:detail' pk=item.product.id %}"></a>
-                                                    </div>
-                                                    <div>
-                                                        {{ item.product.quantity }} x<span class="product-price">£{{ item.product.price }}</span>
-                                                    </div>
-                                               </td>
-                                               <td class="action">
-                                                   <a class="remove" href="{% url 'basket:basket_remove' product_id=item.product.id %}">
-                                                   <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                   </a>
-                                               </td>
-                                           </tr>
-                                           <tr class="total">
-                                               <td colspan="{{ basket|length }}">{% trans 'Total:' %}</td>
-                                               <td>£{{ basket.get_total_price }}</td>
-                                           </tr>
-                                           <tr>
-                                               <td colspan="3" class="d-flex justify-content-center">
-                                                    <div class="cart-button">
-                                                        <a href="{% url 'products:cart' %}" title="{% trans 'View Cart' %}">{% trans 'View Cart' %}</a>
-                                                        <a href="{% url 'products:checkout' %}" title="{% trans 'Checkout' %}">{% trans 'Checkout' %}</a>
-                                                    </div>
-                                               </td>
-                                           </tr>
-                                       </tbody>
-                                       {% endfor %}
+                                      {% if basket and basket|length > 0 %}
+                                                {% for item in basket %}
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="product-image">
+                                                            <a href="{% url 'products:detail' pk=item.product.id %}">
+                                                                <img src="{{ item.product.image.url }}" alt="{% trans 'Product' %}">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <div class="product-name">
+                                                                <a href="{% url 'products:detail' pk=item.product.id %}">{{ item.product.title }}</a>
+                                                            </div>
+                                                            <div>
+                                                                {{ item.quantity }} x
+                                                                <span style="color:red" class="price">£{{ item.price }}</span>
+                                                                <del class="regular-price">£{{ item.product.price }}</del>
+                                                            </div>
+                                                        </td>
+                                                        <td class="action">
+                                                            <a class="remove" href="{% url 'basket:basket_remove' product_id=item.product.id %}">
+                                                                <i class="fa fa-trash-o" aria-hidden="true" title="{% trans 'Remove' %}"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td colspan="2">{% trans 'Total:' %}</td>
+                                                        <td>£{{ basket.get_total_price }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="d-flex justify-content-center">
+                                                            <div class="cart-button">
+                                                                <a href="{% url 'products:cart' %}" title="{% trans 'View Cart' %}">{% trans 'View Cart' %}</a>
+                                                                <a href="{% url 'products:checkout' %}" title="{% trans 'Checkout' %}">{% trans 'Checkout' %}</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                {% endfor %}
+                                            {% else %}
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="3" style="text-align: center; padding: 40px 20px;">
+                                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                                                                <!-- Shopping Cart Icon -->
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <circle cx="9" cy="21" r="1"></circle>
+                                                                    <circle cx="20" cy="21" r="1"></circle>
+                                                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                                                </svg>
+
+                                                                <h4 style="color: #666; font-size: 18px; font-weight: 500; margin: 0;">
+                                                                    {% trans 'Your basket is empty' %}
+                                                                </h4>
+
+                                                                <p style="color: #999; font-size: 14px; margin: 0;">
+                                                                    {% trans 'Add some products to get started' %}
+                                                                </p>
+
+                                                                <a href="{% url 'products:products' %}" style="
+                                                                    display: inline-block;
+                                                                    background: #4CAF50;
+                                                                    color: white;
+                                                                    padding: 10px 30px;
+                                                                    border-radius: 5px;
+                                                                    text-decoration: none;
+                                                                    font-size: 14px;
+                                                                    font-weight: 500;
+                                                                    margin-top: 10px;
+                                                                    transition: background 0.3s ease;
+                                                                " onmouseover="this.style.background='#45a049'" onmouseout="this.style.background='#4CAF50'">
+                                                                    {% trans 'Continue Shopping' %}
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            {% endif %}
                                    </table>
                                </div>
                            </div>
@@ -229,3 +275,19 @@
         </div>
     </div>
 </header>
+
+<script>
+    document.querySelector('.dropdown-language').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        const collapse = document.getElementById('language');
+        collapse.style.display = collapse.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(event) {
+        const languageSelector = document.querySelector('.desktop-language-selector');
+        const collapse = document.getElementById('language');
+        if (!languageSelector.contains(event.target)) {
+            collapse.style.display = 'none';
+        }
+    });
+</script>
