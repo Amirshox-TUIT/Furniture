@@ -11,7 +11,7 @@
                                         <img src="{% static 'img/home/logo.png' %}" alt="img">
                                     </p>
                                     <p class="content-logo">
-                                        {% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim" %}
+                                        {% trans "Furnitica is a modern e-commerce platform designed for selling furniture and home décor products. It offers an easy-to-use interface, secure checkout, and a personalized shopping experience. With features like product filtering, customer reviews, and responsive design, Furnitica aims to make online furniture shopping simple, reliable, and enjoyable." %}
                                     </p>
                                 </div>
                             </div>
@@ -19,10 +19,10 @@
                                 <div class="block-content">
                                     <ul>
                                         <li><a href="{% url 'pages:about_us' %}">{% trans "About Us" %}</a></li>
-                                        <li><a href="#">{% trans "Reasons to shop" %}</a></li>
-                                        <li><a href="#">{% trans "What our customers say" %}</a></li>
-                                        <li><a href="#">{% trans "Meet the team" %}</a></li>
-                                        <li><a href="#">{% trans "Contact our buyers" %}</a></li>
+                                        <li><a href="{% url 'pages:about_us' %}">{% trans "Reasons to shop" %}</a></li>
+                                        <li><a href="{% url 'pages:about_us' %}">{% trans "What our customers say" %}</a></li>
+                                        <li><a href="{% url 'pages:about_us' %}">{% trans "Meet the team" %}</a></li>
+                                        <li><a href="{% url 'pages:about_us' %}">{% trans "Contact our buyers" %}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                             <span>{% trans "Address :" %}</span>
                                         </div>
                                         <div class="content-contact address-contact">
-                                            <p>{% trans "123 Suspendis matti, Visaosang Building VST District NY Accums, North American" %}</p>
+                                            <p>{% trans "1, Khadra Massif, Shayxontohur District, Tashkent, Uzbekistan" %}</p>
                                         </div>
                                     </div>
                                     <div class="contact-us">
@@ -55,7 +55,7 @@
                                             <span>{% trans "Email :" %}</span>
                                         </div>
                                         <div class="content-contact mail-contact">
-                                            <p>support@domain.com</p>
+                                            <div><a href="mailto:support@najottalim.uz">support@najottalim.uz</a></div>
                                         </div>
                                     </div>
                                     <div class="contact-us">
@@ -64,7 +64,7 @@
                                             <span>{% trans "Hotline :" %}</span>
                                         </div>
                                         <div class="content-contact phone-contact">
-                                            <p>+0012-345-67890</p>
+                                            <p>+998-78-888-9888</p>
                                         </div>
                                     </div>
                                     <div class="contact-us">
@@ -73,7 +73,7 @@
                                             <span>{% trans "Opening Hours :" %}</span>
                                         </div>
                                         <div class="content-contact hours-contact">
-                                            <p>{% trans "Monday - Sunday / 08.00AM- 19.00" %}</p>
+                                            <p>{% trans "Monday - Sunday / 08.00- 21.00" %}</p>
                                             <span>{% trans "(Except Holidays)" %}</span>
                                         </div>
                                     </div>
@@ -81,27 +81,6 @@
                             </div>
                         </div>
                         <div class="tiva-modules col-lg-4 col-md-6">
-                            <div class="block m-top">
-                                <div class="block-content">
-                                    <div class="title-block">{% trans "Newsletter" %}</div>
-                                    <div class="sub-title">
-                                        {% trans "Sign up to our newsletter to get the latest articles, lookbooks voucher codes direct to your inbox" %}
-                                    </div>
-                                    <div class="block-newsletter">
-                                        <form action="#" method="post">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="email" value="" placeholder="{% trans 'Enter Your Email' %}">
-                                                <span class="input-group-btn">
-                                                    <button class="effect-btn btn btn-secondary " name="submitNewsletter" type="submit">
-                                                        <span>{% trans "Subscribe" %}</span>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                            <input type="hidden" name="action" value="0">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="block m-top1">
                                 <div class="block-content">
                                     <div class="social-content">

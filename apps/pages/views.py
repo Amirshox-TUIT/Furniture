@@ -1,11 +1,11 @@
-from django.db.models import Max
+from django.db.models import Max, Q
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 
 from apps.pages.forms import ContactForm
-from apps.pages.models import AboutModel
+from apps.pages.models import AboutModel, BannerModel
 from apps.products.models import ProductModel
 
 
@@ -35,11 +35,11 @@ class ContactView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, "Ваше сообщение успешно отправлено!")
+        messages.success(self.request, "Your message has been successfully sent.")
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Исправьте ошибки в форме и попробуйте снова.')
+        messages.error(self.request, 'Please correct the errors in the form and try again.')
         return super().form_invalid(form)
 
 class HomeView(ListView):
@@ -53,13 +53,21 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        living_prs = ProductModel.objects.filter(categories__sub__title="Living Room").distinct()
-        bathroom_prs = ProductModel.objects.filter(categories__sub__title="Bathroom").distinct()
         big_sales = ProductModel.objects.order_by('-discount')[:3]
+        banners = BannerModel.objects.filter(title__isnull=False)
+        sub_banners = BannerModel.objects.filter(title__isnull=True)
+        new_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).order_by('-created_at')[:3]
+        new_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).order_by('-created_at')[:3]
+        sales_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).order_by('-discount')[:3]
+        sales_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).order_by('-discount')[:3]
 
         about = AboutModel.objects.all()
-        context['living_prs'] = living_prs
-        context['bathroom_prs'] = bathroom_prs
+        context['new_living_prs'] = new_living_prs
+        context['new_bathroom_prs'] = new_bathroom_prs
+        context['sales_living_prs'] = sales_living_prs
+        context['sales_bathroom_prs'] = sales_bathroom_prs
         context['about'] = about
         context['big_sales'] = big_sales
+        context['banners'] = banners
+        context['sub_banners'] = sub_banners
         return context

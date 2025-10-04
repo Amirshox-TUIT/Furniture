@@ -4,7 +4,6 @@ from .models import ProductModel, ProductImageModel, ProductQuantity
 
 
 class ProductForm(forms.ModelForm):
-    # Translation fieldlarni qo'lda qo'shamiz
     title_en = forms.CharField(max_length=100, required=False)
     title_uz = forms.CharField(max_length=100, required=False)
     short_description_en = forms.CharField(widget=forms.Textarea, required=False)
@@ -27,7 +26,6 @@ class ProductForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super().save(commit=False)
 
-        # Translation fieldlarni qo'lda save qilamiz
         if hasattr(self, 'cleaned_data'):
             instance.title_en = self.cleaned_data.get('title_en', '')
             instance.title_uz = self.cleaned_data.get('title_uz', '')
@@ -55,7 +53,6 @@ class ProductQuantityForm(forms.ModelForm):
         fields = ['quantity', 'sizes', 'colors']
 
 
-# Inline formsets
 ProductImageFormSet = inlineformset_factory(
     ProductModel,
     ProductImageModel,
@@ -71,3 +68,30 @@ ProductQuantityFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
+
+
+class CheckoutForm(forms.Form):
+    firstname = forms.CharField(max_length=100, required=True)
+    email = forms.EmailField(required=True)
+    phone = forms.CharField(max_length=128, required=True)
+    address = forms.CharField(max_length=255, required=True)
+    city = forms.CharField(max_length=128, required=True)
+    postal_code = forms.CharField(max_length=15, required=True)
+    country = forms.CharField(max_length=128, required=True)
+    shipping_method = forms.ChoiceField(
+        choices=[
+            ('standard', 'Standard Delivery'),
+            ('express', 'Express Delivery')
+        ],
+        required=True
+    )
+    payment_method = forms.ChoiceField(
+        choices=[
+            ('card', 'Pay by Card'),
+            ('cash', 'Cash on Delivery')
+        ],
+        required=True
+    )
+    terms = forms.BooleanField(required=True)
+    optin = forms.BooleanField(required=False)
+    newsletter = forms.BooleanField(required=False)

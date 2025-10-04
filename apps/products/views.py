@@ -1,11 +1,21 @@
-from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
-
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView
 from .forms import ProductForm, ProductImageFormSet, ProductQuantityFormSet
 from .models import *
+from django.db import transaction
+from apps.basket.cart import Basket
+from apps.order.models import Order, OrderItem
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView
+from django.db.models import Sum
+
+from .models import ProductModel, ProductTag, ProductCategory, ProductQuantity
+
+import uuid
 
 
 class CartView(LoginRequiredMixin, TemplateView):
@@ -13,9 +23,87 @@ class CartView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('users:user_login')
 
 
+class CheckoutView(LoginRequiredMixin, TemplateView):
+    template_name = 'products/product-checkout.html'
+    login_url = reverse_lazy('users:user_login')
 
-def product_checkout(request):
-    return render(request, 'products/product-checkout.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['basket'] = Basket(self.request)
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        basket = Basket(request)
+        if len(basket) == 0:
+            messages.warning(request, 'Your basket is empty!')
+            return redirect('products:cart')
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        basket = Basket(request)
+
+        try:
+            with transaction.atomic():
+                shipping = request.POST.get('shipping_method')
+                delivery_cost = 10 if shipping == 'express' else 0
+                order = Order.objects.create(
+                    user=request.user if request.user.is_authenticated else None,
+                    unique_id=str(uuid.uuid4())[:10].upper(),
+                    delivery=delivery_cost,
+                    payment_method=request.POST.get('payment_method'),
+                    shipping_method=shipping,
+                    customer_name=request.POST.get('firstname'),
+                    customer_email=request.POST.get('email'),
+                    customer_phone=request.POST.get('phone'),
+                    shipping_address=request.POST.get('address'),
+                    shipping_city=request.POST.get('city'),
+                    shipping_postal_code=request.POST.get('postal_code'),
+                    shipping_country=request.POST.get('country'),
+                )
+
+                for item in basket:
+                    OrderItem.objects.create(
+                        order=order,
+                        product=item['product'],
+                        price=item['price'],
+
+                        quantity=item['quantity'],
+                        product_name=item['product'].title,
+                        product_image=item['product'].image
+                    )
+
+                profile = request.user.profile
+                profile.phone = request.POST.get('phone')
+                profile.address = request.POST.get('address')
+                profile.city = request.POST.get('city')
+                profile.postal_code = request.POST.get('postal_code')
+                profile.country = request.POST.get('country')
+                profile.save()
+
+                request.user.first_name = request.POST.get('firstname')
+                request.user.email = request.POST.get('email')
+                request.user.save()
+
+                basket.clear()
+
+                messages.success(request, f'Order #{order.unique_id} placed successfully!')
+                return redirect('orders:success', order_id=order.unique_id)
+
+        except Exception as e:
+            messages.error(request, f'Error: {str(e)}')
+            return redirect('products:checkout')
+
+
+class OrderSuccessView(DetailView):
+    model = Order
+    template_name = 'order_success.html'
+    context_object_name = 'order'
+    slug_field = 'unique_id'
+    slug_url_kwarg = 'order_id'
+
+    def get_queryset(self):
+        return Order.objects.prefetch_related('items__product')
+
 
 class ProductListView(LoginRequiredMixin, ListView):
     template_name = 'products/products.html'
@@ -73,12 +161,6 @@ class ProductListView(LoginRequiredMixin, ListView):
         return context
 
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView
-from django.db.models import Sum
-
-from .models import ProductModel, ProductTag, ProductCategory, ProductQuantity
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
@@ -121,10 +203,6 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
-from django.contrib import messages
-from django.shortcuts import redirect
 
 
 class ProductCreateView(CreateView):

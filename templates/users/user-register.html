@@ -14,13 +14,13 @@
                 <div class="breadcrumb">
                     <ol>
                         <li>
-                            <a href="#">
+                            <a href="{% url 'pages:home3' %}">
                                 <span>{% trans "Home" %}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <span>{% trans "About us" %}</span>
+                            <a href="{% url 'users:user_register' %}">
+                                <span>{% trans "Register" %}</span>
                             </a>
                         </li>
                     </ol>
@@ -78,4 +78,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

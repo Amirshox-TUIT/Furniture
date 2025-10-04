@@ -1,0 +1,126 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Order Success{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="wrap-banner">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="order-success-box" style="text-align: center; padding: 50px 20px;">
+                        <!-- Success Icon -->
+                        <div class="success-icon" style="margin-bottom: 30px;">
+                            <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="45" stroke="#28a745" stroke-width="4" fill="#d4edda"/>
+                                <path d="M30 50 L45 65 L70 35" stroke="#28a745" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            </svg>
+                        </div>
+
+                        <!-- Success Message -->
+                        <h1 style="color: #28a745; margin-bottom: 20px;">
+                            {% trans "Order Placed Successfully!" %}
+                        </h1>
+                        <p style="font-size: 18px; color: #666; margin-bottom: 30px;">
+                            {% trans "Thank you for your order. We've received your order and will process it soon." %}
+                        </p>
+
+                        <!-- Order Details -->
+                        <div class="order-details" style="background: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+                            <h3 style="margin-bottom: 20px;">{% trans "Order Details" %}</h3>
+                            
+                            <div class="order-info" style="text-align: left;">
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #dee2e6;">
+                                    <strong>{% trans "Order Number:" %}</strong>
+                                    <span>#{{ order.unique_id }}</span>
+                                </div>
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #dee2e6;">
+                                    <strong>{% trans "Order Date:" %}</strong>
+                                    <span>{{ order.created_at|date:"F d, Y" }}</span>
+                                </div>
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #dee2e6;">
+                                    <strong>{% trans "Payment Method:" %}</strong>
+                                    <span>{{ order.get_payment_method_display }}</span>
+                                </div>
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #dee2e6;">
+                                    <strong>{% trans "Shipping Method:" %}</strong>
+                                    <span>{% if order.shipping_method == 'express' %}{% trans "Express Delivery" %}{% else %}{% trans "Standard Delivery" %}{% endif %}</span>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Address -->
+                            <div class="shipping-address" style="margin-top: 20px; text-align: left;">
+                                <h4>{% trans "Shipping Address" %}</h4>
+                                <p style="margin: 10px 0;">
+                                    <strong>{{ order.customer_name }}</strong><br>
+                                    {{ order.shipping_address }}<br>
+                                    {{ order.shipping_city }}, {{ order.shipping_postal_code }}<br>
+                                    {{ order.shipping_country }}<br>
+                                    {% trans "Phone:" %} {{ order.customer_phone }}
+                                </p>
+                            </div>
+
+                            <!-- Order Items -->
+                            <div class="order-items" style="margin-top: 20px;">
+                                <h4 style="text-align: left; margin-bottom: 15px;">{% trans "Order Items" %}</h4>
+                                {% for item in order.items.all %}
+                                <div class="item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #dee2e6;">
+                                    <div style="display: flex; align-items: center; gap: 15px;">
+                                        {% if item.product_image %}
+                                        <img src="{{ item.product_image.url }}" alt="{{ item.product_name }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                        {% endif %}
+                                        <div style="text-align: left;">
+                                            <strong>{{ item.product_name }}</strong><br>
+                                            <small>{% trans "Quantity:" %} {{ item.quantity }}</small>
+                                        </div>
+                                    </div>
+                                    <span><strong>£{{ item.get_total_price }}</strong></span>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Order Total -->
+                            <div class="order-total" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #dee2e6;">
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 5px 0;">
+                                    <span>{% trans "Subtotal:" %}</span>
+                                    <span>£{{ order.get_items_total }}</span>
+                                </div>
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 5px 0;">
+                                    <span>{% trans "Shipping:" %}</span>
+                                    <span>{% if order.delivery > 0 %}£{{ order.delivery }}{% else %}{% trans "Free" %}{% endif %}</span>
+                                </div>
+                                <div class="info-row" style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 20px; font-weight: bold;">
+                                    <span>{% trans "Total:" %}</span>
+                                    <span style="color: #28a745;">£{{ order.get_total_price }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <a href="{% url 'products:products' %}" class="btn btn-primary" style="margin: 0 10px; padding: 12px 30px; font-size: 16px;">
+                                {% trans "Continue Shopping" %}
+                            </a>
+                            {% if user.is_authenticated %}
+                            <a href="#" class="btn btn-outline-secondary" style="margin: 0 10px; padding: 12px 30px; font-size: 16px;">
+                                {% trans "View My Orders" %}
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="additional-info" style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 8px;">
+                            <p style="margin: 0; color: #856404;">
+                                <strong>{% trans "What's next?" %}</strong><br>
+                                {% trans "We'll send you an email confirmation with your order details and tracking information once your order ships." %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

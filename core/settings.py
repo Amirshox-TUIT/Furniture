@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.users',
     'apps.basket',
+    'apps.order',
     'ckeditor',
     'ckeditor_uploader',
 ]
@@ -178,6 +179,4 @@ CSRF_TRUSTED_ORIGINS = [
     'http://46.101.235.40',
     'http://127.0.0.1:8000',
 ]
-
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

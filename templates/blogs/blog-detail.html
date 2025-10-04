@@ -18,18 +18,13 @@
                                 <div class="breadcrumb">
                                     <ol>
                                         <li>
-                                            <a href="#">
+                                            <a href="{% url 'pages:home3' %}">
                                                 <span>{% trans "Home" %}</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
-                                                <span>{% trans "Living Room" %}</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>{% trans "Sofa" %}</span>
+                                            <a href="{% url 'products:detail' pk=blog.id %}">
+                                                <span>{% trans "Blog Detail" %}</span>
                                             </a>
                                         </li>
                                     </ol>

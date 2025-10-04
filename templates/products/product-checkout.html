@@ -36,127 +36,204 @@
                         <div id="main">
                             <div class="cart-grid row">
                                 <div class="col-md-9 check-info">
-                                    <div class="checkout-personal-step">
+                                    <!-- Step 1: Personal Information -->
+                                    <div class="checkout-personal-step" id="step-1">
                                         <h3 class="step-title h3 info">
                                             <span class="step-number">1</span>{% trans "PERSONAL INFORMATION" %}
                                         </h3>
-                                    </div>
-                                    <div class="content">
-                                        <ul class="nav nav-inline">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" data-toggle="tab" href="#checkout-guest-form">
-                                                    {% trans "ORDER AS A GUEST" %}
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#checkout-login-form">
-                                                    {% trans "SIGN IN" %}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade in active show" id="checkout-guest-form" role="tabpanel">
-                                                <form action="#" id="customer-form" class="js-customer-form" method="post">
-                                                    <div>
-                                                        <input type="hidden" name="id_customer" value="">
-                                                        <div class="form-group row">
-                                                            <input class="form-control" name="firstname" type="text" placeholder="{% trans "Full name" %}">
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <input class="form-control" name="email" type="email" placeholder="{% trans "Email" %}">
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <input class="form-control" name="phone" type="text" placeholder="{% trans "Phone" %}">
-                                                        </div>
-                                                        <div class="desc-password">
-                                                            <span class="font-weight-bold">{% trans "Create an account" %}</span>
-                                                            <span>({% trans "optional" %})</span>
-                                                            <br>
-                                                            <span class="text-muted">{% trans "And save time on your next order!" %}</span>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="input-group js-parent-focus">
-                                                                <input class="form-control js-child-focus" name="password" type="password" placeholder=" {% trans "Password" %}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="hidden-comment">
-                                                            <div class="form-group row">
-                                                                <input class="form-control" name="birthday" type="text" value="" placeholder=" {% trans "Birthdate" %}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row check-input">
-                                                            <span class="custom-checkbox d-inline-flex">
-                                                                <input class="check" name="optin" type="checkbox" value="1">
-                                                                <label class="label-absolute">{% trans "Receive offers from our partners" %}</label>
-                                                            </span>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <span class="custom-checkbox d-inline-flex check-input">
-                                                                <input class="check" name="newsletter" type="checkbox" value="1">
-                                                                <label>{% trans "Sign up for our newsletter" %}
-                                                                    <br>
-                                                                    <em>{% trans "You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice." %}</em>
-                                                                </label>
-                                                            </span>
-                                                        </div>
+                                        <div class="content" style="display: block;">
+                                            <form id="customer-form" method="post">
+                                                {% csrf_token %}
+                                                <div>
+                                                    <div class="form-group row">
+                                                        <input class="form-control"
+                                                               name="firstname"
+                                                               id="firstname"
+                                                               type="text"
+                                                               value="{{ request.user.first_name|default:'' }}"
+                                                               placeholder="{% trans "Full name" %}"
+                                                               required>
                                                     </div>
-                                                    <div class="clearfix">
-                                                        <div class="row">
-                                                            <input type="hidden" name="submitCreate" value="1">
+                                                    <div class="form-group row">
+                                                        <input class="form-control"
+                                                               name="email"
+                                                               id="email"
+                                                               type="email"
+                                                               value="{{ request.user.email|default:'' }}"
+                                                               placeholder="{% trans "Email" %}"
+                                                               required>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <input class="form-control"
+                                                               name="phone"
+                                                               id="phone"
+                                                               type="text"
+                                                               value="{{ request.user.profile.phone|default:'' }}"
+                                                               placeholder="{% trans "Phone" %}"
+                                                               required>
+                                                    </div>
 
-                                                            <button class="continue btn btn-primary pull-xs-right" name="continue" data-link-action="register-new-customer" type="submit"
-                                                                value="1">
-                                                                {% trans "Continue" %}
-                                                            </button>
-                                                        </div>
+                                                    <div class="form-group row check-input">
+                                                        <span class="custom-checkbox d-inline-flex">
+                                                            <input class="check" name="optin" type="checkbox" value="1">
+                                                            <label class="label-absolute">{% trans "Receive offers from our partners" %}</label>
+                                                        </span>
                                                     </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane fade" id="checkout-login-form" role="tabpanel">
-                                                <form id="login-form" action="#" method="post" class="customer-form">
-                                                    <div>
-                                                        <input type="hidden" name="back" value="">
-                                                        <div class="form-group row">
-                                                            <input class="form-control" name="email" type="email" placeholder="{% trans "Email" %}">
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="input-group js-parent-focus">
-                                                                <input class="form-control js-child-focus js-visible-password" name="password" type="password" placeholder="{% trans "Password" %}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="forgot-password">
-                                                                <a href="../users/user-reset-password.html" rel="nofollow">
-                                                                    {% trans "Forgot your password?" %}
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                                    <div class="form-group row">
+                                                        <span class="custom-checkbox d-inline-flex check-input">
+                                                            <input class="check" name="newsletter" type="checkbox" value="1">
+                                                            <label>{% trans "Sign up for our newsletter" %}
+                                                                <br>
+                                                                <em>{% trans "You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice." %}</em>
+                                                            </label>
+                                                        </span>
                                                     </div>
-                                                    <div class="clearfix">
-                                                        <div class="row">
-                                                            <button class="continue btn btn-primary pull-xs-right" name="continue" data-link-action="sign-in" type="submit" value="1">
-                                                                {% trans "Continue" %}
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <div class="row">
+                                                        <button class="continue btn btn-primary pull-xs-right" type="button" onclick="goToStep(2)">
+                                                            {% trans "Continue" %}
+                                                        </button>
                                                     </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="checkout-personal-step">
-                                        <h3 class="step-title h3">
+
+                                    <!-- Step 2: Addresses -->
+                                    <div class="checkout-personal-step" id="step-2">
+                                        <h3 class="step-title h3" onclick="toggleStep(2)" style="cursor: pointer;">
                                             <span class="step-number">2</span>{% trans "Addresses" %}
                                         </h3>
+                                        <div class="content" style="display: none;">
+                                            <form id="address-form">
+                                                <div class="form-group row">
+                                                    <input class="form-control"
+                                                           name="address"
+                                                           type="text"
+                                                           value="{{ request.user.profile.address|default:'' }}"
+                                                           placeholder="{% trans "Address" %}"
+                                                           required>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <input class="form-control"
+                                                           name="city"
+                                                           type="text"
+                                                           value="{{ request.user.profile.city|default:'' }}"
+                                                           placeholder="{% trans "City" %}"
+                                                           required>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <input class="form-control"
+                                                           name="postal_code"
+                                                           type="text"
+                                                           value="{{ request.user.profile.postal_code|default:'' }}"
+                                                           placeholder="{% trans "Postal Code" %}"
+                                                           required>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <input class="form-control"
+                                                           name="country"
+                                                           type="text"
+                                                           value="{{ request.user.profile.country|default:'' }}"
+                                                           placeholder="{% trans "Country" %}"
+                                                           required>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <div class="row">
+                                                        <button class="continue btn btn-primary pull-xs-right" type="button" onclick="goToStep(3)">
+                                                            {% trans "Continue" %}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="checkout-personal-step">
-                                        <h3 class="step-title h3">
+                                    <div class="checkout-personal-step" id="step-3">
+                                        <h3 class="step-title h3" onclick="toggleStep(3)" style="cursor: pointer;">
                                             <span class="step-number">3</span>{% trans "Shipping Method" %}
                                         </h3>
+                                        <div class="content" style="display: none;">
+                                            <form id="shipping-form">
+                                                <div class="form-group">
+                                                    <div class="custom-radio">
+                                                        <input type="radio" name="shipping_method" value="standard" id="standard" checked>
+                                                        <label for="standard">
+                                                            <strong>{% trans "Standard Delivery" %}</strong><br>
+                                                            <span class="text-muted">{% trans "3-5 business days - Free" %}</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-radio">
+                                                        <input type="radio" name="shipping_method" value="express" id="express">
+                                                        <label for="express">
+                                                            <strong>{% trans "Express Delivery" %}</strong><br>
+                                                            <span class="text-muted">{% trans "1-2 business days - £10.00" %}</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <div class="row">
+                                                        <button class="continue btn btn-primary pull-xs-right" type="button" onclick="goToStep(4)">
+                                                            {% trans "Continue" %}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="checkout-personal-step">
-                                        <h3 class="step-title h3">
+
+                                    <!-- Step 4: Payment -->
+                                    <div class="checkout-personal-step" id="step-4">
+                                        <h3 class="step-title h3" onclick="toggleStep(4)" style="cursor: pointer;">
                                             <span class="step-number">4</span>{% trans "Payment" %}
                                         </h3>
+                                        <div class="content" style="display: none;">
+                                            <form id="payment-form" action="{% url 'products:checkout' %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="firstname" id="hidden-firstname">
+                                                <input type="hidden" name="email" id="hidden-email">
+                                                <input type="hidden" name="phone" id="hidden-phone">
+                                                <input type="hidden" name="address" id="hidden-address">
+                                                <input type="hidden" name="city" id="hidden-city">
+                                                <input type="hidden" name="postal_code" id="hidden-postal-code">
+                                                <input type="hidden" name="country" id="hidden-country">
+                                                <input type="hidden" name="shipping_method" id="hidden-shipping">
+
+                                                <div class="form-group">
+                                                    <div class="custom-radio">
+                                                        <input type="radio" name="payment_method" value="card" id="card" checked>
+                                                        <label for="card">
+                                                            <strong>{% trans "Pay by Card" %}</strong>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-radio">
+                                                        <input type="radio" name="payment_method" value="cash" id="cash">
+                                                        <label for="cash">
+                                                            <strong>{% trans "Cash on Delivery" %}</strong>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-checkbox">
+                                                        <input type="checkbox" name="terms" id="terms" required>
+                                                        <label for="terms">
+                                                            {% trans "I agree to the terms of service and privacy policy" %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <div class="row">
+                                                        <button class="continue btn btn-primary pull-xs-right" type="submit" onclick="prepareOrderData()">
+                                                            {% trans "Place Order" %}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="cart-grid-right col-xs-12 col-lg-3">
@@ -216,4 +293,106 @@
             </div>
         </div>
     </div>
+</div>
+
+<script>
+function goToStep(stepNumber) {
+    // Oldingi step formalarini validatsiya qilish
+    const currentStep = document.querySelector('.checkout-personal-step .content[style*="display: block"]');
+    if (currentStep) {
+        const form = currentStep.querySelector('form');
+        if (form && !form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+    }
+
+    // Barcha contentlarni yashirish
+    document.querySelectorAll('.checkout-personal-step .content').forEach(content => {
+        content.style.display = 'none';
+    });
+
+    // Barcha titlelardan 'info' klassini olib tashlash
+    document.querySelectorAll('.checkout-personal-step .step-title').forEach(title => {
+        title.classList.remove('info');
+    });
+
+    // Kerakli stepni ochish
+    const targetStep = document.getElementById('step-' + stepNumber);
+    if (targetStep) {
+        const content = targetStep.querySelector('.content');
+        const title = targetStep.querySelector('.step-title');
+
+        if (content) content.style.display = 'block';
+        if (title) title.classList.add('info');
+
+        // Sahifani tepaga scroll qilish
+        targetStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function toggleStep(stepNumber) {
+    const step = document.getElementById('step-' + stepNumber);
+    if (step) {
+        const content = step.querySelector('.content');
+        if (content) {
+            const isVisible = content.style.display === 'block';
+            content.style.display = isVisible ? 'none' : 'block';
+        }
+    }
+}
+
+function prepareOrderData() {
+    // Barcha ma'lumotlarni hidden fieldlarga ko'chirish
+    document.getElementById('hidden-firstname').value = document.getElementById('firstname').value;
+    document.getElementById('hidden-email').value = document.getElementById('email').value;
+    document.getElementById('hidden-phone').value = document.getElementById('phone').value;
+    document.getElementById('hidden-address').value = document.querySelector('input[name="address"]').value;
+    document.getElementById('hidden-city').value = document.querySelector('input[name="city"]').value;
+    document.getElementById('hidden-postal-code').value = document.querySelector('input[name="postal_code"]').value;
+    document.getElementById('hidden-country').value = document.querySelector('input[name="country"]').value;
+
+    // Tanlangan shipping methodini olish
+    const shippingMethod = document.querySelector('input[name="shipping_method"]:checked');
+    if (shippingMethod) {
+        document.getElementById('hidden-shipping').value = shippingMethod.value;
+    }
+}
+</script>
+
+<style>
+.checkout-personal-step .step-title {
+    padding: 15px;
+    background: #f5f5f5;
+    margin-bottom: 0;
+    border: 1px solid #ddd;
+}
+
+.checkout-personal-step .step-title.info {
+    background: #e8f4f8;
+    border-color: #4a90e2;
+}
+
+.checkout-personal-step .content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+    margin-bottom: 20px;
+}
+
+.custom-radio {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.custom-radio input[type="radio"] {
+    margin-right: 10px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+}
+</style>
 {% endblock %}

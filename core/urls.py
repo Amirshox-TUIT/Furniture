@@ -34,6 +34,7 @@ urlpatterns += i18n_patterns(
     path('', include('apps.users.urls', namespace='users')),
     path('', include('apps.basket.urls', namespace='basket')),
     path('confirmation/<uidb64>/<token>/', ConfirmEmailView.as_view(), name='confirmation'),
+    path('orders/', include('apps.order.urls', namespace='orders')),
 )
 
 if settings.DEBUG:

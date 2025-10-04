@@ -1,7 +1,8 @@
 from django.contrib import admin
+from django.core.paginator import Page
 from modeltranslation.admin import TranslationAdmin
 
-from .models import ContactModel, AboutModel
+from .models import ContactModel, AboutModel, BannerModel
 
 
 class MyTranslationAdmin(TranslationAdmin):
@@ -27,3 +28,10 @@ class AboutAdmin(MyTranslationAdmin):
     list_display = ['name', 'profession']
     search_fields = ['name', 'profession']
     list_filter = ['name']
+
+
+@admin.register(BannerModel)
+class BannerAdmin(MyTranslationAdmin):
+    list_display = ['title']
+    search_fields = ['title']
+    list_filter = ['title']

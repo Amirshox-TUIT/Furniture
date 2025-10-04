@@ -28,3 +28,16 @@ class AboutModel(models.Model):
     class Meta:
         verbose_name = 'About'
         verbose_name_plural = 'Abouts'
+
+
+class BannerModel(models.Model):
+    title = models.CharField(max_length=255, null=True, blank=True)
+    image = models.ImageField()
+    link = models.URLField()
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = 'Banner'
+        verbose_name_plural = 'Banners'

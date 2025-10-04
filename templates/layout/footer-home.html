@@ -5,7 +5,7 @@
     <div class="inner-footer">
         <div class="container">
             <div class="footer-top">
-                <div class="row">
+                <div class="row" style="justify-content: space-between">
                     <div class="col-lg-3 col-md-12 col-xs-12">
                         <div class="block">
                             <div class="block-content">
@@ -13,11 +13,8 @@
                                     <img src="{% static 'img/home/logo.png' %}" alt="img">
                                 </p>
                                 <p class="content-logo">
-                                    {% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim" %}
+                                    {% trans "Furnitica is a modern e-commerce platform designed for selling furniture and home décor products. It offers an easy-to-use interface, secure checkout, and a personalized shopping experience. With features like product filtering, customer reviews, and responsive design, Furnitica aims to make online furniture shopping simple, reliable, and enjoyable." %}
                                 </p>
-                                <span>
-                                    {% trans "Duis aute irure dolor in reprehenderit in voluptate velit exercitation ullamco" %}
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -30,33 +27,17 @@
                                 </div>
                                 <ul>
                                     <li><a href="{% url 'pages:about_us' %}">{% trans "About Us" %}</a></li>
-                                    <li><a href="#">{% trans "Reasons to shop" %}</a></li>
-                                    <li><a href="#">{% trans "What our customers say" %}</a></li>
-                                    <li><a href="#">{% trans "Meet the team" %}</a></li>
-                                    <li><a href="#">{% trans "Contact our buyers" %}</a></li>
-                                    <li><a href="#">{% trans "Cookies & privacy" %}</a></li>
+                                    <li><a href="{% url 'pages:about_us' %}">{% trans "Reasons to shop" %}</a></li>
+                                    <li><a href="{% url 'pages:about_us' %}">{% trans "What our customers say" %}</a></li>
+                                    <li><a href="{% url 'pages:about_us' %}">{% trans "Meet the team" %}</a></li>
+                                    <li><a href="{% url 'pages:about_us' %}">{% trans "Contact our buyers" %}</a></li>
+                                    <li><a href="{% url 'pages:about_us' %}">{% trans "Cookies & privacy" %}</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-4">
-                        <div class="block">
-                            <div class="block-content">
-                                <div class="title-block">
-                                    {% trans "CUSTOMER SERVICES" %}
-                                </div>
-                                <ul>
-                                    <li><a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a></li>
-                                    <li><a href="#">{% trans "Help and advice" %}</a></li>
-                                    <li><a href="#">{% trans "Delivery" %}</a></li>
-                                    <li><a href="#">{% trans "Terms and conditions" %}</a></li>
-                                    <li><a href="#">{% trans "Refund Policy" %}</a></li>
-                                    <li><a href="#">{% trans "FAQs" %}</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div class="col-lg-3 col-md-4">
                         <div class="block">
@@ -68,26 +49,26 @@
                                     <div class="data align-self-stretch d-flex">
                                         <i class="fa fa-home float-left m-bottom"></i>
                                         <div class="content-data">
-                                            <b class="mr-2">{% trans "Showroom:" %}</b>123 Suspendis matti, Visaosang Building
+                                            <b class="mr-2">{% trans "Showroom:" %}</b>{% trans '1, Khadra Massif, Shayxontohur District, Tashkent, Uzbekistan' %}
                                         </div>
                                     </div>
                                     <div class="data d-flex align-self-stretch">
                                         <i class="fa fa-clock-o float-left"></i>
                                         <div class="content-data">
-                                            <b class="mr-2">{% trans "Opening Hours:" %}</b>08.00AM - 19.00
+                                            <b class="mr-2">{% trans "Opening Hours:" %}</b>08.00 - 21.00
                                         </div>
                                     </div>
                                     <div class="support d-dflex align-self-stretch">
                                         <div class="data mail-support">
                                             <i class="fa fa-envelope float-left"></i>
-                                            <div>behruzfayzullayev3@gmail.com</div>
+                                            <div><a href="mailto:support@najottalim.uz">support@najottalim.uz</a></div>
                                         </div>
                                     </div>
                                     <div class="data d-flex align-self-stretch phone-support">
                                         <div class="title-icon">
                                             <i class="fa fa-phone float-left"></i>
                                         </div>
-                                        <div>+0012-345-67890</div>
+                                        <div> +998-78-888-9888</div>
                                     </div>
                                 </div>
                             </div>

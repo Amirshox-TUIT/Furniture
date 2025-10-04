@@ -6,3 +6,7 @@ from .models import *
 @register(AboutModel)
 class NewsTranslationOptions(TranslationOptions):
     fields = ('profession', 'bio',)
+
+@register(BannerModel)
+class BannerTranslationOptions(TranslationOptions):
+    fields = ('title',)

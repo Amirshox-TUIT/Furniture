@@ -50,47 +50,25 @@
             <div class="slideshow">
                 <div class="tiva-slideshow-wrapper">
                     <div id="tiva-slideshow" class="nivoSlider">
-                        <a href="#" title="Slideshow image">
-                            <img class="img-responsive" src="{% static 'img/home/home3-banner.jpg' %}" title="#caption1" alt="Slideshowimage">
+                        {% for banner in banners %}
+                        <a href="{{ banner.link }}" title="Slideshow image">
+                            <img class="img-responsive" src="{{ banner.image.url }}" title="#caption{{ forloop.counter }}" alt="Slideshowimage">
                         </a>
-                        <a href="#" title="Slideshow image">
-                            <img class="img-responsive" src="{% static 'img/home/home3-banner2.jpg' %}" title="#caption2" alt="Slideshowimage">
-                        </a>
-                        <a href="#" title="Slideshow image">
-                            <img class="img-responsive" src="{% static 'img/home/home3-banner3.jpg' %}" title="#caption3" alt="Slideshowimage">
-                        </a>
+                        {% endfor %}
                     </div>
-                    <div id="caption1" class="nivo-html-caption">
+                    {% for banner in banners %}
+                    <div id="caption{{ banner.id }}" class="nivo-html-caption caption">
                         <div class="tiva-caption">
                             <div class="left-right hidden-xs">
-                                <p class="caption-1">
-                                    {% trans "Modern" %} <span>{% trans "Designer" %}</span> {% trans "Chair" %}
+                                <p class="caption-{{ banner.id }}">
+                                    {% for word in banner.title.split %}
+                                        <span class="text-{{ forloop.counter }}">{{ word }}</span>
+                                    {% endfor %}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div id="caption2" class="nivo-html-caption caption">
-                        <div class="tiva-caption">
-                            <div class="left-right hidden-xs">
-                                <p class="caption-2">
-                                    <span class="text-1">{% trans "Creative" %}</span>
-                                    <span class="text-2">{% trans "Furniture" %}</span>
-                                    <span class="text-3">{% trans "Design" %}</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="caption3" class="nivo-html-caption caption">
-                        <div class="left-right hidden-xs">
-                            <div class="tiva-caption">
-                                <p class="caption-3">
-                                    <span class="text-1">{% trans "Creative" %}</span>
-                                    <span class="text-2">{% trans "Furniture" %}</span>
-                                    <span class="text-3">{% trans "Design" %}</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -103,20 +81,15 @@
                         <!-- banner -->
                         <div class="section spacing-10 group-image-special">
                             <div class="row">
+                                {% for sub in sub_banners %}
                                 <div class="col-lg-6 col-md-6">
                                     <div class="effect">
-                                        <a href="#">
-                                            <img class="img-fluid width-100" src="{% static 'img/home/effect10.jpg' %}" alt="banner-2" title="banner-2">
+                                        <a href="{{ sub.link }}">
+                                            <img class="img-fluid width-100" src="{{ sub.image.url }}" alt="banner-2" title="banner-2">
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="effect">
-                                        <a href="#">
-                                            <img class="img-fluid width-100" src="{% static 'img/home/effect11.jpg' %}" alt="banner-2" title="banner-2">
-                                        </a>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
 
@@ -129,24 +102,21 @@
                     <div class="title-tab-content product-tab justify-content-between">
                         <div class="title-product">
                             <h2>{% trans "Living Room" %}</h2>
-                            <p>{% trans "LOREM IPSUM DOLOR SIT AMET CONSECTETUR" %}</p>
+                            <p>{% trans "The living room is a cozy and stylish space designed for comfort and relaxation. With its spacious layout, soft lighting, and modern furniture, it is perfect for family gatherings, entertaining guests, or simply unwinding after a long day." %}</p>
                         </div>
                         <ul class="nav nav-tabs">
                             <li>
                                 <a href="#new" class="active" data-toggle="tab">{% trans "New Arrivals" %}</a>
                             </li>
                             <li>
-                                <a href="#best" data-toggle="tab">{% trans "Best Seller" %}</a>
-                            </li>
-                            <li>
-                                <a href="#sale" data-toggle="tab">{% trans "Featured Product" %}</a>
+                                <a href="#best" data-toggle="tab">{% trans "Best Deals" %}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="tab-content">
                         <div id="new" class="tab-pane fade in active show">
                             <div class="category-product owl-carousel owl-theme owl-loaded owl-drag">
-                                {% for living_pr in living_prs %}
+                                {% for living_pr in new_living_prs %}
                                 <div class="item text-center">
                                     <div class="product-miniature js-product-miniature item-one first-item">
                                         <div class="thumbnail-container">
@@ -157,8 +127,8 @@
                                             <div class="product-flags discount">-{{living_pr.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
-                                                    {% for quantity in living_pr.products_quantity.all %}
-                                                    <a href="#" class="color {{ quantity.colors.title }}" title="{% trans quantity.colors.title|lower %}"></a>
+                                                    {% for color in living_pr.products_quantity.colors.all %}
+                                                    <a href="{% url 'products:detail' pk=living_pr.id %}" class="color {{ colors.title }}" title="{{ colors.title|lower }}"></a>
                                                     {% endfor %}
                                                 </div>
                                             </div>
@@ -199,12 +169,8 @@
                                                         </a>
                                                     {% endif %}
                                                 </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +180,7 @@
                         </div>
                         <div id="best" class="tab-pane fade in">
                             <div class="category-product owl-carousel owl-theme owl-loaded owl-drag">
-                                {% for big_sale in big_sales %}
+                                {% for big_sale in sales_living_prs %}
                                 <div class="item text-center">
                                     <div class="product-miniature js-product-miniature item-one first-item">
                                         <div class="thumbnail-container">
@@ -225,8 +191,8 @@
                                             <div class="product-flags discount">-{{ big_sale.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
-                                                    {% for quantity in big_sale.products_quantity.all %}
-                                                        <a href="#" class="color {{ quantity.colors.title|lower }}" title="{% trans quantity.colors.title %}"></a>
+                                                    {% for color in big_sale.products_quantity.colors.all %}
+                                                        <a href="{% url 'products:detail' pk=big_sale.id %}" class="color {{ color.title|lower }}" title="{% trans color.title %}"></a>
                                                     {% endfor %}
                                                 </div>
                                             </div>
@@ -267,80 +233,8 @@
                                                         </a>
                                                     {% endif %}
                                                 </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div id="sale" class="tab-pane fade in">
-                            <div class="category-product owl-carousel owl-theme owl-loaded owl-drag">
-                                {% for big_sale in big_sales %}
-                                <div class="item text-center">
-                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                        <div class="thumbnail-container">
-                                            <a href="{% url 'products:detail' pk=big_sale.id %}">
-                                                <img class="img-fluid image-cover" src="{{ big_sale.image.url }}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{{ big_sale.image2.url }}" alt="{% trans "Product Secondary Image" %}">
-                                            </a>
-                                            <div class="product-flags discount">-{{"big_sale.discount" }}%</div>
-                                            <div class="highlighted-informations">
-                                                <div class="variant-links">
-                                                    {% for quantity in big_sale.products_quantity.all %}
-                                                        <a href="#" class="color {{ quantity.colors.title|lower }}" title="{% trans quantity.colors.title %}"></a>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-description">
-                                            <div class="product-groups">
-                                                <div class="product-title">
-                                                    <a href="{% url 'products:detail' pk=big_sale.id %}">{{ big_sale.title }}</a>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-group-price">
-                                                    <div class="product-price-and-shipping">
-                                                        <span class="price">£{{ big_sale.discount_price }}</span>
-                                                        <del class="regular-price">£{{ big_sale.price }}</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% in_basket request big_sale.id as is_true %}
-                                            <div class="product-buttons d-flex justify-content-center">
-                                                <form action="#" method="post" class="formAddToCart">
-                                                    <input type="hidden" name="token">
-                                                    <input type="hidden" name="id_product" value="1">
-                                                    {% if is_true %}
-                                                    <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=big_sale.id %}" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Remove from Cart" %}"></i>
-                                                    </a>
-                                                    {% else %}
-                                                    <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=big_sale.id %}" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
-                                                    </a>
-                                                    {% endif %}
-                                                </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -407,12 +301,8 @@
                                                     </a>
                                                     {% endif %}
                                                 </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -436,24 +326,21 @@
                     <div class="title-tab-content product-tab justify-content-between">
                         <div class="title-product">
                             <h2>{% trans "Bathroom" %}</h2>
-                            <p>{% trans "LOREM IPSUM DOLOR SIT AMET CONSECTETUR" %}</p>
+                            <p>{% trans "The bathroom is a clean and functional space with a modern design. Equipped with essential fixtures, elegant tiles, and a relaxing atmosphere, it provides comfort and convenience for everyday use." %}</p>
                         </div>
                         <ul class="nav nav-tabs">
                             <li>
                                 <a href="#new1" class="active" data-toggle="tab">{% trans "New Arrivals" %}</a>
                             </li>
                             <li>
-                                <a href="#best1" data-toggle="tab">{% trans "Best Seller" %}</a>
-                            </li>
-                            <li>
-                                <a href="#sale1" data-toggle="tab">{% trans "Featured Product" %}</a>
+                                <a href="#best1" data-toggle="tab">{% trans "Best Deals" %}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="tab-content">
                         <div id="new1" class="tab-pane fade in active show">
                             <div class="category-product owl-carousel owl-theme owl-loaded owl-drag">
-                                {% for bathroom_pr in bathroom_prs %}
+                                {% for bathroom_pr in new_bathroom_prs %}
                                 <div class="item text-center">
                                     <div class="product-miniature js-product-miniature item-one first-item">
                                         <div class="thumbnail-container">
@@ -464,8 +351,8 @@
                                             <div class="product-flags discount">-{{bathroom_pr.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
-                                                    {% for quantity in bathroom_pr.products_quantity.all %}
-                                                    <a href="#" class="color {{ quantity.colors.title }}" title="{% trans quantity.colors.title|lower %}"></a>
+                                                    {% for color in bathroom_pr.products_quantity.color.all %}
+                                                    <a href="#" class="color {{ color.title }}" title="{{ color.title|lower }} "></a>
                                                     {% endfor %}
                                                 </div>
                                             </div>
@@ -495,16 +382,16 @@
                                                 <form action="#" method="post" class="formAddToCart">
                                                     <input type="hidden" name="token">
                                                     <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
+                                                    {% if is_true %}
+                                                    <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=bathroom_pr.id %}" data-button-action="add-to-cart">
+                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Remove from Cart" %}"></i>
+                                                    </a>
+                                                    {% else %}
+                                                    <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=bathroom_pr.id %}" data-button-action="add-to-cart">
                                                         <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
                                                     </a>
+                                                    {% endif %}
                                                 </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -514,26 +401,27 @@
                         </div>
                         <div id="best1" class="tab-pane fade in">
                             <div class="category-product owl-carousel owl-theme owl-loaded owl-drag">
+                                {% for bath in sales_bathroom_prs %}
                                 <div class="item text-center">
                                     <div class="product-miniature js-product-miniature item-one first-item">
                                         <div class="thumbnail-container">
-                                            <a href="../products/product-detail.html">
-                                                <img class="img-fluid image-cover" src="{% static 'img/product/6.jpg' %}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{% static 'img/product/23.jpg' %}" alt="{% trans "Product Secondary Image" %}">
+                                            <a href="{% url 'products:detail' pk=bath.id %}">
+                                                <img class="img-fluid image-cover" src="{{ bath.image.url }}" alt="{% trans "Product Image" %}">
+                                                <img class="img-fluid image-secondary" src="{{ bath.image2.url }}" alt="{% trans "Product Secondary Image" %}">
                                             </a>
-                                            <div class="product-flags discount">-{{"30" }}%</div>
+                                            <div class="product-flags discount">-{{ bath.discount }}%</div>
                                             <div class="highlighted-informations">
                                                 <div class="variant-links">
-                                                    <a href="#" class="color beige" title="{% trans "Beige" %}"></a>
-                                                    <a href="#" class="color orange" title="{% trans "Orange" %}"></a>
-                                                    <a href="#" class="color green" title="{% trans "Green" %}"></a>
+                                                    {% for color in bath.products_quantity.colors.all %}
+                                                        <a href="{% url 'products:detail' pk=bath.id %}" class="color {{ color.title|lower }}" title="{{ color.title }}"></a>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="product-description">
                                             <div class="product-groups">
                                                 <div class="product-title">
-                                                    <a href="../products/product-detail.html">{% trans "Nulla et justo non augue" %}</a>
+                                                    <a href="{% url 'products:detail' pk=bath.id %}">{{ bath.title }}</a>
                                                 </div>
                                                 <div class="rating">
                                                     <div class="star-content">
@@ -546,8 +434,8 @@
                                                 </div>
                                                 <div class="product-group-price">
                                                     <div class="product-price-and-shipping">
-                                                        <span class="price">£20.08</span>
-                                                        <del class="regular-price">£28.68</del>
+                                                        <span class="price">£{{ bath.discount_price }}</span>
+                                                        <del class="regular-price">£{{ bath.price }}</del>
                                                     </div>
                                                 </div>
                                             </div>
@@ -555,295 +443,21 @@
                                                 <form action="#" method="post" class="formAddToCart">
                                                     <input type="hidden" name="token">
                                                     <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
+                                                    {% if is_true %}
+                                                    <a class="add-to-cart" href="{% url 'basket:basket_remove' product_id=bath.id %}" data-button-action="add-to-cart">
+                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Remove from Cart" %}"></i>
+                                                    </a>
+                                                    {% else %}
+                                                    <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=bath.id %}" data-button-action="add-to-cart">
                                                         <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
                                                     </a>
+                                                    {% endif %}
                                                 </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item text-center">
-                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                        <div class="thumbnail-container">
-                                            <a href="../products/product-detail.html">
-                                                <img class="img-fluid image-cover" src="{% static 'img/product/10.jpg' %}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{% static 'img/product/11.jpg' %}" alt="{% trans "Product Secondary Image" %}">
-                                            </a>
-                                            <div class="product-flags discount">-{{"10" }}%</div>
-                                            <div class="highlighted-informations">
-                                                <div class="variant-links">
-                                                    <a href="#" class="color beige" title="{% trans "Beige" %}"></a>
-                                                    <a href="#" class="color orange" title="{% trans "Orange" %}"></a>
-                                                    <a href="#" class="color green" title="{% trans "Green" %}"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-description">
-                                            <div class="product-groups">
-                                                <div class="product-title">
-                                                    <a href="../products/product-detail.html">{% trans "Nulla et justo non augue" %}</a>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-group-price">
-                                                    <div class="product-price-and-shipping">
-                                                        <span class="price">£20.08</span>
-                                                        <del class="regular-price">£28.68</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-buttons d-flex justify-content-center">
-                                                <form action="#" method="post" class="formAddToCart">
-                                                    <input type="hidden" name="token">
-                                                    <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
-                                                    </a>
-                                                </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item text-center">
-                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                        <div class="thumbnail-container">
-                                            <a href="../products/product-detail.html">
-                                                <img class="img-fluid image-cover" src="{% static 'img/product/16.jpg' %}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{% static 'img/product/14.jpg' %}" alt="{% trans "Product Secondary Image" %}">
-                                            </a>
-                                            <div class="highlighted-informations">
-                                                <div class="variant-links">
-                                                    <a href="#" class="color beige" title="{% trans "Beige" %}"></a>
-                                                    <a href="#" class="color orange" title="{% trans "Orange" %}"></a>
-                                                    <a href="#" class="color green" title="{% trans "Green" %}"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-description">
-                                            <div class="product-groups">
-                                                <div class="product-title">
-                                                    <a href="../products/product-detail.html">{% trans "Nulla et justo non augue" %}</a>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-group-price">
-                                                    <div class="product-price-and-shipping">
-                                                        <span class="price">£20.08</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-buttons d-flex justify-content-center">
-                                                <form action="#" method="post" class="formAddToCart">
-                                                    <input type="hidden" name="token">
-                                                    <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
-                                                    </a>
-                                                </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="sale1" class="tab-pane fade in">
-                            <div class="category-product owl-carousel owl-theme owl-loaded owl-drag">
-                                <div class="item text-center">
-                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                        <div class="thumbnail-container">
-                                            <a href="../products/product-detail.html">
-                                                <img class="img-fluid image-cover" src="{% static 'img/product/6.jpg' %}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{% static 'img/product/23.jpg' %}" alt="{% trans "Product Secondary Image" %}">
-                                            </a>
-                                            <div class="product-flags discount">-{{"30" }}%</div>
-                                            <div class="highlighted-informations">
-                                                <div class="variant-links">
-                                                    <a href="#" class="color beige" title="{% trans "Beige" %}"></a>
-                                                    <a href="#" class="color orange" title="{% trans "Orange" %}"></a>
-                                                    <a href="#" class="color green" title="{% trans "Green" %}"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-description">
-                                            <div class="product-groups">
-                                                <div class="product-title">
-                                                    <a href="../products/product-detail.html">{% trans "Nulla et justo non augue" %}</a>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-group-price">
-                                                    <div class="product-price-and-shipping">
-                                                        <span class="price">£20.08</span>
-                                                        <del class="regular-price">£28.68</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-buttons d-flex justify-content-center">
-                                                <form action="#" method="post" class="formAddToCart">
-                                                    <input type="hidden" name="token">
-                                                    <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
-                                                    </a>
-                                                </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item text-center">
-                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                        <div class="thumbnail-container">
-                                            <a href="../products/product-detail.html">
-                                                <img class="img-fluid image-cover" src="{% static 'img/product/10.jpg' %}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{% static 'img/product/11.jpg' %}" alt="{% trans "Product Secondary Image" %}">
-                                            </a>
-                                            <div class="product-flags discount">-{{"10" }}%</div>
-                                            <div class="highlighted-informations">
-                                                <div class="variant-links">
-                                                    <a href="#" class="color beige" title="{% trans "Beige" %}"></a>
-                                                    <a href="#" class="color orange" title="{% trans "Orange" %}"></a>
-                                                    <a href="#" class="color green" title="{% trans "Green" %}"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-description">
-                                            <div class="product-groups">
-                                                <div class="product-title">
-                                                    <a href="../products/product-detail.html">{% trans "Nulla et justo non augue" %}</a>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-group-price">
-                                                    <div class="product-price-and-shipping">
-                                                        <span class="price">£20.08</span>
-                                                        <del class="regular-price">£28.68</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-buttons d-flex justify-content-center">
-                                                <form action="#" method="post" class="formAddToCart">
-                                                    <input type="hidden" name="token">
-                                                    <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
-                                                    </a>
-                                                </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item text-center">
-                                    <div class="product-miniature js-product-miniature item-one first-item">
-                                        <div class="thumbnail-container">
-                                            <a href="../products/product-detail.html">
-                                                <img class="img-fluid image-cover" src="{% static 'img/product/16.jpg' %}" alt="{% trans "Product Image" %}">
-                                                <img class="img-fluid image-secondary" src="{% static 'img/product/14.jpg' %}" alt="{% trans "Product Secondary Image" %}">
-                                            </a>
-                                            <div class="highlighted-informations">
-                                                <div class="variant-links">
-                                                    <a href="#" class="color beige" title="{% trans "Beige" %}"></a>
-                                                    <a href="#" class="color orange" title="{% trans "Orange" %}"></a>
-                                                    <a href="#" class="color green" title="{% trans "Green" %}"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-description">
-                                            <div class="product-groups">
-                                                <div class="product-title">
-                                                    <a href="../products/product-detail.html">{% trans "Nulla et justo non augue" %}</a>
-                                                </div>
-                                                <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-group-price">
-                                                    <div class="product-price-and-shipping">
-                                                        <span class="price">£20.08</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-buttons d-flex justify-content-center">
-                                                <form action="#" method="post" class="formAddToCart">
-                                                    <input type="hidden" name="token">
-                                                    <input type="hidden" name="id_product" value="1">
-                                                    <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                        <i class="fa fa-shopping-cart" aria-hidden="true" title="{% trans "Add to Cart" %}"></i>
-                                                    </a>
-                                                </form>
-                                                <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                    <i class="fa fa-heart" aria-hidden="true" title="{% trans "Add to Wishlist" %}"></i>
-                                                </a>
-                                                <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                    <i class="fa fa-eye" aria-hidden="true" title="{% trans "Quick View" %}"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -892,26 +506,10 @@
             <div class="news-content">
                 <div class="tiva-modules">
                     <div class="block">
-                        <div class="title-block">{% trans "Newsletter" %}</div>
-                        <div class="sub-title">{% trans "Sign up to our newsletter to get the latest articles, lookbooks voucher codes direct to your inbox" %}</div>
-                        <div class="block-newsletter">
-                            <form action="#" method="post">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="email" value="" placeholder="{% trans "Enter Your Email" %}">
-                                    <span class="input-group-btn">
-                                        <button class="effect-btn btn btn-secondary" name="submitNewsletter" type="submit">
-                                            <span>{% trans "Subscribe" %}</span>
-                                        </button>
-                                    </span>
-                                </div>
-                                <input type="hidden" name="action" value="0">
-                            </form>
-                        </div>
-                    </div>
-                    <div class="block">
                         <div class="social-content">
                             <div id="social-block">
                                 <div class="social">
+                                    <h1>{% trans 'Subscribe to our social medias' %}</h1>
                                     <ul class="list-inline mb-0 justify-content-end">
                                         <li class="list-inline-item mb-0">
                                             <a href="{{ telegram }}" target="_blank">
