@@ -5,6 +5,82 @@
 {% block body_id %}{% endblock %}
 {% block body_class %}user-register blog{% endblock %}
 {% block content %}
+
+<style>
+    .register-form {
+        max-width: 450px;
+        margin: 0 auto;
+        padding: 40px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-section {
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid #e0e0e0;
+        text-align: center;
+    }
+
+    .login-text {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .login-link {
+        display: inline-block;
+        padding: 12px 35px;
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        border: 2px solid #333;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .login-link:hover {
+        background-color: #333;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #333;
+    }
+</style>
+
 <!-- main content -->
 <div class="main-content">
     <div class="wrap-banner">
@@ -42,23 +118,23 @@
                                     <div>
                                         <div class="form-group">
                                             <div>
-                                                <input class="form-control" name="username" type="text" placeholder="{% trans "Username" %}">
+                                                <input class="form-control" name="username" type="text" placeholder="{% trans "Username" %}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div>
-                                                <input class="form-control" name="email" type="email" placeholder="{% trans "Email" %}">
+                                                <input class="form-control" name="email" type="email" placeholder="{% trans "Email" %}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div>
-                                                <input class="form-control" name="password1" type="password" placeholder="{% trans "Password" %}">
+                                                <input class="form-control" name="password1" type="password" placeholder="{% trans "Password" %}" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div>
                                                 <div class="input-group js-parent-focus">
-                                                    <input class="form-control js-child-focus js-visible-password" name="password2" type="password" placeholder="{% trans "Confirm Password" %}">
+                                                    <input class="form-control js-child-focus js-visible-password" name="password2" type="password" placeholder="{% trans "Confirm Password" %}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -71,6 +147,14 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <!-- Login Section -->
+                                <div class="login-section">
+                                    <p class="login-text">{% trans "Already have an account?" %}</p>
+                                    <a href="{% url 'users:user_login' %}" class="login-link">
+                                        {% trans "Sign In" %}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

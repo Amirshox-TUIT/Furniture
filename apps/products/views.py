@@ -178,7 +178,6 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
             total=Sum('quantity')
         )['total'] or 0
 
-        # Available sizes va colors
         available_sizes = set()
         available_colors = set()
 
@@ -194,9 +193,7 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
             categories__in=product.categories.all()
         ).exclude(id=product.id).distinct()[:6]
 
-        context['bestsellers'] = ProductModel.objects.filter(
-            raiting__gt=0
-        ).order_by('-raiting')[:3]
+        context['bestsellers'] = ProductModel.objects.all().order_by('-discount')[:3]
         context['reviews'] = []
         context['reviews_count'] = 0
 

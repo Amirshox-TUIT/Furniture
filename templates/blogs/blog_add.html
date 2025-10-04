@@ -4,265 +4,513 @@
 {% block title %}Furnitica - {% trans "Add New Blog" %}{% endblock %}
 {% block body_id %}blog-create{% endblock %}
 {% block body_class %}blog{% endblock %}
+
 {% block content %}
-<!-- main content -->
+<style>
+    .blog-create-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 30px;
+    }
+
+    .blog-create-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
+
+    .blog-create-header h1 {
+        color: #333;
+        font-size: 28px;
+        margin: 0;
+    }
+
+    .lang-switcher {
+        display: flex;
+        gap: 10px;
+    }
+
+    .lang-btn {
+        padding: 10px 20px;
+        border: 2px solid #ddd;
+        background: white;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .lang-btn.active {
+        background: #2c3e50;
+        color: white;
+        border-color: #2c3e50;
+    }
+
+    .lang-btn:hover:not(.active) {
+        border-color: #2c3e50;
+        color: #2c3e50;
+    }
+
+    .blog-form-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #fafafa;
+        border-radius: 6px;
+    }
+
+    .blog-form-section h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .blog-form-section h2:before {
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: #2c3e50;
+        border-radius: 2px;
+    }
+
+    .blog-form-group {
+        margin-bottom: 20px;
+    }
+
+    .blog-form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .blog-form-group label.required:after {
+        content: '*';
+        color: #e74c3c;
+        margin-left: 4px;
+    }
+
+    .blog-form-group input[type="text"],
+    .blog-form-group input[type="file"],
+    .blog-form-group textarea,
+    .blog-form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+        font-family: inherit;
+    }
+
+    .blog-form-group input:focus,
+    .blog-form-group textarea:focus,
+    .blog-form-group select:focus {
+        outline: none;
+        border-color: #2c3e50;
+    }
+
+    .blog-form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .blog-file-input-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .blog-file-input-wrapper input[type=file] {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .blog-file-input-label {
+        display: block;
+        padding: 12px;
+        background: white;
+        border: 2px dashed #2c3e50;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.3s;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    .blog-file-input-label:hover {
+        background: #f8f9fa;
+        border-color: #1a252f;
+    }
+
+    .blog-file-preview {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .blog-preview-item {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 2px solid #e0e0e0;
+    }
+
+    .blog-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .blog-help-text {
+        font-size: 12px;
+        color: #7f8c8d;
+        margin-top: 5px;
+    }
+
+    .blog-form-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #e0e0e0;
+    }
+
+    .blog-btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .blog-btn-primary {
+        background: #2c3e50;
+        color: white;
+    }
+
+    .blog-btn-primary:hover {
+        background: #1a252f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-btn-secondary {
+        background: #95a5a6;
+        color: white;
+    }
+
+    .blog-btn-secondary:hover {
+        background: #7f8c8d;
+    }
+
+    select[multiple] {
+        min-height: 120px;
+    }
+
+    .errorlist {
+        color: #e74c3c;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0;
+        font-size: 13px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* Quill Editor Styling */
+    .editor-wrapper {
+        margin-bottom: 10px;
+    }
+
+    #editor-container-en,
+    #editor-container-uz {
+        min-height: 400px;
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+    }
+
+    .ql-toolbar.ql-snow {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border: 2px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        background: #f8f9fa;
+    }
+
+    .ql-container.ql-snow {
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border: 2px solid #e0e0e0;
+        border-top: none;
+        font-size: 14px;
+    }
+
+    .ql-editor:focus {
+        outline: none;
+    }
+
+    .editor-wrapper:focus-within .ql-toolbar.ql-snow,
+    .editor-wrapper:focus-within .ql-container.ql-snow {
+        border-color: #2c3e50;
+    }
+
+    .hidden-textarea {
+        height: 1px;
+        opacity: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+</style>
+
 <div class="main-content">
     <div id="wrapper-site">
-        <div id="content-wrapper">
+        <div id="content-wrapper" class="full-width">
             <div id="main">
-                <div class="page-home">
+                <!-- breadcrumb -->
+                <nav class="breadcrumb-bg">
+                    <div class="container no-index">
+                        <div class="breadcrumb">
+                            <ol>
+                                <li>
+                                    <a href="{% url 'pages:home3' %}">
+                                        <span>{% trans "Home" %}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'blogs:list_sidebar_left' %}">
+                                        <span>{% trans "Blogs" %}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>{% trans "Add Blog" %}</span>
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </nav>
 
-                    <!-- breadcrumb -->
-                    <nav class="breadcrumb-bg">
-                        <div class="container no-index">
-                            <div class="breadcrumb">
-                                <ul>
-                                    <li>
-                                        <a href="{% url 'pages:home3' %}">
-                                            <span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'blogs:list_sidebar_left' %}">
-                                            <span></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span></span>
-                                        </a>
-                                    </li>
-                                </ul>
+                <div class="container">
+                    <div class="blog-create-container">
+                        <div class="blog-create-header">
+                            <h1>{% trans "Add New Blog Post" %}</h1>
+                            <div class="lang-switcher">
+                                <button type="button" class="lang-btn active" data-lang="en">English (EN)</button>
+                                <button type="button" class="lang-btn" data-lang="uz">O'zbekcha (UZ)</button>
                             </div>
                         </div>
-                    </nav>
 
-                    <div class="container">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-sm-12 col-lg-10 offset-lg-1 col-md-10 offset-md-1">
-                                    <div class="blog-create-form" style="background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                                        <h2 style="margin-bottom: 30px; color: #333; font-size: 28px; font-weight: 600;">
-                                            {% trans "Add New Blog Post" %}
-                                        </h2>
+                        <form id="blogForm" method="post" enctype="multipart/form-data" action="{% url 'blogs:add' %}">
+                            {% csrf_token %}
 
-                                        <form method="post" enctype="multipart/form-data" action="{% url 'blogs:add' %}" id="blog-form">
-                                            {% csrf_token %}
+                            <!-- Basic Information -->
+                            <div class="blog-form-section">
+                                <h2>{% trans "Basic Information" %}</h2>
 
-                                            <!-- Title Field -->
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label for="id_title" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px;">
-                                                    {% trans "Title" %} <span style="color: #e74c3c;">*</span>
-                                                </label>
-                                                <input type="text" name="title" id="id_title" class="form-control" required
-                                                       style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; transition: border-color 0.3s;"
-                                                       placeholder="{% trans 'Enter blog title' %}"
-                                                       value="{{ form.title.value|default:'' }}">
-                                                {% if form.title.errors %}
-                                                    <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ form.title.errors }}</span>
-                                                {% endif %}
-                                            </div>
+                                <!-- Title Fields -->
+                                <div class="blog-form-group">
+                                    <label class="required">{% trans "Title" %}</label>
+                                    {{ form.title.errors }}
+                                    <input type="text" name="title_en" id="title_en" class="lang-field en-field"
+                                           placeholder="Enter blog title in English" required>
+                                    <input type="text" name="title_uz" id="title_uz" class="lang-field uz-field hidden"
+                                           placeholder="Blog sarlavhasini kiriting (O'zbekcha)">
+                                </div>
 
-                                            <!-- Author Field -->
-                                             <div class="form-group" style="margin-bottom: 25px;">
-                                                <label for="id_author" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px;">
-                                                    {% trans "Author" %} <span style="color: #e74c3c;">*</span>
-                                                </label>
-                                                <select name="author" id="id_author" class="form-control" required
-                                                        style="width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; transition: border-color 0.3s; appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23333\' d=\'M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z\'/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 15px center; background-size: 20px;">
-                                                    <option value="" disabled selected>{% trans "Select Author" %}</option>
-                                                    {% for author in authors %}
-                                                        <option value="{{ author.id }}">{{ author.full_name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                                {% if form.author.errors %}
-                                                    <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ form.author.errors }}</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <!-- Image Field -->
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label for="id_image" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px;">
-                                                    {% trans "Featured Image" %} <span style="color: #e74c3c;">*</span>
-                                                </label>
-                                                <input type="file" name="image" id="id_image" class="form-control" required accept="image/*"
-                                                       style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px;">
-                                                <small style="color: #777; font-size: 12px; margin-top: 5px; display: block;">
-                                                    {% trans "Recommended size: 800x600px" %}
-                                                </small>
-                                                {% if form.image.errors %}
-                                                    <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ form.image.errors }}</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <!-- Category Field -->
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label for="id_category" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px;">
-                                                    {% trans "Categories" %} <span style="color: #e74c3c;">*</span>
-                                                </label>
-                                                <select name="category" id="id_category" class="form-control" multiple required
-                                                        style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; min-height: 100px;">
-                                                    {% for category in categories %}
-                                                        <option value="{{ category.id }}">{{ category.title }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                                <small style="color: #777; font-size: 12px; margin-top: 5px; display: block;">
-                                                    {% trans "Hold Ctrl/Cmd to select multiple categories" %}
-                                                </small>
-                                                {% if form.category.errors %}
-                                                    <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ form.category.errors }}</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <!-- Tag Field -->
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label for="id_tag" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px;">
-                                                    {% trans "Tags" %} <span style="color: #e74c3c;">*</span>
-                                                </label>
-                                                <select name="tag" id="id_tag" class="form-control" multiple required
-                                                        style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; min-height: 100px;">
-                                                    {% for tag in tags %}
-                                                        <option value="{{ tag.id }}">{{ tag.title }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                                <small style="color: #777; font-size: 12px; margin-top: 5px; display: block;">
-                                                    {% trans "Hold Ctrl/Cmd to select multiple tags" %}
-                                                </small>
-                                                {% if form.tag.errors %}
-                                                    <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ form.tag.errors }}</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <!-- Description Field -->
-                                            <div class="form-group" style="margin-bottom: 25px;">
-                                                <label for="id_description" style="display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px;">
-                                                    {% trans "Content" %} <span style="color: #e74c3c;">*</span>
-                                                </label>
-                                                <!-- Quill Editor -->
-                                                <div id="editor-container"></div>
-                                                <textarea name="description" id="id_description" class="form-control ckeditor-textarea"
-                                                style="height:1px;opacity:0;position:absolute;pointer-events:none;">{{ form.description.value|default:'' }}</textarea>
-                                                {% if form.description.errors %}
-                                                    <span style="color: #e74c3c; font-size: 12px; margin-top: 5px; display: block;">{{ form.description.errors }}</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <!-- Submit Buttons -->
-                                            <div class="form-actions" style="display: flex; gap: 15px; justify-content: flex-start; margin-top: 30px;">
-                                                <button type="submit" class="btn-submit"
-                                                        style="padding: 12px 30px; background-color: #333; color: #fff; border: none; border-radius: 25px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s;">
-                                                    {% trans "Publish Blog" %}
-                                                </button>
-                                                <a href="{% url 'blogs:list_sidebar_left' %}" class="btn-cancel"
-                                                   style="padding: 12px 30px; background-color: #e0e0e0; color: #333; border: none; border-radius: 25px; font-size: 14px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.3s;">
-                                                    {% trans "Cancel" %}
-                                                </a>
-                                            </div>
-                                        </form>
+                                <!-- Featured Image -->
+                                <div class="blog-form-group">
+                                    <label class="required">{% trans "Featured Image" %}</label>
+                                    {{ form.image.errors }}
+                                    <div class="blog-file-input-wrapper">
+                                        <input type="file" id="id_image" name="image" accept="image/*" required>
+                                        <label for="id_image" class="blog-file-input-label">
+                                            📷 {% trans "Choose Featured Image" %}
+                                        </label>
                                     </div>
+                                    <div id="imagePreview" class="blog-file-preview"></div>
+                                    <div class="blog-help-text">{% trans "Recommended size: 800x600px" %}</div>
                                 </div>
                             </div>
-                        </div>
+
+                            <!-- Categories & Tags -->
+                            <div class="blog-form-section">
+                                <h2>{% trans "Categories & Tags" %}</h2>
+
+                                <div class="blog-form-group">
+                                    <label class="required">{% trans "Categories" %}</label>
+                                    {{ form.category.errors }}
+                                    <select name="category" id="id_category" multiple required>
+                                        {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="blog-help-text">{% trans "Hold Ctrl/Cmd to select multiple categories" %}</div>
+                                </div>
+
+                                <div class="blog-form-group">
+                                    <label class="required">{% trans "Tags" %}</label>
+                                    {{ form.tag.errors }}
+                                    <select name="tag" id="id_tag" multiple required>
+                                        {% for tag in tags %}
+                                        <option value="{{ tag.id }}">{{ tag.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="blog-help-text">{% trans "Hold Ctrl/Cmd to select multiple tags" %}</div>
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="blog-form-section">
+                                <h2>{% trans "Content" %}</h2>
+
+                                <div class="blog-form-group">
+                                    <label class="required">{% trans "Blog Content" %}</label>
+                                    {{ form.description.errors }}
+
+                                    <!-- English Editor -->
+                                    <div class="editor-wrapper lang-field en-field">
+                                        <div id="editor-container-en"></div>
+                                    </div>
+                                    <textarea name="description_en" id="description_en" class="hidden-textarea"></textarea>
+
+                                    <!-- Uzbek Editor -->
+                                    <div class="editor-wrapper lang-field uz-field hidden">
+                                        <div id="editor-container-uz"></div>
+                                    </div>
+                                    <textarea name="description_uz" id="description_uz" class="hidden-textarea"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="blog-form-actions">
+                                <a href="{% url 'blogs:list_sidebar_left' %}" class="blog-btn blog-btn-secondary">
+                                    {% trans "Cancel" %}
+                                </a>
+                                <button type="submit" class="blog-btn blog-btn-primary">
+                                    {% trans "Publish Blog" %}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
 
-{% block extra_libs_js %}
 <!-- Quill Rich Text Editor CDN -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
 
-<style>
-    select option {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-    .form-control:focus {
-        outline: none;
-        border-color: #333;
-        box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.1);
-    }
-
-    .btn-submit:hover {
-        background-color: #000;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-cancel:hover {
-        background-color: #d0d0d0;
-    }
-
-    /* Quill Editor custom styling */
-    #editor-container {
-        min-height: 400px;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    .ql-toolbar.ql-snow {
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        border: 1px solid #ddd;
-        background: #f8f9fa;
-    }
-
-    .ql-container.ql-snow {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        border: 1px solid #ddd;
-        border-top: none;
-        font-size: 14px;
-    }
-
-    .ckeditor-textarea {
-    height: 1px;
-    opacity: 0;
-    position: absolute;
-    pointer-events: none;
-}
-</style>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var quill = new Quill('#editor-container', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                [{ 'font': [] }],
-                [{ 'size': ['small', false, 'large', 'huge'] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'color': [] }, { 'background': [] }],
-                [{ 'script': 'sub'}, { 'script': 'super' }],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                [{ 'indent': '-1'}, { 'indent': '+1' }],
-                [{ 'align': [] }],
-                ['blockquote', 'code-block'],
-                ['link', 'image', 'video'],
-                ['clean']
-            ]
-        },
-        placeholder: '{% trans "Write your blog content here..." %}'
+    let currentLang = 'en';
+    let quillEN, quillUZ;
+
+    // Language Switcher
+    const langButtons = document.querySelectorAll('.lang-btn');
+
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            currentLang = lang;
+
+            langButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.lang-field').forEach(field => {
+                if (field.classList.contains(`${lang}-field`)) {
+                    field.classList.remove('hidden');
+                } else {
+                    field.classList.add('hidden');
+                }
+            });
+        });
     });
 
-    // Mavjud contentni yuklash
-    var existingContent = document.getElementById('id_description').value;
-    if (existingContent) {
-        quill.root.innerHTML = existingContent;
+    // Image Preview
+    function setupImagePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.innerHTML = `
+                        <div class="blog-preview-item">
+                            <img src="${e.target.result}" alt="Preview">
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     }
 
-    // Formani submit qilishdan oldin Quill contentini textarea ga yozish
-    document.getElementById('blog-form').addEventListener('submit', function(e) {
-        var description = document.getElementById('id_description');
-        description.value = quill.root.innerHTML;
+    setupImagePreview('id_image', 'imagePreview');
+
+    // Quill Editor Setup
+    document.addEventListener('DOMContentLoaded', function() {
+        const toolbarOptions = [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'font': [] }],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'align': [] }],
+            ['blockquote', 'code-block'],
+            ['link', 'image', 'video'],
+            ['clean']
+        ];
+
+        // English Editor
+        quillEN = new Quill('#editor-container-en', {
+            theme: 'snow',
+            modules: { toolbar: toolbarOptions },
+            placeholder: 'Write your blog content here in English...'
+        });
+
+        // Uzbek Editor
+        quillUZ = new Quill('#editor-container-uz', {
+            theme: 'snow',
+            modules: { toolbar: toolbarOptions },
+            placeholder: "Blog mazmunini shu yerga yozing (O'zbekcha)..."
+        });
+
+        // Sync Quill content to textareas on form submit
+        document.getElementById('blogForm').addEventListener('submit', function(e) {
+            document.getElementById('description_en').value = quillEN.root.innerHTML;
+            document.getElementById('description_uz').value = quillUZ.root.innerHTML;
+        });
     });
-});
 </script>
 {% endblock %}

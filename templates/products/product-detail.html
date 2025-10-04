@@ -24,8 +24,8 @@
                                     </li>
                                     {% if product.categories.first %}
                                     <li>
-                                        <a href="{% url 'products:products' %}?cat={{ product.categories.first.id }}">
-                                            <span>{{ product.categories.first.title }}</span>
+                                        <a href="{% url 'products:products' %}">
+                                            <span>{% trans 'Products' %}</span>
                                         </a>
                                     </li>
                                     {% endif %}
@@ -66,7 +66,7 @@
                                     </div>
                                     <!-- best seller -->
                                     <div class="sidebar-block">
-                                        <div class="title-block">{% trans "Best seller" %}</div>
+                                        <div class="title-block">{% trans "Best Deals" %}</div>
                                         <div class="product-content tab-content">
                                             <div class="row">
                                                 {% for bestseller in bestsellers %}
@@ -403,14 +403,6 @@
                                                                 </fieldset>
                                                             </div>
                                                         </fieldset>
-                                                        <fieldset class="spr-form-contact">
-                                                            <div class="spr-form-contact-name">
-                                                                <input class="spr-form-input spr-form-input-text form-control" name="name" placeholder="{% trans "Enter your name" %}" required>
-                                                            </div>
-                                                            <div class="spr-form-contact-email">
-                                                                <input type="email" class="spr-form-input spr-form-input-email form-control" name="email" placeholder="{% trans "Enter your email" %}" required>
-                                                            </div>
-                                                        </fieldset>
                                                         <fieldset>
                                                             <div class="spr-form-review-body">
                                                                 <div class="spr-form-input">
@@ -478,12 +470,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="product-buttons d-flex justify-content-center">
-                                                                    <a class="add-to-cart" href="{% url 'products:detail' pk=rproduct.id %}" title="{% trans "View Product" %}">
-                                                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a class="addToWishlist" href="" title="{% trans "Add to Wishlist" %}">
-                                                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                    </a>
+                                                                    <form action="#" method="post" class="formAddToCart">
+                                                                        <a class="add-to-cart" href="{% url 'basket:basket_add' product_id=rproduct.id %}" data-button-action="add-to-cart">
+                                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>

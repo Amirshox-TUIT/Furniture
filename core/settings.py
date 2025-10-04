@@ -71,7 +71,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "apps.blogs.context_processors.sidebar_data",
                 "apps.blogs.context_processors.social_medias",
                 'apps.basket.context_processor.basket',
                 'apps.basket.context_processor.products_categories',

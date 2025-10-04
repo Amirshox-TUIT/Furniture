@@ -11,6 +11,7 @@ from django.views import View
 from django.views.generic import CreateView, FormView, UpdateView, DetailView
 
 from apps.blogs.models import BlogsModel
+from apps.order.models import Order
 from apps.users.forms import RegisterModelForm, LoginForm, ProfileModelForm
 from apps.users.models import ProfileModel
 from apps.users.tokens import email_verification_token
@@ -130,6 +131,12 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         kwargs['user'] = self.get_object().user
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['orders'] = Order.objects.filter(user=self.get_object().user)
+
+        return context
+
     def get_success_url(self):
         return reverse_lazy('users:user_account', kwargs={'pk': self.kwargs['pk']})
 
@@ -140,4 +147,18 @@ class ProfileView(LoginRequiredMixin, UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, "Failed to update your profile!")
         return super().form_invalid(form)
+
+
+class UpdateAvatarView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        try:
+            profile = request.user.profile
+            if 'avatar' in request.FILES:
+                profile.avatar = request.FILES['avatar']
+                profile.save()
+                messages.success(request, 'Avatar updated successfully!')
+            return redirect('users:user_account', pk=request.user.id)
+        except Exception as e:
+            messages.error(request, f'Error updating avatar: {str(e)}')
+            return redirect('users:user_account', pk=request.user.id)
 

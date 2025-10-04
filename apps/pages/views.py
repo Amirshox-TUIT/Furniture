@@ -56,10 +56,10 @@ class HomeView(ListView):
         big_sales = ProductModel.objects.order_by('-discount')[:3]
         banners = BannerModel.objects.filter(title__isnull=False)
         sub_banners = BannerModel.objects.filter(title__isnull=True)
-        new_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).order_by('-created_at')[:3]
-        new_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).order_by('-created_at')[:3]
-        sales_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).order_by('-discount')[:3]
-        sales_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).order_by('-discount')[:3]
+        new_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).distinct().order_by('-created_at')[:3]
+        new_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).distinct().order_by('-created_at')[:3]
+        sales_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).distinct().order_by('-discount')[:3]
+        sales_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).distinct().order_by('-discount')[:3]
 
         about = AboutModel.objects.all()
         context['new_living_prs'] = new_living_prs

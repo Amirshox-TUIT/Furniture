@@ -41,6 +41,10 @@ class BlogDetailView(LoginRequiredMixin, DetailView, CreateView):
 
         context['comments'] = comments
         context['related_blogs'] = related_blogs
+
+        context['categories'] = CategoriesModel.objects.filter(sub__isnull=True)
+        context['recent_blogs'] = BlogsModel.objects.exclude(id=self.kwargs['pk']).order_by("-created_at")[:2]
+        context['tags'] = TagsModel.objects.all()
         return context
 
 
@@ -71,32 +75,64 @@ class BlogListView(LoginRequiredMixin, ListView):
         if s:
             blogs = blogs.filter(title__icontains=s)
 
+        context['categories'] = CategoriesModel.objects.filter(sub__isnull=True)
+        context['recent_blogs'] = BlogsModel.objects.order_by("-created_at")[:2]
+        context['tags'] = TagsModel.objects.all()
         context['blogs'] = blogs
+        context['tag_id'] = tag_id
         return context
 
 
 from .forms import BlogForm
 
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.shortcuts import redirect
+
 
 class BlogCreateView(LoginRequiredMixin, CreateView):
-    form_class = BlogForm
     template_name = 'blogs/blog_add.html'
     login_url = reverse_lazy('users:user_login')
+    model = BlogsModel
+    fields = []
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['authors'] = AuthorsModel.objects.all()
         context['categories'] = CategoriesModel.objects.all()
         context['tags'] = TagsModel.objects.all()
         return context
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Blog created successfully!')
-        return super().form_valid(form)
+    def post(self, request, *args, **kwargs):
+        try:
+            author = AuthorsModel.objects.get(user=request.user)
 
-    def form_invalid(self, form):
-        messages.error(self.request, 'Please check your spelling and try again!')
-        return super().form_invalid(form)
+            blog = BlogsModel.objects.create(
+                title_en=request.POST.get('title_en'),
+                title_uz=request.POST.get('title_uz'),
+                description_en=request.POST.get('description_en'),
+                description_uz=request.POST.get('description_uz'),
+                image=request.FILES.get('image'),
+                author=author
+            )
+
+            category_ids = request.POST.getlist('category')
+            tag_ids = request.POST.getlist('tag')
+
+            blog.category.set(category_ids)
+            blog.tag.set(tag_ids)
+
+            messages.success(request, 'Blog created successfully!')
+            return redirect('blogs:detail', pk=blog.pk)
+
+        except AuthorsModel.DoesNotExist:
+            messages.error(request, 'You must have an author profile to create blogs!')
+            return redirect('blogs:list_sidebar_left')
+
+        except Exception as e:
+            messages.error(request, f'Error creating blog: {str(e)}')
+            return redirect('blogs:add')
 
     def get_success_url(self):
         return reverse_lazy('blogs:detail', kwargs={'pk': self.object.pk})

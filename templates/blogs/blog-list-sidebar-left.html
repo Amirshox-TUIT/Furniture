@@ -2,6 +2,7 @@
 {% load static %}
 {% load blog_tags %}
 {% load i18n %}
+{% load  custom_filters %}
 {% block title %}Furnitica - {% trans "Minimalist Furniture HTML Template" %}{% endblock %}
 {% block body_id %}blog-list-sidebar-left{% endblock %}
 {% block body_class %}blog{% endblock %}
@@ -35,7 +36,99 @@
                         <div class="container">
                             <div class="content">
                                 <div class="row">
-                                    {% include 'blogs/recent_posts.html' %}
+
+                                    <div class="sidebar-3 sidebar-collection col-lg-3 col-md-3 col-sm-4">
+                                        <!-- category -->
+                                        <div class="sidebar-block">
+                                            <div class="title-block">{% trans "Categories" %}</div>
+                                            <div class="block-content">
+                                                {% for cat in categories %}
+                                                <div class="cateTitle hasSubCategory open level1">
+                                                    <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#{{ cat.title|nospace|lower }}" aria-expanded="false" role="status">
+                                                        <i class="zmdi zmdi-minus"></i>
+                                                        <i class="zmdi zmdi-plus"></i>
+                                                    </span>
+                                                    <a class="cateItem" href="#">{{ cat.title }}</a>
+                                                    <div class="subCategory collapse" id="{{ cat.title|lower|nospace }}" aria-expanded="true" role="status">
+                                                        {% for sub in cat.sub_category.all %}
+                                                        <div class="cateTitle">
+                                                            <a onclick="addUrlParameter('cat', {{ sub.id }})" class="cateItem">{{ sub.title }}</a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <!-- recent posts -->
+                                        <div class="sidebar-block">
+                                            <div class="title-block">{% trans "Recent Posts" %}</div>
+                                            <div class="post-item-content">
+                                                {% for r_blog in recent_blogs %}
+                                                <div>
+                                                    <div class="late-item">
+                                                        <a href="{% url 'blogs:detail' pk=r_blog.id %}">
+                                                            <p style="width: 20ch; white-space: normal; overflow-wrap: break-word" class="content-title">{{ r_blog.title }}</p>
+                                                        </a>
+                                                        <span>
+                                                            <i class="zmdi zmdi-comments"></i>{{ r_blog.comments.count }} {% trans "comment" %}
+                                                        </span>
+                                                        <span>
+                                                            <i class="zmdi zmdi-calendar-note"></i>{{ r_blog.created_at|date:"d M Y" }}
+                                                        </span>
+                                                        <p class="description" style="width: 30ch; white-space: normal; overflow-wrap: break-word;">
+                                                            {{ r_blog.description|slice:'150'|striptags }}
+                                                        </p>
+                                                        <p class="remove">
+                                                            <a href="{% url 'blogs:detail' pk=r_blog.id %}">{% trans "READ MORE" %}</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <!-- products tag -->
+                                        <div class="sidebar-block product-tags">
+                                            <div class="title-block">
+                                                {% trans "Product Tags" %}
+                                            </div>
+                                            <div class="block-content">
+                                                <ul class="listSidebarBlog list-unstyled">
+                                                    {% for tag in tags %}
+                                                    <li>
+                                                        <a onclick="addUrlParameter('tag', {{ tag.id }})"
+                                                           {% if tag_id == tag.id %}style="background-color:black; color:white; padding:6px 12px; display:inline-block; border-radius:4px; text-decoration:none;"{% endif %}
+                                                           title="{% blocktrans %}Show products matching tag {{ tag.title }}{% endblocktrans %}">
+                                                            {{ tag.title }}
+                                                        </a>
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!-- advertising -->
+                                        <div class="sidebar-block group-image-special">
+                                            <div class="effect">
+                                                <a href="#">
+                                                    <img class="img-fluid" src="{% static 'img/blog/advertising.jpg' %}" alt="{% trans 'banner-2' %}" title="{% trans 'banner-2' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function addUrlParameter(name, value) {
+                                            let searchParams = new URLSearchParams(window.location.search)
+                                            if (searchParams.has(name) && searchParams.get(name) == value) {
+                                                searchParams.delete(name)
+                                            } else {
+                                                searchParams.set(name, value)
+                                            }
+                                            window.location.search = searchParams.toString()
+                                        }
+                                    </script>
                                     <div class="col-sm-8 col-lg-9 col-md-9 flex-xs-first main-blogs">
                                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                                        <h2 style="margin:0;">Recent Posts</h2>
@@ -81,31 +174,39 @@
                                         </div>
                                         {% endfor %}
 
-                                        <div class="page-list col" style="display: flex; justify-content: center; align-items: center; padding: 10px 0;">
-                                            <ul class="justify-content-center d-flex" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 10px;">
-                                                {% if page_obj.has_previous %}
-                                                    <li style="margin: 0;">
-                                                        <a rel="prev" onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})" class="previous disabled js-search-link" style="text-decoration: none; color: #333; padding: 8px 15px; background-color: #e0e0e0; border-radius: 20px; display: inline-block; font-size: 14px;">
-                                                            {% trans "Previous" %}
-                                                        </a>
-                                                    </li>
-                                                {% endif %}
-                                                {% for page in page_obj.paginator.page_range %}
-                                                    <li style="margin: 0;">
-                                                        <a rel="nofollow" onclick="addUrlParameter('page', {{ page }})" class="disabled js-search-link" style="text-decoration: none; color: #fff; padding: 8px 15px; background-color: {% if page == page_obj.number %} #000 {% else %} #b0b0b0 {% endif %}; border-radius: 20px; display: inline-block; font-size: 14px; transition: background-color 0.3s;">
-                                                            {{ page }}
-                                                        </a>
-                                                    </li>
-                                                {% endfor %}
-                                                {% if page_obj.has_next %}
-                                                    <li style="margin: 0;">
-                                                        <a rel="next" onclick="addUrlParameter('page', {{ page_obj.next_page_number }})" class="next disabled js-search-link" style="text-decoration: none; color: #333; padding: 8px 15px; background-color: #e0e0e0; border-radius: 20px; display: inline-block; font-size: 14px;">
-                                                            {% trans "Next" %}
-                                                        </a>
-                                                    </li>
-                                                {% endif %}
-                                            </ul>
-                                        </div>
+                                        <div class="pagination-wrapper">
+    <ul class="pagination-list">
+        {% if page_obj.has_previous %}
+            <li class="pagination-item">
+                <a rel="prev"
+                   onclick="addUrlParameter('page', {{ page_obj.previous_page_number }})"
+                   class="pagination-link pagination-prev">
+                    {% trans "Previous" %}
+                </a>
+            </li>
+        {% endif %}
+
+        {% for page in page_obj.paginator.page_range %}
+            <li class="pagination-item">
+                <a rel="nofollow"
+                   onclick="addUrlParameter('page', {{ page }})"
+                   class="pagination-link {% if page == page_obj.number %}pagination-active{% endif %}">
+                    {{ page }}
+                </a>
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="pagination-item">
+                <a rel="next"
+                   onclick="addUrlParameter('page', {{ page_obj.next_page_number }})"
+                   class="pagination-link pagination-next">
+                    {% trans "Next" %}
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
                                     </div>
                                 </div>
                             </div>
@@ -115,6 +216,82 @@
             </div>
         </div>
     </div>
+    <style>
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+.pagination-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.pagination-item {
+    margin: 0;
+}
+
+.pagination-link {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 16px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+    min-width: 40px;
+    text-align: center;
+}
+
+.pagination-link:hover {
+    background-color: #3e2723;
+    color: #fff;
+    border-color: #3e2723;
+    transform: translateY(-2px);
+}
+
+.pagination-active {
+    background-color: #3e2723 !important;
+    color: #fff !important;
+    border-color: #3e2723 !important;
+    font-weight: 600;
+}
+
+.pagination-prev,
+.pagination-next {
+    background-color: #fff;
+    font-weight: 600;
+}
+
+.pagination-prev:hover,
+.pagination-next:hover {
+    background-color: #3e2723;
+    color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+    .pagination-list {
+        gap: 5px;
+    }
+
+    .pagination-link {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 36px;
+    }
+}
+</style>
 {% endblock %}
 
 {% block extra_libs_js %}
