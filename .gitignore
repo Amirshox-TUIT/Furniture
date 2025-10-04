@@ -32,3 +32,17 @@ staticfiles/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+.env.local
+.env.*.local
+
+# IDE
+*~
+
+# Python
+*.py[cod]
+*$py.class
+.Python
+env/
+
