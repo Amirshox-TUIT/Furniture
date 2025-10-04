@@ -19,9 +19,16 @@ def basket_add(request, product_id):
     """
     basket = Basket(request)
     product = get_object_or_404(ProductModel, id=product_id)
-
-    color = ProductColor.objects.filter(products_quantity__product=product).first()
-    size = ProductSize.objects.filter(products_quantity__product=product).first()
+    color_id = request.GET.get('color')
+    if color_id:
+        color  = ProductColor.objects.get(id=color_id)
+    else:
+        color = ProductColor.objects.filter(products_quantity__product=product).first()
+    size_id = request.GET.get('size')
+    if size_id:
+        size = ProductSize.objects.get(id=size_id)
+    else:
+        size = ProductSize.objects.filter(products_quantity__product=product).first()
     basket.add(product=product, quantity=1, color=color, size=size)
     messages.success(request, f'{product.title} added to your basket!')
     return redirect('products:products')

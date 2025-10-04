@@ -25,7 +25,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['46.101.235.40', 'furnitica-su05.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['www.furniture.amirshox.uz', 'furniture.amirshox.uz', '46.101.235.40', 'localhost', '127.0.0.1']
 
 
 # Application definition

@@ -1,110 +1,659 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% load i18n %}
-
 {% block title %}Furnitica - {% trans "Add New Product" %}{% endblock %}
 {% block body_id %}product-create{% endblock %}
 {% block body_class %}product{% endblock %}
 
-{% block extra_head %}
-    <!-- Admin CSS -->
-    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/css/forms.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
-
-    <!-- Admin JS -->
-    <script src="{% static 'admin/js/core.js' %}"></script>
-    <script src="{% static 'admin/js/admin/RelatedObjectLookup.js' %}"></script>
-    <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-    <script src="{% static 'admin/js/jquery.init.js' %}"></script>
-    <script src="{% static 'admin/js/actions.js' %}"></script>
-    <script src="{% static 'admin/js/inlines.js' %}"></script>
-
-    <style>
-        /* Oq fon */
-        body, #content, .module, .inline-group, .submit-row {
-            background: #fff !important;
-            color: #000 !important;
-        }
-        .module h2 {
-            background: #f0f0f0 !important;
-            color: #000 !important;
-            padding: 8px;
-            border-radius: 4px;
-        }
-        .form-row {
-            margin: 10px 0;
-        }
-        .submit-row {
-            border-top: 1px solid #ddd;
-            padding: 15px 0;
-        }
-        .submit-row input {
-            margin-right: 8px;
-        }
-    </style>
-{% endblock %}
-
 {% block content %}
-<div id="content" class="colM">
-    <h1>{% trans "Add New Product" %}</h1>
+<style>
+    .product-create-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 30px;
+    }
 
-    <form method="post" enctype="multipart/form-data" action="{% url 'products:add' %}" id="product-form">
-        {% csrf_token %}
+    .product-create-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 20px;
+    }
 
-        <fieldset class="module aligned">
-            <h2>{% trans "Basic Information" %}</h2>
+    .product-create-header h1 {
+        color: #333;
+        font-size: 28px;
+        margin: 0;
+    }
 
-            <div class="form-row">{{ form.title.label_tag }} {{ form.title }}</div>
-            <div class="form-row">{{ form.short_description.label_tag }} {{ form.short_description }}</div>
-            <div class="form-row">{{ form.long_description.label_tag }} {{ form.long_description }}</div>
-            <div class="form-row">{{ form.image.label_tag }} {{ form.image }}</div>
-            <div class="form-row">{{ form.image2.label_tag }} {{ form.image2 }}</div>
-        </fieldset>
+    .lang-switcher {
+        display: flex;
+        gap: 10px;
+    }
 
-        <fieldset class="module aligned">
-            <h2>{% trans "Product Details" %}</h2>
+    .lang-btn {
+        padding: 10px 20px;
+        border: 2px solid #ddd;
+        background: white;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
 
-            <div class="form-row">{{ form.categories.label_tag }} {{ form.categories }}</div>
-            <div class="form-row">{{ form.brand.label_tag }} {{ form.brand }}</div>
-            <div class="form-row">{{ form.price.label_tag }} {{ form.price }}</div>
-            <div class="form-row">{{ form.discount_price.label_tag }} {{ form.discount_price }}</div>
-            <div class="form-row">{{ form.tags.label_tag }} {{ form.tags }}</div>
-        </fieldset>
+    .lang-btn.active {
+        background: #2c3e50;
+        color: white;
+        border-color: #2c3e50;
+    }
 
-        <!-- Inline Product Images -->
-        <fieldset class="module">
-            <h2>{% trans "Product Images" %}</h2>
-            <div class="inline-group" id="productimage_set-group">
-                {{ image_formset.management_form }}
-                {% for form in image_formset %}
-                    <div class="form-row dynamic-productimage_set">{{ form }}</div>
-                {% endfor %}
-                <div class="form-row empty-form" id="productimage_set-empty_form" style="display:none">
-                    {{ image_formset.empty_form }}
+    .lang-btn:hover:not(.active) {
+        border-color: #2c3e50;
+        color: #2c3e50;
+    }
+
+    .product-form-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #fafafa;
+        border-radius: 6px;
+    }
+
+    .product-form-section h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .product-form-section h2:before {
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: #2c3e50;
+        border-radius: 2px;
+    }
+
+    .product-form-group {
+        margin-bottom: 20px;
+    }
+
+    .product-form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .product-form-group label.required:after {
+        content: '*';
+        color: #e74c3c;
+        margin-left: 4px;
+    }
+
+    .product-form-group input[type="text"],
+    .product-form-group input[type="number"],
+    .product-form-group textarea,
+    .product-form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+        font-family: inherit;
+    }
+
+    .product-form-group input:focus,
+    .product-form-group textarea:focus,
+    .product-form-group select:focus {
+        outline: none;
+        border-color: #2c3e50;
+    }
+
+    .product-form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .product-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .product-file-input-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .product-file-input-wrapper input[type=file] {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .product-file-input-label {
+        display: block;
+        padding: 12px;
+        background: white;
+        border: 2px dashed #2c3e50;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.3s;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    .product-file-input-label:hover {
+        background: #f8f9fa;
+        border-color: #1a252f;
+    }
+
+    .product-file-preview {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .product-preview-item {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 2px solid #e0e0e0;
+    }
+
+    .product-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-inline-section {
+        margin-top: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .product-inline-section h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .product-inline-item {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .product-inline-item .remove-inline {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .product-add-inline-btn {
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .product-add-inline-btn:hover {
+        background: #229954;
+    }
+
+    .product-form-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #e0e0e0;
+    }
+
+    .product-btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .product-btn-primary {
+        background: #2c3e50;
+        color: white;
+    }
+
+    .product-btn-primary:hover {
+        background: #1a252f;
+    }
+
+    .product-btn-secondary {
+        background: #95a5a6;
+        color: white;
+    }
+
+    .product-btn-secondary:hover {
+        background: #7f8c8d;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    select[multiple] {
+        min-height: 150px;
+    }
+
+    .product-help-text {
+        font-size: 12px;
+        color: #7f8c8d;
+        margin-top: 5px;
+    }
+
+    .errorlist {
+        color: #e74c3c;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0;
+        font-size: 13px;
+    }
+</style>
+
+<div class="main-content">
+    <div id="wrapper-site">
+        <div id="content-wrapper" class="full-width">
+            <div id="main">
+                <!-- breadcrumb -->
+                <nav class="breadcrumb-bg">
+                    <div class="container no-index">
+                        <div class="breadcrumb">
+                            <ol>
+                                <li>
+                                    <a href="{% url 'pages:home3' %}">
+                                        <span>{% trans "Home" %}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'products:products' %}">
+                                        <span>{% trans "Products" %}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>{% trans "Add Product" %}</span>
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="product-create-container">
+                        <div class="product-create-header">
+                            <h1>{% trans "Add New Product" %}</h1>
+                            <div class="lang-switcher">
+                                <button type="button" class="lang-btn active" data-lang="en">English (EN)</button>
+                                <button type="button" class="lang-btn" data-lang="uz">O'zbekcha (UZ)</button>
+                            </div>
+                        </div>
+
+                        <form id="productForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <!-- Basic Information -->
+                            <div class="product-form-section">
+                                <h2>{% trans "Basic Information" %}</h2>
+
+                                <!-- Title Fields -->
+                                <div class="product-form-group">
+                                    <label class="required">{% trans "Title" %}</label>
+                                    <input type="text" name="title_en" id="title_en" class="lang-field en-field" placeholder="Enter product title in English" required>
+                                    <input type="text" name="title_uz" id="title_uz" class="lang-field uz-field hidden" placeholder="Mahsulot nomini kiriting (O'zbekcha)">
+                                </div>
+
+                                <!-- Short Description Fields -->
+                                <div class="product-form-group">
+                                    <label class="required">{% trans "Short Description" %}</label>
+                                    <textarea name="short_description_en" id="short_description_en" class="lang-field en-field" placeholder="Brief description in English" required></textarea>
+                                    <textarea name="short_description_uz" id="short_description_uz" class="lang-field uz-field hidden" placeholder="Qisqa tavsif (O'zbekcha)"></textarea>
+                                </div>
+
+                                <!-- Long Description Fields -->
+                                <div class="product-form-group">
+                                    <label>{% trans "Long Description" %}</label>
+                                    <textarea name="long_description_en" id="long_description_en" class="lang-field en-field" placeholder="Detailed description in English" style="min-height: 150px;"></textarea>
+                                    <textarea name="long_description_uz" id="long_description_uz" class="lang-field uz-field hidden" placeholder="To'liq tavsif (O'zbekcha)" style="min-height: 150px;"></textarea>
+                                </div>
+
+                                <!-- Main Images -->
+                                <div class="product-form-row">
+                                    <div class="product-form-group">
+                                        <label class="required">{% trans "Main Image" %}</label>
+                                        {{ form.image.errors }}
+                                        <div class="product-file-input-wrapper">
+                                            <input type="file" id="id_image" name="image" accept="image/*" required>
+                                            <label for="id_image" class="product-file-input-label">📷 {% trans "Choose Main Image" %}</label>
+                                        </div>
+                                        <div id="imagePreview" class="product-file-preview"></div>
+                                    </div>
+
+                                    <div class="product-form-group">
+                                        <label>{% trans "Secondary Image" %}</label>
+                                        {{ form.image2.errors }}
+                                        <div class="product-file-input-wrapper">
+                                            <input type="file" id="id_image2" name="image2" accept="image/*">
+                                            <label for="id_image2" class="product-file-input-label">📷 {% trans "Choose Secondary Image" %}</label>
+                                        </div>
+                                        <div id="image2Preview" class="product-file-preview"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product Details -->
+                            <div class="product-form-section">
+                                <h2>{% trans "Product Details" %}</h2>
+
+                                <div class="product-form-row">
+                                    <div class="product-form-group">
+                                        <label class="required">{% trans "Brand" %}</label>
+                                        {{ form.brand.errors }}
+                                        <select name="brand" id="id_brand" required>
+                                            <option value="">{% trans "Select Brand" %}</option>
+                                            {% for brand in brands %}
+                                            <option value="{{ brand.id }}">{{ brand.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="product-form-group">
+                                        <label class="required">{% trans "Categories" %}</label>
+                                        {{ form.categories.errors }}
+                                        <select name="categories" id="id_categories" multiple required>
+                                            {% for cat in categories %}
+                                            <option value="{{ cat.id }}">{{ cat.title }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="product-help-text">{% trans "Hold Ctrl/Cmd to select multiple categories" %}</div>
+                                    </div>
+                                </div>
+
+                                <div class="product-form-row">
+                                    <div class="product-form-group">
+                                        <label class="required">{% trans "Price" %} (£)</label>
+                                        {{ form.price.errors }}
+                                        <input type="number" name="price" id="id_price" step="0.01" min="0" placeholder="0.00" required>
+                                    </div>
+
+                                    <div class="product-form-group">
+                                        <label>{% trans "Discount" %} (%)</label>
+                                        {{ form.discount.errors }}
+                                        <input type="number" name="discount" id="id_discount" step="1" min="0" max="100" placeholder="0">
+                                    </div>
+                                </div>
+
+                                <div class="product-form-group">
+                                    <label class="required">{% trans "Tags" %}</label>
+                                    {{ form.tag.errors }}
+                                    <select name="tag" id="id_tag" multiple required>
+                                        {% for tag in tags %}
+                                        <option value="{{ tag.id }}">{{ tag.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="product-help-text">{% trans "Hold Ctrl/Cmd to select multiple tags" %}</div>
+                                </div>
+                            </div>
+
+                            <!-- Product Images Inline -->
+                            <div class="product-form-section">
+                                <div class="product-inline-section">
+                                    <h3>{% trans "Product Images" %}</h3>
+                                    {{ image_formset.management_form }}
+                                    <div id="productImagesContainer">
+                                        {% for form in image_formset %}
+                                        <div class="product-inline-item formset-item">
+                                            <button type="button" class="remove-inline" onclick="removeFormsetItem(this)">{% trans "Remove" %}</button>
+                                            {{ form.id }}
+                                            <div class="product-form-group">
+                                                <label>{% trans "Image" %}</label>
+                                                {{ form.image.errors }}
+                                                {{ form.image }}
+                                            </div>
+                                            {{ form.DELETE }}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button type="button" class="product-add-inline-btn" onclick="addImageFormset()">+ {% trans "Add Image" %}</button>
+                                </div>
+                            </div>
+
+                            <!-- Product Quantities Inline -->
+                            <div class="product-form-section">
+                                <div class="product-inline-section">
+                                    <h3>{% trans "Product Quantities" %}</h3>
+                                    {{ quantity_formset.management_form }}
+                                    <div id="productQuantitiesContainer">
+                                        {% for form in quantity_formset %}
+                                        <div class="product-inline-item formset-item">
+                                            <button type="button" class="remove-inline" onclick="removeFormsetItem(this)">{% trans "Remove" %}</button>
+                                            {{ form.id }}
+                                            <div class="product-form-row">
+                                                <div class="product-form-group">
+                                                    <label>{% trans "Quantity" %}</label>
+                                                    {{ form.quantity.errors }}
+                                                    {{ form.quantity }}
+                                                </div>
+                                                <div class="product-form-group">
+                                                    <label class="required">{% trans "Sizes" %}</label>
+                                                    {{ form.sizes.errors }}
+                                                    <select name="{{ form.sizes.html_name }}" id="{{ form.sizes.id_for_label }}" multiple required>
+                                                        {% for size in sizes %}
+                                                        <option value="{{ size.id }}">{{ size.title }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="product-form-group">
+                                                <label class="required">{% trans "Colors" %}</label>
+                                                {{ form.colors.errors }}
+                                                <select name="{{ form.colors.html_name }}" id="{{ form.colors.id_for_label }}" multiple required>
+                                                    {% for color in colors %}
+                                                    <option value="{{ color.id }}">{{ color.title }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            {{ form.DELETE }}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button type="button" class="product-add-inline-btn" onclick="addQuantityFormset()">+ {% trans "Add Quantity" %}</button>
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="product-form-actions">
+                                <a href="{% url 'products:products' %}" class="product-btn product-btn-secondary">{% trans "Cancel" %}</a>
+                                <button type="submit" class="product-btn product-btn-primary">{% trans "Save Product" %}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </fieldset>
-
-        <!-- Inline Product Quantities -->
-        <fieldset class="module">
-            <h2>{% trans "Product Quantities" %}</h2>
-            <div class="inline-group" id="productquantity_set-group">
-                {{ quantity_formset.management_form }}
-                {% for form in quantity_formset %}
-                    <div class="form-row dynamic-productquantity_set">{{ form }}</div>
-                {% endfor %}
-                <div class="form-row empty-form" id="productquantity_set-empty_form" style="display:none">
-                    {{ quantity_formset.empty_form }}
-                </div>
-            </div>
-        </fieldset>
-
-        <div class="submit-row">
-            <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
-            <input type="submit" value="{% trans 'Save and add another' %}" name="_addanother">
-            <input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue">
         </div>
-    </form>
+    </div>
 </div>
+
+<script>
+    // Language Switcher
+    const langButtons = document.querySelectorAll('.lang-btn');
+    let currentLang = 'en';
+
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            currentLang = lang;
+
+            langButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.lang-field').forEach(field => {
+                if (field.classList.contains(`${lang}-field`)) {
+                    field.classList.remove('hidden');
+                } else {
+                    field.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    // Image Preview for main images
+    function setupImagePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.innerHTML = `
+                        <div class="product-preview-item">
+                            <img src="${e.target.result}" alt="Preview">
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    setupImagePreview('id_image', 'imagePreview');
+    setupImagePreview('id_image2', 'image2Preview');
+
+    // Formset Management
+    function updateFormsetIndex(container, prefix) {
+        const forms = container.querySelectorAll('.formset-item');
+        const totalForms = document.querySelector(`#id_${prefix}-TOTAL_FORMS`);
+        totalForms.value = forms.length;
+
+        forms.forEach((form, index) => {
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                if (field.name) {
+                    field.name = field.name.replace(/\-\d+\-/, `-${index}-`);
+                    field.id = field.id.replace(/\-\d+\-/, `-${index}-`);
+                }
+            });
+        });
+    }
+
+    function removeFormsetItem(button) {
+        const item = button.closest('.formset-item');
+        const deleteInput = item.querySelector('input[name$="-DELETE"]');
+
+        if (deleteInput) {
+            deleteInput.value = 'on';
+            item.style.display = 'none';
+        } else {
+            item.remove();
+        }
+
+        // Update indexes
+        const container = button.closest('.product-inline-section').querySelector('[id$="Container"]');
+        const prefix = container.id.includes('Images') ? 'images' : 'quantities';
+        updateFormsetIndex(container, prefix);
+    }
+
+    function addImageFormset() {
+        const container = document.getElementById('productImagesContainer');
+        const totalForms = document.querySelector('#id_images-TOTAL_FORMS');
+        const formIdx = parseInt(totalForms.value);
+
+        const newForm = document.createElement('div');
+        newForm.className = 'product-inline-item formset-item';
+        newForm.innerHTML = `
+            <button type="button" class="remove-inline" onclick="removeFormsetItem(this)">{% trans "Remove" %}</button>
+            <div class="product-form-group">
+                <label>{% trans "Image" %}</label>
+                <input type="file" name="images-${formIdx}-image" id="id_images-${formIdx}-image" accept="image/*">
+            </div>
+        `;
+
+        container.appendChild(newForm);
+        totalForms.value = formIdx + 1;
+    }
+
+    function addQuantityFormset() {
+        const container = document.getElementById('productQuantitiesContainer');
+        const totalForms = document.querySelector('#id_quantities-TOTAL_FORMS');
+        const formIdx = parseInt(totalForms.value);
+
+        const newForm = document.createElement('div');
+        newForm.className = 'product-inline-item formset-item';
+        newForm.innerHTML = `
+            <button type="button" class="remove-inline" onclick="removeFormsetItem(this)">{% trans "Remove" %}</button>
+            <div class="product-form-row">
+                <div class="product-form-group">
+                    <label>{% trans "Quantity" %}</label>
+                    <input type="number" name="quantities-${formIdx}-quantity" id="id_quantities-${formIdx}-quantity" min="0" placeholder="0">
+                </div>
+                <div class="product-form-group">
+                    <label class="required">{% trans "Sizes" %}</label>
+                    <select name="quantities-${formIdx}-sizes" id="id_quantities-${formIdx}-sizes" multiple required>
+                        {% for size in sizes %}
+                        <option value="{{ size.id }}">{{ size.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="product-form-group">
+                <label class="required">{% trans "Colors" %}</label>
+                <select name="quantities-${formIdx}-colors" id="id_quantities-${formIdx}-colors" multiple required>
+                    {% for color in colors %}
+                    <option value="{{ color.id }}">{{ color.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        `;
+
+        container.appendChild(newForm);
+        totalForms.value = formIdx + 1;
+    }
+</script>
 {% endblock %}

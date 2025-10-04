@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 
-from .forms import ProductModelForm
+from .forms import ProductForm, ProductImageFormSet, ProductQuantityFormSet
 from .models import *
 
 
@@ -73,6 +73,14 @@ class ProductListView(LoginRequiredMixin, ListView):
         return context
 
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView
+from django.db.models import Sum
+
+from .models import ProductModel, ProductTag, ProductCategory, ProductQuantity
+
+
 class ProductDetailView(LoginRequiredMixin, DetailView):
     template_name = 'products/product-detail.html'
     context_object_name = 'product'
@@ -80,55 +88,151 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        tags = ProductTag.objects.all()
-        categories = ProductCategory.objects.filter(sub__isnull=True)
-        pk = self.kwargs['pk']
-        product = get_object_or_404(ProductModel, id=pk)
+        product = self.object
+        context['tags'] = ProductTag.objects.all()
+        context['categories'] = ProductCategory.objects.filter(sub__isnull=True)
+        product_quantities = ProductQuantity.objects.filter(product=product)
+        total_quantity = product_quantities.aggregate(
+            total=Sum('quantity')
+        )['total'] or 0
 
-        item = ProductQuantity.objects.get(product=pk)
-        rproducts = ProductModel.objects.filter(
+        # Available sizes va colors
+        available_sizes = set()
+        available_colors = set()
+
+        for pq in product_quantities:
+            if pq.quantity > 0:
+                available_sizes.update(pq.sizes.all())
+                available_colors.update(pq.colors.all())
+
+        context['total_quantity'] = total_quantity
+        context['available_sizes'] = list(available_sizes)
+        context['available_colors'] = list(available_colors)
+        context['rproducts'] = ProductModel.objects.filter(
             categories__in=product.categories.all()
-        ).exclude(id=pk).distinct()
+        ).exclude(id=product.id).distinct()[:6]
 
-        context['rproducts'] = rproducts
-        context['product'] = product
-        context['tags'] = tags
-        context['categories'] = categories
-        context['quantity'] = item.quantity
+        context['bestsellers'] = ProductModel.objects.filter(
+            raiting__gt=0
+        ).order_by('-raiting')[:3]
+        context['reviews'] = []
+        context['reviews_count'] = 0
+
         return context
 
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'products/product-add.html'
-    form_class = ProductModelForm
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.contrib import messages
+from django.shortcuts import redirect
 
-    def form_valid(self, form):
-        instance = form.save(commit=False)
-        instance.sender = self.request.user
-        instance.save()
-        messages.success(self.request, 'Product Added successfully')
-        return super().form_valid(form)
 
-    def form_invalid(self, form):
-        messages.error(self.request, 'Product Not Added')
-        return super().form_invalid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('products:products')
+class ProductCreateView(CreateView):
+    model = ProductModel
+    form_class = ProductForm
+    template_name = "products/product-add.html"
+    success_url = reverse_lazy("products:products")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        brands = ProductBrand.objects.all()
-        categories = ProductCategory.objects.all()
-        tags = ProductTag.objects.all()
-        if brands:
-            context['brands'] = brands
-        if categories:
-            context['categories'] = categories
-        if tags:
-            context['tags'] = tags
+        context['brands'] = ProductBrand.objects.all()
+        context['categories'] = ProductCategory.objects.all()
+        context['tags'] = ProductTag.objects.all()
+        context['sizes'] = ProductSize.objects.all()
+        context['colors'] = ProductColor.objects.all()
+
+        if self.request.POST:
+            context["image_formset"] = ProductImageFormSet(
+                self.request.POST,
+                self.request.FILES,
+                prefix="images"
+            )
+            context["quantity_formset"] = ProductQuantityFormSet(
+                self.request.POST,
+                prefix="quantities"
+            )
+        else:
+            context["image_formset"] = ProductImageFormSet(prefix="images")
+            context["quantity_formset"] = ProductQuantityFormSet(prefix="quantities")
 
         return context
 
+    def post(self, request, *args, **kwargs):
+        self.object = None
+
+        form = self.get_form()
+
+        mutable_post = request.POST.copy()
+        mutable_post['title_en'] = request.POST.get('title_en', '')
+        mutable_post['title_uz'] = request.POST.get('title_uz', '')
+        mutable_post['short_description_en'] = request.POST.get('short_description_en', '')
+        mutable_post['short_description_uz'] = request.POST.get('short_description_uz', '')
+        mutable_post['long_description_en'] = request.POST.get('long_description_en', '')
+        mutable_post['long_description_uz'] = request.POST.get('long_description_uz', '')
+
+        # Update form data
+        form.data = mutable_post
+
+        # Get formsets
+        image_formset = ProductImageFormSet(
+            request.POST,
+            request.FILES,
+            prefix="images"
+        )
+        quantity_formset = ProductQuantityFormSet(
+            request.POST,
+            prefix="quantities"
+        )
+
+        # Validate
+        if form.is_valid() and image_formset.is_valid() and quantity_formset.is_valid():
+            self.object = form.save(commit=False)
+            self.object.title_en = request.POST.get('title_en', '')
+            self.object.title_uz = request.POST.get('title_uz', '')
+            self.object.short_description_en = request.POST.get('short_description_en', '')
+            self.object.short_description_uz = request.POST.get('short_description_uz', '')
+            self.object.long_description_en = request.POST.get('long_description_en', '')
+            self.object.long_description_uz = request.POST.get('long_description_uz', '')
+
+            if request.user.is_authenticated:
+                self.object.sender = request.user
+
+            self.object.save()
+
+            categories = request.POST.getlist('categories')
+            self.object.categories.set(categories)
+
+            tags = request.POST.getlist('tag')
+            self.object.tag.set(tags)
+
+            image_formset.instance = self.object
+            image_formset.save()
+
+            quantity_formset.instance = self.object
+            quantity_formset.save()
+
+            messages.success(request, 'Product created successfully!')
+            return redirect(self.success_url)
+        else:
+
+            messages.error(request, 'Please correct the errors below.')
+            return self.render_to_response(
+                self.get_context_data(
+                    form=form,
+                    image_formset=image_formset,
+                    quantity_formset=quantity_formset
+                )
+            )
+
+
+def product_delete(request, pk):
+    product = get_object_or_404(ProductModel, id=pk)
+    if product.sender == request.user:
+        product.status = ProductModel.Status.DELETED
+        product.save()
+        messages.success(request, 'Product deleted successfully!')
+        return redirect('products:products')
+    else:
+        return redirect('pages:page_404')
 
 

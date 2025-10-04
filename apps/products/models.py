@@ -7,6 +7,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from apps.blogs.models import BaseModel
+from apps.products.menegers import ProductManager
 
 
 class ProductCategory(BaseModel):
@@ -71,10 +72,18 @@ class ProductBrand(models.Model):
 
 
 class ProductModel(BaseModel):
+    class Status(models.TextChoices):
+        PUBLISHED = ('published', 'Published')
+        DELETED = ('deleted', 'Deleted')
+
     title = models.CharField(max_length=100)
     short_description = models.TextField()
     long_description = models.TextField()
-
+    status = models.CharField(
+        max_length=10,
+        choices=Status.choices,
+        default=Status.PUBLISHED,
+    )
     image = models.ImageField(upload_to='products/', null=True, blank=True)
     image2 = models.ImageField(upload_to='products/', null=True, blank=True)
     categories = models.ManyToManyField(ProductCategory, related_name='products')
@@ -90,14 +99,16 @@ class ProductModel(BaseModel):
         User,
         on_delete=models.CASCADE,
         related_name='added_products',
-        verbose_name='Added by', null=True, blank=True
+        verbose_name='Added by', default=1
     )
+
+    objects = ProductManager()
+    all_objects = models.Manager()
 
     def is_new(self):
         tashkent_tz = pytz.timezone('Asia/Tashkent')
         now = datetime.now(tashkent_tz)
 
-        # Ensure created_at is timezone-aware
         if self.created_at.tzinfo is None:
             created_at = tashkent_tz.localize(self.created_at)
         else:
@@ -130,8 +141,8 @@ class ProductQuantity(BaseModel):
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='products_quantity')
     quantity = models.PositiveSmallIntegerField()
 
-    sizes = models.ForeignKey(ProductSize, on_delete=models.CASCADE, related_name='products_quantity')
-    colors = models.ForeignKey(ProductColor, on_delete=models.CASCADE, related_name='products_quantity')
+    sizes = models.ManyToManyField(ProductSize, related_name='products_quantity')
+    colors = models.ManyToManyField(ProductColor, related_name='products_quantity')
 
 
 class ProductImageModel(BaseModel):

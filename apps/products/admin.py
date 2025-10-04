@@ -27,14 +27,17 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductQuantityInline(admin.TabularInline):
     model = ProductQuantity
-    extra = 1  # Number of empty forms to display
+    extra = 1
     fields = ['quantity', 'sizes', 'colors']
+    filter_horizontal = ('sizes', 'colors')
     verbose_name = 'Product Quantity'
     verbose_name_plural = 'Product Quantities'
 
-
 @admin.register(ProductModel)
 class ProductModelAdmin(MyTranslationAdmin):
+    def get_queryset(self, request):
+        return ProductModel.all_objects.all()
+
     list_display = ['title', 'brand', 'price', 'discount']
     list_filter = ['brand', 'categories', 'created_at']
     search_fields = ['title', 'short_description']
@@ -47,7 +50,7 @@ class ProductModelAdmin(MyTranslationAdmin):
             'fields': ('title', 'short_description', 'long_description', 'image', 'image2')
         }),
         ('Product Details', {
-            'fields': ('categories', 'brand', 'price', 'discount', 'tag')
+            'fields': ('categories', 'brand', 'price', 'discount', 'tag', 'status', 'sender')
         }),
     )
 
@@ -81,3 +84,4 @@ class ProductBrandAdmin(admin.ModelAdmin):
 class ProductTagModelAdmin(MyTranslationAdmin):
     list_display = ['title']
     search_fields = ['title']
+

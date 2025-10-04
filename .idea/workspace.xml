@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9d5004d-1064-48a7-a5f1-a6465d0c6afe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/blogs/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/blogs/templatetags/blog_tags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/products/menegers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/users/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/basket/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/basket/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/blogs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/products/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/products/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/users/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/blogs/blog-list-sidebar-left.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/product-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/product-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/products/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/products/products.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,6 +257,14 @@
       <workItem from="1759382330227" duration="3497000" />
       <workItem from="1759389854890" duration="521000" />
       <workItem from="1759406966696" duration="9426000" />
+      <workItem from="1759422089715" duration="4982000" />
+      <workItem from="1759456826740" duration="3259000" />
+      <workItem from="1759467285423" duration="391000" />
+      <workItem from="1759473209575" duration="4510000" />
+      <workItem from="1759488212173" duration="4979000" />
+      <workItem from="1759503496709" duration="118000" />
+      <workItem from="1759505822924" duration="48000" />
+      <workItem from="1759544996401" duration="672000" />
     </task>
     <servers />
   </component>

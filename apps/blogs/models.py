@@ -14,7 +14,7 @@ class BaseModel(models.Model):
 
 
 class AuthorsModel(BaseModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=1, related_name='author')
     full_name = models.CharField(max_length=128)
     profession = models.CharField(max_length=128)
     email = models.EmailField()
