@@ -56,29 +56,30 @@ class BlogListView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('users:user_login')
 
     def get_queryset(self):
-        queryset = BlogsModel.objects.all()
-        return queryset
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
         blogs = BlogsModel.objects.all()
-        cat_id = self.request.GET.get('cat')
         tag_id = self.request.GET.get('tag')
+        author_id = self.request.GET.get('author')
         s = self.request.GET.get('s')
-
+        cat_id = self.request.GET.get('cat')
         if cat_id:
             blogs = blogs.filter(category=cat_id)
 
         if tag_id:
             blogs = blogs.filter(tag=tag_id)
 
+        if author_id:
+            blogs = blogs.filter(author_id=int(author_id))
         if s:
             blogs = blogs.filter(title__icontains=s)
 
+        return blogs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        tag_id = self.request.GET.get('tag')
         context['categories'] = CategoriesModel.objects.filter(sub__isnull=True)
         context['recent_blogs'] = BlogsModel.objects.order_by("-created_at")[:2]
         context['tags'] = TagsModel.objects.all()
-        context['blogs'] = blogs
         context['tag_id'] = tag_id
         return context
 

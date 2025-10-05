@@ -1,6 +1,7 @@
 from django import template
 
 from apps.basket.cart import Basket
+from apps.products.models import Review
 
 register = template.Library()
 
@@ -18,3 +19,8 @@ def get_full_url(request, lang):
 def in_basket(request, product_id):
     basket = Basket(request)
     return basket.in_basket(product_id)
+
+@register.filter
+def get_user_rating(user, product_id):
+    review = Review.objects.get(user=user, product_id=product_id)
+    return review.rating

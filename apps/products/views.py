@@ -5,7 +5,7 @@ from django.db import transaction
 from apps.basket.cart import Basket
 from apps.order.models import Order, OrderItem
 from django.views.generic import CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -94,12 +94,13 @@ class CheckoutView(LoginRequiredMixin, TemplateView):
             return redirect('products:checkout')
 
 
-class OrderSuccessView(DetailView):
+class OrderSuccessView(LoginRequiredMixin, DetailView):
     model = Order
     template_name = 'order_success.html'
     context_object_name = 'order'
     slug_field = 'unique_id'
     slug_url_kwarg = 'order_id'
+    login_url = reverse_lazy('users:user_login')
 
     def get_queryset(self):
         return Order.objects.prefetch_related('items__product')
@@ -161,9 +162,7 @@ class ProductListView(LoginRequiredMixin, ListView):
         return context
 
 
-
-
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(DetailView):
     template_name = 'products/product-detail.html'
     context_object_name = 'product'
     queryset = ProductModel.objects.all()
@@ -189,17 +188,17 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
         context['total_quantity'] = total_quantity
         context['available_sizes'] = list(available_sizes)
         context['available_colors'] = list(available_colors)
+
         context['rproducts'] = ProductModel.objects.filter(
             categories__in=product.categories.all()
         ).exclude(id=product.id).distinct()[:6]
 
         context['bestsellers'] = ProductModel.objects.all().order_by('-discount')[:3]
-        context['reviews'] = []
-        context['reviews_count'] = 0
+
+        context['reviews'] = product.reviews.all()
+        context['reviews_count'] = product.reviews.count()
 
         return context
-
-
 
 
 class ProductCreateView(CreateView):
@@ -309,5 +308,33 @@ def product_delete(request, pk):
         return redirect('products:products')
     else:
         return redirect('pages:page_404')
+
+
+class ReviewCreateView(LoginRequiredMixin, CreateView):
+    model = Review
+    fields = ['rating', 'comment']
+    login_url = 'accounts:login'
+
+    def form_valid(self, form):
+        product = get_object_or_404(ProductModel, id=self.kwargs['product_id'])
+        existing_review = Review.objects.filter(
+            product=product,
+            user=self.request.user
+        ).first()
+
+        if existing_review:
+            existing_review.rating = form.cleaned_data['rating']
+            existing_review.comment = form.cleaned_data['comment']
+            existing_review.save()
+            messages.success(self.request, 'Your review has been updated!')
+            return redirect('products:detail', pk=product.id)
+
+        form.instance.product = product
+        form.instance.user = self.request.user
+        messages.success(self.request, 'Your review has been submitted!')
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('products:detail', kwargs={'pk': self.kwargs['product_id']})
 
 

@@ -3,7 +3,7 @@ from modeltranslation.admin import TranslationAdmin
 
 from .models import (
     ProductCategory, ProductSize, ProductColor, ProductBrand,
-    ProductModel, ProductQuantity, ProductImageModel, ProductTag
+    ProductModel, ProductQuantity, ProductImageModel, ProductTag, Review
 )
 
 class MyTranslationAdmin(TranslationAdmin):
@@ -84,4 +84,11 @@ class ProductBrandAdmin(admin.ModelAdmin):
 class ProductTagModelAdmin(MyTranslationAdmin):
     list_display = ['title']
     search_fields = ['title']
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'rating', 'created_at']
+    list_filter = ['rating', 'created_at']
+    search_fields = ['user__username', 'product__title', 'comment']
+    list_per_page = 20
 

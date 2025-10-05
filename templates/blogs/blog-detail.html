@@ -141,7 +141,7 @@
                                                     <span>{{ blog.author.full_name }}</span>
                                                 </p>
                                                 <div class="btn-group">
-                                                    <a href="#">
+                                                    <a href="#" onclick="shareButton">
                                                         <i class="zmdi zmdi-share"></i>
                                                         <span>{% trans "Share" %}</span>
                                                     </a>
@@ -150,10 +150,14 @@
                                         </div>
 
                                         <div class="admin">
-                                            <img src="{{ blog.author.photo.url }}" alt="img" class="float-left right">
+                                            {% if  blog.author.user.profile.avatar.url is not Null %}
+                                                <img src="{{ blog.author.user.profile.avatar.url }}" alt="img" class="img">
+                                            {% else %}
+                                                <img src="{{ blog.author.photo.url }}" alt="img" class="img">
+                                            {% endif %}
                                             <div class="info">
                                                 <p>
-                                                    <a href="#">
+                                                    <a href="{% url 'blogs:list_sidebar_left' %}?author={{ blog.author.id }}">
                                                         <span class="content-title">
                                                            {{ blog.author.full_name }}
                                                         </span>
@@ -181,8 +185,8 @@
                                                                 <a
                                                                    href="{% url 'blogs:detail' pk=related.id %}">{{ related.title }}</a>
                                                             </p>
-                                                            <p style="width: 20ch; white-space: normal; overflow-wrap: break-word;">
-                                                                {{ related.description|safe|slice:'100' }}
+                                                            <p style="width: 30ch; white-space: normal; overflow-wrap: break-word;">
+                                                                {{ related.description|safe|slice:35 }}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -243,7 +247,56 @@
             </div>
         </div>
     </div>
-{% endblock %}
+
+<style>
+    .admin {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        margin: 30px 0;
+    }
+
+    .admin .img {
+        width: 80px !important;
+        height: 80px !important;
+        max-width: 80px !important;
+        max-height: 80px !important;
+        min-width: 80px !important;
+        min-height: 80px !important;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        flex-shrink: 0;
+        float: none !important;
+    }
+
+    .admin .info {
+        flex: 1;
+    }
+
+    .admin .info .content-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .admin .info span p {
+        margin: 5px 0;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .admin .info .descript {
+        color: #555;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-top: 10px;
+    }
+</style>
 <script>
     const shareButton = document.querySelector('.btn-group a');
 
@@ -273,3 +326,52 @@
       shareContent();
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const shareButton = document.querySelector('.btn-group a');
+
+        if (shareButton) {
+            shareButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                shareContent();
+            });
+        }
+
+        async function shareContent() {
+            const shareData = {
+                title: '{{ blog.title|escapejs }}',
+                text: 'Посмотрите на этот интересный пост!',
+                url: window.location.href
+            };
+
+            try {
+                if (navigator.share) {
+                    // Используем Web Share API (мобильные устройства)
+                    await navigator.share(shareData);
+                    console.log('Успешно поделились!');
+                } else {
+                    // Копируем ссылку в буфер обмена
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Ссылка скопирована! Теперь вы можете вставить её куда угодно.');
+                }
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Ошибка при публикации:', error);
+                    // Fallback - просто копируем в буфер
+                    try {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = window.location.href;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        alert('Ссылка скопирована в буфер обмена!');
+                    } catch (fallbackError) {
+                        console.error('Fallback также не сработал:', fallbackError);
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -446,9 +446,9 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="order-view-btn" onclick="window.location.href=''">
+                                        <a class="order-view-btn" href="{% url 'orders:success' order_id=order.unique_id %}">
                                             {% trans "View" %}
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 {% endfor %}

@@ -1,3 +1,4 @@
+import math
 from datetime import datetime
 from decimal import Decimal, ROUND_HALF_UP
 
@@ -5,9 +6,12 @@ import pytz
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db.models import Avg
 
 from apps.blogs.models import BaseModel
 from apps.products.menegers import ProductManager
+
+
 
 
 class ProductCategory(BaseModel):
@@ -94,7 +98,6 @@ class ProductModel(BaseModel):
         null=True, blank=True,
         validators=[MaxValueValidator(100), MinValueValidator(1)]
     )
-    raiting = models.PositiveSmallIntegerField(default=0)
     sender = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -104,6 +107,10 @@ class ProductModel(BaseModel):
 
     objects = ProductManager()
     all_objects = models.Manager()
+
+    def get_rating(self):
+        result = self.reviews.aggregate(Avg('rating'))
+        return result['rating__avg'] or 0
 
     def is_new(self):
         tashkent_tz = pytz.timezone('Asia/Tashkent')
@@ -155,3 +162,20 @@ class ProductImageModel(BaseModel):
     class Meta:
         verbose_name = 'product image'
         verbose_name_plural = 'product images'
+
+
+class Review(BaseModel):
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Rating from 1 to 5"
+    )
+    comment = models.TextField()
+
+    class Meta:
+        ordering = ['-created_at']
+        unique_together = ['product', 'user']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.title} ({self.rating}★)"
