@@ -172,9 +172,11 @@ BASKET_SESSION_ID = 'basket'
 SESSION_COOKIE_AGE = 86400  # 1 day
 SESSION_SAVE_EVERY_REQUEST = True
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False
 CSRF_TRUSTED_ORIGINS = [
+    'https://www.furniture.amirshox.uz',
+    'https://furniture.amirshox.uz',
     'http://46.101.235.40',
     'http://127.0.0.1:8000',
 ]

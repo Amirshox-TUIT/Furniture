@@ -23,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Google Fonts -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
     {% block extra_libs_css %}{% endblock %}
@@ -89,6 +90,13 @@
      {% block extra_libs_js %}{% endblock %}
     <!-- Template JS -->
     <script src="{% static 'js/theme.js' %}"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js")
+          .then(() => console.log("Service Worker registered"));
+      }
+    </script>
+
 </body>
 
 
