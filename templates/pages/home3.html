@@ -139,12 +139,16 @@
                                                     <a href="{% url 'products:detail' pk=living_pr.id %}">{{ living_pr.title }}</a>
                                                 </div>
                                                 <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
+                                                    <div class="stars-content" style="justify-self: center">
+                                                        {% with rating=product.get_rating %}
+                                                            {% for i in "12345" %}
+                                                                {% if forloop.counter <= rating %}
+                                                                    <div class="stars filled"></div>
+                                                                {% else %}
+                                                                    <div class="stars"></div>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endwith %}
                                                     </div>
                                                 </div>
                                                 <div class="product-group-price">
@@ -203,12 +207,16 @@
                                                     <a href="{% url 'products:detail' pk=big_sale.id %}">{{ big_sale.title }}</a>
                                                 </div>
                                                 <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
+                                                    <div class="stars-content" style="justify-self: center">
+                                                        {% with rating=product.get_rating %}
+                                                            {% for i in "12345" %}
+                                                                {% if forloop.counter <= rating %}
+                                                                    <div class="stars filled"></div>
+                                                                {% else %}
+                                                                    <div class="stars"></div>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endwith %}
                                                     </div>
                                                 </div>
                                                 <div class="product-group-price">
@@ -363,12 +371,16 @@
                                                     <a href="{% url 'products:detail' pk=bathroom_pr.id %}">{{ bathroom_pr.title }}</a>
                                                 </div>
                                                 <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
+                                                    <div class="stars-content" style="justify-self: center">
+                                                        {% with rating=product.get_rating %}
+                                                            {% for i in "12345" %}
+                                                                {% if forloop.counter <= rating %}
+                                                                    <div class="stars filled"></div>
+                                                                {% else %}
+                                                                    <div class="stars"></div>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endwith %}
                                                     </div>
                                                 </div>
                                                 <div class="product-group-price">
@@ -424,12 +436,16 @@
                                                     <a href="{% url 'products:detail' pk=bath.id %}">{{ bath.title }}</a>
                                                 </div>
                                                 <div class="rating">
-                                                    <div class="star-content">
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
-                                                        <div class="star"></div>
+                                                    <div class="stars-content" style="justify-self: center">
+                                                        {% with rating=product.get_rating %}
+                                                            {% for i in "12345" %}
+                                                                {% if forloop.counter <= rating %}
+                                                                    <div class="stars filled"></div>
+                                                                {% else %}
+                                                                    <div class="stars"></div>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endwith %}
                                                     </div>
                                                 </div>
                                                 <div class="product-group-price">
@@ -546,6 +562,52 @@
 </div>
 </div>
 </div>
+        <style>
+.stars-content {
+    display: flex;
+    gap: 2px;
+    flex-flow: row;
+}
+
+.stars {
+    width: 16px;
+    height: 16px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ddd" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.stars.filled {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffc107" stroke="%23ffc107" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+/* Review form rating stars */
+.ratings {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.ratings input[type="radio"] {
+    display: none;
+}
+
+.ratings label {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ddd" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.ratings input[type="radio"]:checked ~ label,
+.ratings label:hover,
+.ratings label:hover ~ label {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffc107" stroke="%23ffc107" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+</style>
 {% endblock %}
 {% block extra_libs_js %}
 <script src="{% static 'libs/slick-slider/js/slick.min.js' %}"></script>
