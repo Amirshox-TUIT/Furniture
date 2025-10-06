@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from apps.basket.cart import Basket
@@ -12,7 +13,7 @@ def basket_detail(request):
     basket = Basket(request)
     return render(request, 'products/product-cart.html', {'basket': basket})
 
-
+@login_required(login_url='users:user_login')
 def basket_add(request, product_id):
     """
     Add a product to the basket.
@@ -33,7 +34,7 @@ def basket_add(request, product_id):
     messages.success(request, f'{product.title} added to your basket!')
     return redirect('products:products')
 
-
+@login_required(login_url='users:user_login')
 def basket_remove(request, product_id):
     """
     Remove a product from the basket.
@@ -44,6 +45,7 @@ def basket_remove(request, product_id):
     messages.success(request, f'{product.title} removed from your basket!')
     return redirect('products:products')
 
+@login_required(login_url='users:user_login')
 def basket_update(request, product_id):
     basket = Basket(request)
     product = get_object_or_404(ProductModel, id=product_id)

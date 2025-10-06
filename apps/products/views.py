@@ -162,9 +162,10 @@ class ProductListView(LoginRequiredMixin, ListView):
         return context
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     template_name = 'products/product-detail.html'
     context_object_name = 'product'
+    login_url = reverse_lazy('users:user_login')
     queryset = ProductModel.objects.all()
 
     def get_context_data(self, **kwargs):

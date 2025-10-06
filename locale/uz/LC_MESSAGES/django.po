@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 16:30+0500\n"
+"POT-Creation-Date: 2025-10-06 15:48+0500\n"
 "PO-Revision-Date: 2025-09-21 21:13+0500\n"
 "Last-Translator: Amirshox <EMAIL@ADDRESS>\n"
 "Language-Team: Uzbek <LL@li.org>\n"
@@ -17,64 +17,119 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\templates\blogs\blog-detail.html:4
-#: .\templates\blogs\blog-list-sidebar-left.html:5
+#: .\templates\blogs\blog-detail.html:5
+#: .\templates\blogs\blog-list-sidebar-left.html:6
 msgid "Minimalist Furniture HTML Template"
 msgstr "Furnitica - Minimalistik mebel HTML shabloni"
 
-#: .\templates\blogs\blog-detail.html:22
-#: .\templates\blogs\blog-list-sidebar-left.html:23
-#: .\templates\layout\header-base.html:123
+#: .\templates\blogs\blog-detail.html:23
+#: .\templates\blogs\blog-list-sidebar-left.html:24
+#: .\templates\blogs\blog_add.html:300 .\templates\layout\header-base.html:123
 #: .\templates\layout\header-home.html:141 .\templates\pages\about-us.html:20
 #: .\templates\pages\contact.html:17 .\templates\products\product-add.html:310
 #: .\templates\products\product-cart.html:19
 #: .\templates\products\product-checkout.html:18
 #: .\templates\products\product-detail.html:22
-#: .\templates\products\products.html:22 .\templates\users\user-acount.html:18
-#: .\templates\users\user-login.html:18 .\templates\users\user-register.html:18
+#: .\templates\products\products.html:22 .\templates\users\user-acount.html:286
+#: .\templates\users\user-login.html:90 .\templates\users\user-register.html:94
 #: .\templates\users\user-wishlist.html:18
 msgid "Home"
 msgstr "Bosh sahifa"
-#: .\templates\blogs\blog-detail.html:27
+
+#: .\templates\blogs\blog-detail.html:28
 #, fuzzy
 #| msgid "Blog Tags"
 msgid "Blog Detail"
 msgstr "Blog teglari"
 
-#: .\templates\blogs\blog-detail.html:48 .\templates\blogs\blog-detail.html:105
-#: .\templates\blogs\blog-list-sidebar-left.html:64
+#: .\templates\blogs\blog-detail.html:41
+#: .\templates\blogs\blog-list-sidebar-left.html:43
+#: .\templates\blogs\blog_add.html:365
+#: .\templates\products\product-add.html:407
+#: .\templates\products\product-detail.html:45
+#: .\templates\products\products.html:42 .\templates\products\products.html:67
+msgid "Categories"
+msgstr "Kategoriyalar"
+
+#: .\templates\blogs\blog-detail.html:64
+#: .\templates\blogs\blog-list-sidebar-left.html:66
+#: .\templates\blogs\blog-list-sidebar-left.html:134
+msgid "Recent Posts"
+msgstr "So‘nggi postlar"
+
+#: .\templates\blogs\blog-detail.html:73
+#: .\templates\blogs\blog-list-sidebar-left.html:75
+msgid "comment"
+msgstr "izoh"
+
+#: .\templates\blogs\blog-detail.html:82
+#: .\templates\blogs\blog-list-sidebar-left.html:84
+msgid "READ MORE"
+msgstr "Batafsil o‘qish"
+
+#: .\templates\blogs\blog-detail.html:93
+#: .\templates\blogs\blog-list-sidebar-left.html:95
+#: .\templates\products\product-detail.html:115
+#: .\templates\products\product-detail.html:344
+#: .\templates\products\products.html:124
+msgid "Product Tags"
+msgstr "Mahsulot teglari"
+
+#: .\templates\blogs\blog-detail.html:101
+#: .\templates\blogs\blog-list-sidebar-left.html:103
+#: .\templates\products\product-detail.html:120
+#: .\templates\products\products.html:132
+#, python-format
+msgid "Show products matching tag %(tag.title)s"
+msgstr "%(tag.title)s tegiga mos mahsulotlarni ko‘rsatish"
+
+#: .\templates\blogs\blog-detail.html:114
+#: .\templates\blogs\blog-list-sidebar-left.html:116
+msgid "banner-2"
+msgstr "Banner-2"
+
+#: .\templates\blogs\blog-detail.html:140
+#: .\templates\blogs\blog-detail.html:201
+#: .\templates\blogs\blog-list-sidebar-left.html:157
 msgid "Comments"
 msgstr "Izohlar"
 
-#: .\templates\blogs\blog-detail.html:54
+#: .\templates\blogs\blog-detail.html:146
 #: .\templates\products\product-detail.html:270
 #: .\templates\products\product-detail.html:271
 msgid "Share"
 msgstr "Ulashish"
 
-#: .\templates\blogs\blog-detail.html:77
+#: .\templates\blogs\blog-detail.html:173
 msgid "Related News"
 msgstr "Tegishli yangiliklar"
 
-#: .\templates\blogs\blog-detail.html:129
+#: .\templates\blogs\blog-detail.html:225
 msgid "Submit comment"
 msgstr "Izohni yuborish"
 
-#: .\templates\blogs\blog-detail.html:136
+#: .\templates\blogs\blog-detail.html:232
 msgid "Your Message"
 msgstr "Xabaringiz"
 
-#: .\templates\blogs\blog-detail.html:140
+#: .\templates\blogs\blog-detail.html:236
 msgid "Send Message"
 msgstr "Xabarni yuborish"
 
-#: .\templates\blogs\blog-list-sidebar-left.html:28
-#: .\templates\layout\header-base.html:126
+#: .\templates\blogs\blog-list-sidebar-left.html:29
+#: .\templates\blogs\blog_add.html:305 .\templates\layout\header-base.html:126
 #: .\templates\layout\header-home.html:144
 msgid "Blogs"
 msgstr "Bloglar"
 
-#: .\templates\blogs\blog-list-sidebar-left.html:69
+#: .\templates\blogs\blog-list-sidebar-left.html:139
+#: .\templates\blogs\blog_add.html:310
+#, fuzzy
+#| msgid "Add New Blog"
+msgid "Add Blog"
+msgstr "Yangi blog qo‘shish"
+
+#: .\templates\blogs\blog-list-sidebar-left.html:162
 #: .\templates\layout\header-base.html:211
 #: .\templates\layout\header-home.html:85
 #: .\templates\layout\header-home.html:368
@@ -87,127 +142,98 @@ msgstr "Bloglar"
 msgid "Remove"
 msgstr "Savatchadan olib tashlash"
 
-#: .\templates\blogs\blog-list-sidebar-left.html:69
+#: .\templates\blogs\blog-list-sidebar-left.html:162
 #: .\templates\users\user-wishlist.html:61
 #: .\templates\users\user-wishlist.html:83
 msgid "Delete"
 msgstr "O‘chirish"
 
-#: .\templates\blogs\blog-list-sidebar-left.html:78
+#: .\templates\blogs\blog-list-sidebar-left.html:171
 msgid "view more"
 msgstr "Ko‘proq ko‘rish"
 
-#: .\templates\blogs\blog-list-sidebar-left.html:89
+#: .\templates\blogs\blog-list-sidebar-left.html:184
 #: .\templates\products\products.html:334
 msgid "Previous"
 msgstr "Oldingi"
 
-#: .\templates\blogs\blog-list-sidebar-left.html:103
+#: .\templates\blogs\blog-list-sidebar-left.html:204
 #: .\templates\products\products.html:349
 msgid "Next"
 msgstr "Keyingi"
 
 #: .\templates\blogs\blog_add.html:4
-#: .\templates\blogs\blog_add.html:40
 msgid "Add New Blog"
 msgstr "Yangi blog qo‘shish"
 
-#: .\templates\blogs\blog_add.html:46
+#: .\templates\blogs\blog_add.html:321
 msgid "Add New Blog Post"
 msgstr "Yangi blog posti qo‘shish"
 
-#: .\templates\blogs\blog_add.html:55 .\templates\products\product-add.html:347
+#: .\templates\blogs\blog_add.html:333
+#: .\templates\products\product-add.html:343
+msgid "Basic Information"
+msgstr "Asosiy malumotlar"
+
+#: .\templates\blogs\blog_add.html:337
+#: .\templates\products\product-add.html:347
 msgid "Title"
 msgstr "Sarlavha"
 
-#: .\templates\blogs\blog_add.html:59
-msgid "Enter blog title"
-msgstr "Blog sarlavhasini kiriting"
-
-#: .\templates\blogs\blog_add.html:69
-msgid "Author"
-msgstr "Muallif"
-
-#: .\templates\blogs\blog_add.html:73
-msgid "Select Author"
-msgstr "Muallifni tanlang"
-
-#: .\templates\blogs\blog_add.html:86
+#: .\templates\blogs\blog_add.html:347
 msgid "Featured Image"
 msgstr "Asosiy rasm"
 
-#: .\templates\blogs\blog_add.html:91
+#: .\templates\blogs\blog_add.html:352
+#, fuzzy
+#| msgid "Featured Image"
+msgid "Choose Featured Image"
+msgstr "Asosiy rasm"
+
+#: .\templates\blogs\blog_add.html:356
 msgid "Recommended size: 800x600px"
 msgstr "Tavsiya etilgan o‘lcham: 800x600px"
 
-#: .\templates\blogs\blog_add.html:101 .\templates\blogs\recent_posts.html:7
-#: .\templates\products\product-add.html:407
-#: .\templates\products\product-detail.html:45
-#: .\templates\products\products.html:42 .\templates\products\products.html:67
-msgid "Categories"
+#: .\templates\blogs\blog_add.html:362
+#, fuzzy
+#| msgid "Categories"
+msgid "Categories & Tags"
 msgstr "Kategoriyalar"
 
-#: .\templates\blogs\blog_add.html:110
+#: .\templates\blogs\blog_add.html:372
 #: .\templates\products\product-add.html:414
 msgid "Hold Ctrl/Cmd to select multiple categories"
 msgstr "Bir nechta toifani tanlash uchun Ctrl/Cmd tugmasini bosing"
 
-#: .\templates\blogs\blog_add.html:120
+#: .\templates\blogs\blog_add.html:376
 #: .\templates\products\product-add.html:433
 msgid "Tags"
 msgstr "Teglar"
 
-#: .\templates\blogs\blog_add.html:129
+#: .\templates\blogs\blog_add.html:383
 #: .\templates\products\product-add.html:440
 msgid "Hold Ctrl/Cmd to select multiple tags"
 msgstr "Bir nechta tegni tanlash uchun Ctrl/Cmd tugmasini bosing"
 
-#: .\templates\blogs\blog_add.html:139
+#: .\templates\blogs\blog_add.html:389
 msgid "Content"
 msgstr "Kontent"
 
-#: .\templates\blogs\blog_add.html:154
-msgid "Publish Blog"
-msgstr "Blogni e’lon qilish"
+#: .\templates\blogs\blog_add.html:392
+#, fuzzy
+#| msgid "Content"
+msgid "Blog Content"
+msgstr "Kontent"
 
-#: .\templates\blogs\blog_add.html:158
+#: .\templates\blogs\blog_add.html:412
 #: .\templates\products\product-add.html:512
-#: .\templates\users\user-acount.html:127
+#: .\templates\users\user-acount.html:415
 msgid "Cancel"
 msgstr "Bekor qilish"
 
-#: .\templates\blogs\blog_add.html:252
-#, fuzzy
-#| msgid "Write your comments here"
-msgid "Write your blog content here..."
-msgstr "Izohlaringizni shu yerga yozing"
-
-#: .\templates\blogs\recent_posts.html:30
-msgid "Recent Posts"
-msgstr "So‘nggi postlar"
-
-#: .\templates\blogs\recent_posts.html:39
-msgid "comment"
-msgstr "izoh"
-
-#: .\templates\blogs\recent_posts.html:48
-msgid "READ MORE"
-msgstr "Batafsil o‘qish"
-
-#: .\templates\blogs\recent_posts.html:59
-msgid "Blog Tags"
-msgstr "Blog teglari"
-
-#: .\templates\blogs\recent_posts.html:66
-#: .\templates\products\product-detail.html:120
-#: .\templates\products\products.html:132
-#, python-format
-msgid "Show products matching tag %(tag.title)s"
-msgstr "%(tag.title)s tegiga mos mahsulotlarni ko‘rsatish"
-
-#: .\templates\blogs\recent_posts.html:77
-msgid "banner-2"
-msgstr "Banner-2"
+#: .\templates\blogs\blog_add.html:415
+msgid "Publish Blog"
+msgstr "Blogni e’lon qilish"
 
 #: .\templates\layout\footer-base.html:14
 #: .\templates\layout\footer-home.html:16
@@ -224,7 +250,6 @@ msgstr ""
 "Mahsulotlarni filtrlash, mijozlar sharhlari va moslashuvchan dizayn kabi "
 "imkoniyatlar orqali Furnitica onlayn mebel xaridini oddiy, ishonchli va "
 "yoqimli qilishni maqsad qiladi."
-
 
 #: .\templates\layout\footer-base.html:21
 #: .\templates\layout\footer-home.html:29 .\templates\pages\about-us.html:25
@@ -256,9 +281,15 @@ msgstr "Xaridorlarimiz bilan bog‘laning"
 msgid "Contact Us"
 msgstr "Biz bilan bog‘laning"
 
-#: .\templates\layout\footer-base.html:46 .\templates\users\user-acount.html:64
+#: .\templates\layout\footer-base.html:46
+#: .\templates\users\user-acount.html:352
 msgid "Address :"
 msgstr "Manzil:"
+
+#: .\templates\layout\footer-base.html:49
+#: .\templates\layout\footer-home.html:52
+msgid "1, Khadra Massif, Shayxontohur District, Tashkent, Uzbekistan"
+msgstr "1, Xadra massivi, Shayxontohur tumani, Toshkent, O'zbekiston"
 
 #: .\templates\layout\footer-base.html:55
 msgid "Email :"
@@ -338,6 +369,7 @@ msgstr "Logotip"
 #: .\templates\layout\header-base.html:129
 #: .\templates\layout\header-home.html:147
 #: .\templates\products\product-add.html:315
+#: .\templates\products\product-detail.html:28
 #: .\templates\products\products.html:27 .\templates\products\products.html:143
 msgid "Products"
 msgstr "Mahsulotlar"
@@ -412,10 +444,10 @@ msgstr "Xaridni davom ettirish"
 msgid "O'zbekcha"
 msgstr "O‘zbekcha"
 
-
 #: .\templates\layout\header-home.html:165
 #: .\templates\layout\header-home.html:188
-#: .\templates\users\user-acount.html:23 .\templates\users\user-acount.html:33
+#: .\templates\users\user-acount.html:291
+#: .\templates\users\user-acount.html:303
 msgid "My Account"
 msgstr "Mening profilim"
 
@@ -426,7 +458,8 @@ msgstr "Mening profilim"
 msgid "Log in to your customer account"
 msgstr "Shaxsiy profilingizga kiring"
 
-#: .\templates\layout\header-home.html:175 .\templates\users\user-login.html:62
+#: .\templates\layout\header-home.html:175
+#: .\templates\users\user-login.html:134
 msgid "Sign in"
 msgstr "Kirish"
 
@@ -496,7 +529,6 @@ msgstr "Buyurtma tafsilotlari"
 #: .\templates\order_success.html:36
 msgid "Order Number:"
 msgstr "Buyurtma raqami:"
-
 
 #: .\templates\order_success.html:40
 #, fuzzy
@@ -587,42 +619,61 @@ msgstr ""
 "Buyurtmangiz jo‘natilgach, biz sizga buyurtma tafsilotlari va kuzatuv "
 "ma’lumotlari bilan tasdiqlovchi xatni elektron pochta orqali yuboramiz."
 
-
 #: .\templates\pages\about-us.html:4 .\templates\products\products.html:5
 msgid "Furnitica - Minimalist Furniture HTML Template"
 msgstr "Furnitica - Minimalistik mebel HTML shabloni"
 
-#: .\templates\pages\about-us.html:47 .\templates\pages\about-us.html:58
-msgid ""
-"Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis "
-"bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. "
-"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
-"sit amet nibh vultate cursus a sit amet mauris."
-msgstr "Proin gravida — vaqtinchalik matn, dizayn va sinov uchun ishlatiladi."
-
 #: .\templates\pages\about-us.html:48
 msgid ""
-"Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. "
-"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
-"sit amet nibh vultate cursus a sit amet mauris."
-msgstr "Proin gravida — vaqtinchalik matn, dizayn va sinov uchun ishlatiladi."
+"\n"
+"                                            At Furniture, we create high-"
+"quality and stylish furniture designed to bring comfort and elegance into "
+"every home. Our team focuses on modern design, durability, and "
+"functionality, making sure each piece is crafted with care. From living "
+"rooms to bedrooms, we provide furniture that transforms spaces into warm, "
+"welcoming, and practical environments.\n"
+"                                            "
+msgstr ""
+"                                            Furniture'da biz har bir uyga qulaylik va "
+"elegantlik olib kiruvchi yuqori sifatli va zamonaviy mebellar yaratamiz. "
+"Jamoamiz zamonaviy dizayn, mustahkamlik va funksionallikka e'tibor qaratadi, "
+"har bir buyumni ehtiyotkorlik bilan ishlab chiqamiz. Mehmonxona va yotoqxona "
+"kabi xonalardan tortib, bizning mebellarimiz makonlarni issiq, mehmondo'st va "
+"amaliy muhitga aylantiradi.\n"
 
-#: .\templates\pages\about-us.html:51
+#: .\templates\pages\about-us.html:54
 msgid "Mr. kwang shang - CEO"
 msgstr "Janob Kvang Shang - Bosh direktor"
 
-#: .\templates\pages\about-us.html:57
+#: .\templates\pages\about-us.html:60
 msgid "WHAT WE DO"
 msgstr "Biz nima qilamiz"
 
-#: .\templates\pages\about-us.html:59
+#: .\templates\pages\about-us.html:62
 msgid ""
-"Proin gravida nibh vel velit auctor aliquet, nec sagittis sem nibh id elit. "
-"Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio "
-"sit amet nibh vultate cursus a sit amet mauris."
-msgstr "Proin gravida — vaqtinchalik matn, dizayn va sinov uchun ishlatiladi."
+"\n"
+"                                            Our advantages:\n"
+"                                            Quality – we use only premium "
+"materials.\n"
+"                                            Modern Design – stylish "
+"furniture that fits every home.\n"
+"                                            Affordable Prices – the best "
+"balance between quality and cost.\n"
+"                                            Personal Approach – custom "
+"furniture tailored to your needs.\n"
+"                                            Trust – on-time delivery and "
+"guaranteed service.\n"
+"                                            "
+msgstr ""
+"                                            Bizning afzalliklarimiz:\n"
+"                                            Sifat – biz faqat yuqori darajadagi materiallardan foydalanamiz.\n"
+"                                            Zamonaviy dizayn – har bir uyga mos va chiroyli mebellar.\n"
+"                                            Qulay narxlar – sifat va narxning eng yaxshi muvozanati.\n"
+"                                            Individual yondashuv – sizning ehtiyojingizga mos maxsus mebellar.\n"
+"                                            Ishonch – o‘z vaqtida yetkazib berish va kafolatlangan xizmat.\n"
+"                                            "
 
-#: .\templates\pages\about-us.html:74
+#: .\templates\pages\about-us.html:85
 msgid "MEET OUR TEAM"
 msgstr "Bizning jamoamiz bilan tanishing"
 
@@ -651,13 +702,13 @@ msgid ""
 "opportunities. The branch features well-equipped classrooms, a supportive "
 "learning environment, and access to the latest software and technologies."
 msgstr ""
-"Toshkentdagi Najot Ta’lim Xadra filiali dasturlash, veb-dasturlash, ma’lumotlar "
-"ilmi va IT ko‘nikmalari bo‘yicha kurslar taklif etadigan zamonaviy o‘quv markazidir. "
-"Tajribali o‘qituvchilarimiz talabalar va mutaxassislarning texnik bilimlarini hamda "
-"kasbiy imkoniyatlarini oshirish uchun amaliy mashg‘ulotlar o‘tkazadilar. "
-"Filial zamonaviy jihozlangan sinfxonalar, qo‘llab-quvvatlovchi ta’lim muhiti va "
-"so‘nggi dasturiy ta’minot hamda texnologiyalardan foydalanish imkoniyatiga ega."
-
+"Toshkentdagi Najot Ta’lim Xadra filiali dasturlash, veb-dasturlash, "
+"ma’lumotlar ilmi va IT ko‘nikmalari bo‘yicha kurslar taklif etadigan "
+"zamonaviy o‘quv markazidir. Tajribali o‘qituvchilarimiz talabalar va "
+"mutaxassislarning texnik bilimlarini hamda kasbiy imkoniyatlarini oshirish "
+"uchun amaliy mashg‘ulotlar o‘tkazadilar. Filial zamonaviy jihozlangan "
+"sinfxonalar, qo‘llab-quvvatlovchi ta’lim muhiti va so‘nggi dasturiy ta’minot "
+"hamda texnologiyalardan foydalanish imkoniyatiga ega."
 
 #: .\templates\pages\contact.html:102
 msgid "Your name"
@@ -690,58 +741,58 @@ msgid ""
 "it is perfect for family gatherings, entertaining guests, or simply "
 "unwinding after a long day."
 msgstr ""
-"Yashash xonasi qulaylik va dam olish uchun mo‘ljallangan, chiroyli va zamonaviy "
-"joydir. Keng joylashuvi, yumshoq yoritilishi va zamonaviy mebellari bilan u "
-"oila davrasida yig‘ilishlar, mehmonlarni kutib olish yoki uzoq kunlik charchoqdan "
-"keyin hordiq chiqarish uchun juda qulay."
+"Yashash xonasi qulaylik va dam olish uchun mo‘ljallangan, chiroyli va "
+"zamonaviy joydir. Keng joylashuvi, yumshoq yoritilishi va zamonaviy "
+"mebellari bilan u oila davrasida yig‘ilishlar, mehmonlarni kutib olish yoki "
+"uzoq kunlik charchoqdan keyin hordiq chiqarish uchun juda qulay."
 
-
-#: .\templates\pages\home3.html:109 .\templates\pages\home3.html:333
+#: .\templates\pages\home3.html:109 .\templates\pages\home3.html:341
 msgid "New Arrivals"
 msgstr "Yangi kelganlar"
 
-#: .\templates\pages\home3.html:112 .\templates\pages\home3.html:336
+#: .\templates\pages\home3.html:112 .\templates\pages\home3.html:344
+#: .\templates\products\product-detail.html:69
 #, fuzzy
 #| msgid "Best Seller"
 msgid "Best Deals"
 msgstr "Eng ko‘p sotilgan"
 
-#: .\templates\pages\home3.html:124 .\templates\pages\home3.html:188
-#: .\templates\pages\home3.html:270 .\templates\pages\home3.html:348
-#: .\templates\pages\home3.html:409
+#: .\templates\pages\home3.html:124 .\templates\pages\home3.html:192
+#: .\templates\pages\home3.html:278 .\templates\pages\home3.html:356
+#: .\templates\pages\home3.html:421
 msgid "Product Image"
 msgstr "Mahsulot rasmi"
 
-#: .\templates\pages\home3.html:125 .\templates\pages\home3.html:189
-#: .\templates\pages\home3.html:349 .\templates\pages\home3.html:410
+#: .\templates\pages\home3.html:125 .\templates\pages\home3.html:193
+#: .\templates\pages\home3.html:357 .\templates\pages\home3.html:422
 msgid "Product Secondary Image"
 msgstr "Mahsulot ikkinchi rasmi"
 
-#: .\templates\pages\home3.html:164 .\templates\pages\home3.html:228
-#: .\templates\pages\home3.html:296 .\templates\pages\home3.html:387
-#: .\templates\pages\home3.html:448 .\templates\products\product-cart.html:91
+#: .\templates\pages\home3.html:168 .\templates\pages\home3.html:236
+#: .\templates\pages\home3.html:304 .\templates\pages\home3.html:399
+#: .\templates\pages\home3.html:464 .\templates\products\product-cart.html:91
 msgid "Remove from Cart"
 msgstr "Savatchadan olib tashlash"
 
-#: .\templates\pages\home3.html:168 .\templates\pages\home3.html:232
-#: .\templates\pages\home3.html:300 .\templates\pages\home3.html:391
-#: .\templates\pages\home3.html:452
+#: .\templates\pages\home3.html:172 .\templates\pages\home3.html:240
+#: .\templates\pages\home3.html:308 .\templates\pages\home3.html:403
+#: .\templates\pages\home3.html:468
 msgid "Add to Cart"
 msgstr "Savatchaga qo‘shish"
 
-#: .\templates\pages\home3.html:260
+#: .\templates\pages\home3.html:268
 msgid "Deal Of The Day"
 msgstr "Kun taklifi"
 
-#: .\templates\pages\home3.html:261
+#: .\templates\pages\home3.html:269
 msgid "Hurry Up, The Same Time Is Not Extended !!!"
 msgstr "Shoshiling, bu taklif uzaytirilmaydi!"
 
-#: .\templates\pages\home3.html:328
+#: .\templates\pages\home3.html:336
 msgid "Bathroom"
 msgstr "Hammom"
 
-#: .\templates\pages\home3.html:329
+#: .\templates\pages\home3.html:337
 msgid ""
 "The bathroom is a clean and functional space with a modern design. Equipped "
 "with essential fixtures, elegant tiles, and a relaxing atmosphere, it "
@@ -751,28 +802,27 @@ msgstr ""
 "zamonaviy kafel qoplamalari va xotirjam muhit bilan jihozlangan bo‘lib, "
 "kundalik foydalanish uchun qulaylik va shinamlik yaratadi."
 
-#: .\templates\pages\home3.html:480
+#: .\templates\pages\home3.html:496
 msgid "Testimonial Icon"
 msgstr "Fikr-mulohaza belgisi"
 
-#: .\templates\pages\home3.html:512
+#: .\templates\pages\home3.html:528
 msgid "Subscribe to our social medias"
 msgstr "Ijtimoiy tarmoqlarimizga obuna bo‘ling"
 
-#: .\templates\pages\home3.html:516
+#: .\templates\pages\home3.html:532
 msgid "Telegram"
 msgstr "Telegram"
 
-#: .\templates\pages\home3.html:521
+#: .\templates\pages\home3.html:537
 msgid "Twitter"
 msgstr "Twitter"
 
-#: .\templates\pages\home3.html:526
+#: .\templates\pages\home3.html:542
 msgid "Linkedin"
 msgstr "LinkedIn"
 
-
-#: .\templates\pages\home3.html:531
+#: .\templates\pages\home3.html:547
 msgid "Github"
 msgstr "Github"
 
@@ -788,11 +838,7 @@ msgstr "Mahsulot"
 #, fuzzy
 #| msgid "Product"
 msgid "Add Product"
-msgstr "Mahsulot"
-
-#: .\templates\products\product-add.html:343
-msgid "Basic Information"
-msgstr "Asosiy malumotlar"
+msgstr "Mahsulot qoshish"
 
 #: .\templates\products\product-add.html:354
 #, fuzzy
@@ -883,6 +929,9 @@ msgstr "Mahsulot teglari"
 #| msgid "Increase Quantity"
 msgid "Quantity"
 msgstr "Miqdorni oshirish"
+
+#: .\templates\products\product-add.html:484
+#: .\templates\products\product-add.html:637
 #, fuzzy
 #| msgid "Size:"
 msgid "Sizes"
@@ -993,7 +1042,7 @@ msgid "Full name"
 msgstr "To‘liq ism"
 
 #: .\templates\products\product-checkout.html:63
-#: .\templates\users\user-register.html:50
+#: .\templates\users\user-register.html:126
 msgid "Email"
 msgstr "Email"
 
@@ -1079,16 +1128,6 @@ msgstr "Men xizmat ko'rsatish shartlari va maxfiylik siyosatiga roziman"
 msgid "Place Order"
 msgstr "Buyurtma"
 
-#: .\templates\products\product-detail.html:69
-msgid "Best seller"
-msgstr "Eng ko‘p sotilgan"
-
-#: .\templates\products\product-detail.html:115
-#: .\templates\products\product-detail.html:338
-#: .\templates\products\products.html:124
-msgid "Product Tags"
-msgstr "Mahsulot teglari"
-
 #: .\templates\products\product-detail.html:141
 msgid "Expand Image"
 msgstr "Rasmni kengaytirish"
@@ -1147,102 +1186,84 @@ msgstr "Chop etish"
 msgid "REVIEW:"
 msgstr "Sharh:"
 
-#: .\templates\products\product-detail.html:298
+#: .\templates\products\product-detail.html:304
 #, fuzzy
 #| msgid "READ REVIEWS (3)"
 msgid "READ REVIEWS"
 msgstr "Sharhlarni o‘qish (3)"
 
-#: .\templates\products\product-detail.html:304
+#: .\templates\products\product-detail.html:310
 msgid "WRITE A REVIEW"
 msgstr "Sharh yozish"
 
-#: .\templates\products\product-detail.html:310
+#: .\templates\products\product-detail.html:316
 msgid "Brand:"
 msgstr "Brend"
 
-#: .\templates\products\product-detail.html:313
+#: .\templates\products\product-detail.html:319
 #, fuzzy
 #| msgid "Categories :"
 msgid "Categories:"
 msgstr "Kategoriyalar:"
 
-#: .\templates\products\product-detail.html:320
+#: .\templates\products\product-detail.html:326
 msgid "Tags:"
 msgstr "Teglar"
 
-#: .\templates\products\product-detail.html:335
+#: .\templates\products\product-detail.html:341
 msgid "Description"
 msgstr "Tavsif"
 
-#: .\templates\products\product-detail.html:341
+#: .\templates\products\product-detail.html:347
 #, fuzzy
 #| msgid "Reviews (2)"
 msgid "Reviews"
 msgstr "Sharhlar (2)"
 
-#: .\templates\products\product-detail.html:381
+#: .\templates\products\product-detail.html:391
 msgid "No reviews yet. Be the first to review this product!"
-msgstr "Hozircha sharhlar yo‘q. Ushbu mahsulotga birinchi bo‘lib fikr bildiring!"
+msgstr ""
+"Hozircha sharhlar yo‘q. Ushbu mahsulotga birinchi bo‘lib fikr bildiring!"
 
-
-#: .\templates\products\product-detail.html:388
+#: .\templates\products\product-detail.html:397
 msgid "Write a review"
 msgstr "Sharh yozish"
 
-#: .\templates\products\product-detail.html:391
+#: .\templates\products\product-detail.html:400
 msgid "Your Rating"
 msgstr "Sizning bahoyingiz"
 
-#: .\templates\products\product-detail.html:394
+#: .\templates\products\product-detail.html:403
 msgid "Awesome - 5 stars"
 msgstr "Ajoyib - 5 yulduz"
 
-#: .\templates\products\product-detail.html:396
+#: .\templates\products\product-detail.html:405
 msgid "Pretty good - 4 stars"
 msgstr "Yaxshi - 4 yulduz"
 
-#: .\templates\products\product-detail.html:398
+#: .\templates\products\product-detail.html:407
 msgid "Meh - 3 stars"
 msgstr "O‘rtacha - 3 yulduz"
 
-#: .\templates\products\product-detail.html:400
+#: .\templates\products\product-detail.html:409
 msgid "Kinda bad - 2 stars"
 msgstr "Yomonroq - 2 yulduz"
 
-#: .\templates\products\product-detail.html:402
+#: .\templates\products\product-detail.html:411
 msgid "Sucks big time - 1 star"
 msgstr "Juda yomon - 1 yulduz"
 
-#: .\templates\products\product-detail.html:408
-msgid "Enter your name"
-msgstr "Ismingizni kiriting"
-
-#: .\templates\products\product-detail.html:411
-msgid "Enter your email"
-msgstr "Emailingizni kiriting"
-
-#: .\templates\products\product-detail.html:417
+#: .\templates\products\product-detail.html:418
 msgid "Write your comments here"
 msgstr "Izohlaringizni shu yerga yozing"
 
-#: .\templates\products\product-detail.html:422
+#: .\templates\products\product-detail.html:423
 msgid "Submit Review"
 msgstr "Sharhni yuborish"
 
-#: .\templates\products\product-detail.html:433
+#: .\templates\products\product-detail.html:434
 msgid "Related Products"
 msgstr "Tegishli mahsulotlar"
-
-#: .\templates\products\product-detail.html:481
-#, fuzzy
-#| msgid "Product"
-msgid "View Product"
-msgstr "Mahsulot"
-
-#: .\templates\products\product-detail.html:484
-msgid "Add to Wishlist"
-msgstr "Istaklar ro‘yxatiga qo‘shish"
 
 #: .\templates\products\products.html:65
 msgid "Catalog"
@@ -1298,78 +1319,126 @@ msgstr "Ko‘rsatilmoqda"
 msgid "ITEM(S)"
 msgstr "Mahsulot(lar)"
 
-#: .\templates\users\user-acount.html:42
+#: .\templates\users\user-acount.html:330
 msgid "My Name :"
 msgstr "Mening ismim:"
 
-#: .\templates\users\user-acount.html:53
+#: .\templates\users\user-acount.html:341
 msgid "Company :"
 msgstr "Kompaniya:"
 
-#: .\templates\users\user-acount.html:75
+#: .\templates\users\user-acount.html:363
 msgid "City :"
 msgstr "Shahar:"
 
-#: .\templates\users\user-acount.html:86
+#: .\templates\users\user-acount.html:374
 msgid "Postal/Zip Code :"
 msgstr "Pochta indeksi:"
 
-#: .\templates\users\user-acount.html:97
+#: .\templates\users\user-acount.html:385
 msgid "Phone :"
 msgstr "Telefon:"
 
-#: .\templates\users\user-acount.html:108
+#: .\templates\users\user-acount.html:396
 msgid "Country :"
 msgstr "Davlat:"
 
-#: .\templates\users\user-acount.html:124
+#: .\templates\users\user-acount.html:412
+msgid "SAVE CHANGES"
+msgstr "O'zgartirishlarni saqlash"
 
 
-
-#: .\templates\users\user-acount.html:133
-msgid "Order"
-msgstr "Buyurtma"
-
-#: .\templates\users\user-acount.html:134
-msgid "History"
+#: .\templates\users\user-acount.html:423
+#, fuzzy
+#| msgid "History"
+msgid "Order History"
 msgstr "Tarix"
 
-#: .\templates\users\user-acount.html:136
+#: .\templates\users\user-acount.html:430
+#, fuzzy
+#| msgid "Order"
+msgid "Order ID"
+msgstr "Buyurtma"
+
+#: .\templates\users\user-acount.html:431
+msgid "Date"
+msgstr "Sana"
+
+
+#: .\templates\users\user-acount.html:432
+#, fuzzy
+#| msgid "Total:"
+msgid "Total"
+msgstr "Jami:"
+
+#: .\templates\users\user-acount.html:433
+msgid "Status"
+msgstr "Holat"
+
+#: .\templates\users\user-acount.html:434
+msgid "Action"
+msgstr "Amal"
+
+#: .\templates\users\user-acount.html:450
+#: .\templates\users\user-wishlist.html:75
+msgid "View"
+msgstr "Ko‘rish"
+
+#: .\templates\users\user-acount.html:460
 msgid "You haven't placed any orders yet."
 msgstr "Siz hali hech qanday buyurtma bermadingiz."
 
-#: .\templates\users\user-login.html:23
+#: .\templates\users\user-login.html:95
 msgid "Login"
 msgstr "Kirish"
 
-#: .\templates\users\user-login.html:36
+#: .\templates\users\user-login.html:108
 msgid "Log In"
 msgstr "Kirish"
 
-#: .\templates\users\user-login.html:43 .\templates\users\user-register.html:45
+#: .\templates\users\user-login.html:115
+#: .\templates\users\user-register.html:121
 msgid "Username"
 msgstr "Foydalanuvchi nomi"
 
-#: .\templates\users\user-login.html:47 .\templates\users\user-register.html:55
+#: .\templates\users\user-login.html:119
+#: .\templates\users\user-register.html:131
 msgid "Password"
 msgstr "Parol"
 
-#: .\templates\users\user-login.html:53
+#: .\templates\users\user-login.html:125
 msgid "Forgot your password?"
 msgstr "Parolingizni unutdingizmi?"
 
-#: .\templates\users\user-register.html:23
-msgid "Register"
-msgstr "Ro‘yxatdan o‘tish"
+#: .\templates\users\user-login.html:142
+msgid "Don't have an account?"
+msgstr "Hisobingiz yo‘qmi?"
 
-#: .\templates\users\user-register.html:39
-#: .\templates\users\user-register.html:69
+
+#: .\templates\users\user-login.html:144
+#: .\templates\users\user-register.html:115
+#: .\templates\users\user-register.html:145
 msgid "Create Account"
 msgstr "Hisob yaratish"
 
-#: .\templates\users\user-register.html:61
+#: .\templates\users\user-register.html:99
+msgid "Register"
+msgstr "Ro‘yxatdan o‘tish"
+
+#: .\templates\users\user-register.html:137
 msgid "Confirm Password"
 msgstr "Parolni tasdiqlash"
+
+#: .\templates\users\user-register.html:153
+msgid "Already have an account?"
+msgstr "Hisobingiz bormi?"
+
+
+#: .\templates\users\user-register.html:155
+#, fuzzy
+#| msgid "Sign in"
+msgid "Sign In"
+msgstr "Kirish"
 
 #: .\templates\users\user-wishlist.html:23
 msgid "Wishlists"
@@ -1412,10 +1481,6 @@ msgstr "To‘g‘ridan-to‘g‘ri havola"
 msgid "Default"
 msgstr "Standart"
 
-#: .\templates\users\user-wishlist.html:75
-msgid "View"
-msgstr "Ko‘rish"
-
 #: .\templates\users\user-wishlist.html:83
 msgid "Do you really want to delete this wishlist ?"
 msgstr "Bu istaklar ro‘yxatini haqiqatan ham o‘chirmoqchimisiz?"
@@ -1424,14 +1489,4 @@ msgstr "Bu istaklar ro‘yxatini haqiqatan ham o‘chirmoqchimisiz?"
 #: .\templates\users\user-wishlist.html:92
 msgid "Homepage"
 msgstr "Bosh sahifa"
-#: .\templates\blogs\blog_add.html:4
-
-
-#: .\templates\layout\footer-base.html:49
-#: .\templates\layout\footer-home.html:52
-msgid "1, Khadra Massif, Shayxontohur District, Tashkent, Uzbekistan"
-msgstr "1, Xadra massivi, Shayxontohur tumani, Toshkent, O'zbekiston"
-
-
-
 

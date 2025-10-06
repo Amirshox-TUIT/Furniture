@@ -2,7 +2,7 @@ from django.db.models import Max, Q
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, TemplateView
 
 from apps.pages.forms import ContactForm
 from apps.pages.models import AboutModel, BannerModel
@@ -42,24 +42,19 @@ class ContactView(CreateView):
         messages.error(self.request, 'Please correct the errors in the form and try again.')
         return super().form_invalid(form)
 
-class HomeView(ListView):
+class HomeView(TemplateView):
     template_name = 'pages/home3.html'
-    context_object_name = 'home'
-    queryset = living_prs = ProductModel.objects.filter(categories__sub__title="Living Room").distinct()
 
-    def get_queryset(self):
-        living_prs = ProductModel.objects.filter(categories__sub__title="Living Room").distinct()
-        return living_prs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         big_sales = ProductModel.objects.order_by('-discount')[:3]
         banners = BannerModel.objects.filter(title__isnull=False)
         sub_banners = BannerModel.objects.filter(title__isnull=True)
-        new_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).distinct().order_by('-created_at')[:3]
-        new_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).distinct().order_by('-created_at')[:3]
-        sales_living_prs = ProductModel.objects.filter(Q(categories__sub__title="Living Room") | Q(categories__title="Living Room")).distinct().order_by('-discount')[:3]
-        sales_bathroom_prs = ProductModel.objects.filter(Q(categories__sub__title="Bathroom") | Q(categories__title="Bathroom")).distinct().order_by('-discount')[:3]
+        new_living_prs = ProductModel.objects.filter(categories__sub_id=1).order_by('-created_at')[:3]
+        new_bathroom_prs = ProductModel.objects.filter(categories__sub_id=2).order_by('-created_at')[:3]
+        sales_living_prs = ProductModel.objects.filter(categories__sub_id=1).order_by('-discount')[:3]
+        sales_bathroom_prs = ProductModel.objects.filter(categories__sub_id=2).order_by('-discount')[:3]
 
         about = AboutModel.objects.all()
         context['new_living_prs'] = new_living_prs
